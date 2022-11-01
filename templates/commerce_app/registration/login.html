@@ -1,21 +1,26 @@
 {% extends "base_subpage.html" %}
-{% load static %}
 
 {% block innercontent %}
-    <!-- inner page section -->
+
     <section class="inner_page_head">
         <div class="container_fuild">
             <div class="row">
                 <div class="col-md-12">
                     <div class="full">
-                        <h3>Product Grid</h3>
+                        <h3>LOG IN</h3>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- end inner page section -->
-    <!-- product section -->
-    {% include 'commerce_app/includes/products.html' %}
-    <!-- end product section -->
+
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="login">
+    </form>
+
+
 {% endblock innercontent %}
