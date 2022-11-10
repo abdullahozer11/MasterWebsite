@@ -3,10 +3,12 @@ from django.contrib.auth.views import LogoutView
 from django.urls import path, reverse_lazy
 
 from commerce_app.views import IndexView, AboutView, ContactView, ProductView, TestimonialView, ProfileView, \
-    SignupView, LoginPageView, CartView, CartAddView, CartDeleteView
+    SignupView, LoginPageView, CartView, CartAddView, RemoveCartItem
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from eCommerce import settings
+
+
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
@@ -21,7 +23,7 @@ urlpatterns = [
     path('edit-profile/', ProfileView.as_view(extra_context={"edit": True}, success_url=reverse_lazy("profile")), name='edit-profile'),
     path('cart/', CartView.as_view(), name='cart'),
     path('cart/add/<product_id>', CartAddView, name='cart-add'),
-    path('cart/delete/<pk>', CartDeleteView, name='cart-delete'),
+    path('cart/delete/<product_id>', RemoveCartItem, name='cart-remove'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()

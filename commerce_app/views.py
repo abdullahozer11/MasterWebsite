@@ -72,7 +72,7 @@ class CartView(LoginRequiredMixin, ListView):
     model = OrderProduct
 
     def get_queryset(self):
-        return OrderProduct.objects.all()
+        return OrderProduct.objects.filter(in_cart_quantity__gte=1)
 
 
 def CartAddView(request, product_id):
@@ -80,10 +80,6 @@ def CartAddView(request, product_id):
     order_product = take_order(request.user, product)
     order_product.save()
     return HttpResponseRedirect(reverse('cart'))
-
-
-def CartDeleteView(request, product_id):
-    pass
 
 
 def take_order(user, product):
@@ -95,3 +91,8 @@ def take_order(user, product):
         color=product.color,
         size=product.size,
     )
+
+def RemoveCartItem(request, product_id):
+    cart_product = OrderProduct.objects.get(id=product_id)
+    cart_product.delete()
+    return HttpResponseRedirect(reverse('cart'))
