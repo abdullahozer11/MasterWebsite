@@ -70,6 +70,7 @@ class SignupView(NotLoggedAllow, CreateView):
 class CartView(LoginRequiredMixin, ListView):
     template_name = "commerce_app/cart.html"
     model = OrderProduct
+    paginate_by = 5
 
     def get_queryset(self):
         return OrderProduct.objects.filter(in_cart_quantity__gte=1)
@@ -96,3 +97,7 @@ def RemoveCartItem(request, product_id):
     cart_product = OrderProduct.objects.get(id=product_id)
     cart_product.delete()
     return HttpResponseRedirect(reverse('cart'))
+
+def ItemFavorView(request, product_id):
+    OrderProduct.objects.get(id=product_id).InventoryProduct.favorite = True
+    return HttpResponseRedirect(redirect_to="#")
