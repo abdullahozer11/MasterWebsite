@@ -63,7 +63,7 @@
                                                 title="Remove item">
                                             <i class="fa button fa-trash"></i>
                                         </button>
-                                        <button onclick="location.href='{% url 'cart-item-favor' order_product.product.id %}'"
+                                        <button onclick="location.href='{% url 'cart-item-favor' product_id=order_product.product.id %}'"
                                                 type="button" class="btn btn-danger btn-sm mb-2"
                                                 data-mdb-toggle="tooltip"
                                                 title="Move to the wish list">
@@ -95,7 +95,7 @@
 
                                         <!-- Price -->
                                         <p class="text-start text-md-center">
-                                            <strong>$53</strong>
+                                            <strong>${{ order_product.get_total }}</strong>
                                         </p>
                                         <!-- Price -->
                                     </div>
@@ -108,23 +108,23 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <p><strong>Expected shipping delivery</strong></p>
-                            <p class="mb-0">12.10.2020 - 14.10.2020</p>
+                            <p class="mb-0">{{ delivery_min }} - {{ delivery_max }}</p>
                         </div>
                     </div>
                     <div class="card mb-4 mb-lg-0">
                         <div class="card-body">
                             <p><strong>We accept</strong></p>
                             <img class="me-2" width="45px"
-                                 src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+                                 src="{% static "commerce_app/icons/visa.svg" %}"
                                  alt="Visa"/>
                             <img class="me-2" width="45px"
-                                 src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
+                                 src="{% static "commerce_app/icons/amex.svg" %}"
                                  alt="American Express"/>
                             <img class="me-2" width="45px"
-                                 src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
+                                 src="{% static "commerce_app/icons/mastercard.svg" %}"
                                  alt="Mastercard"/>
                             <img class="me-2" width="45px"
-                                 src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"
+                                 src="{% static "commerce_app/icons/PayPal.svg" %}"
                                  alt="PayPal acceptance mark"/>
                         </div>
                     </div>
@@ -139,7 +139,7 @@
                                 <li
                                         class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                                     Products
-                                    <span>$53</span>
+                                    <span>${{ cart_total }}</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                                     Shipping
@@ -153,10 +153,12 @@
                                             <p class="mb-0">(including VAT)</p>
                                         </strong>
                                     </div>
-                                    <span><strong>$53</strong></span>
+                                    <span><strong>${{ cart_total }}</strong></span>
                                 </li>
                             </ul>
-                            <button type="button" class="btn btn-primary btn-lg btn-block">
+                            <button onclick="location.href='{% url 'checkout' %}'"
+                                    type="button"
+                                    class="btn btn-primary btn-lg btn-block">
                                 Go to checkout
                             </button>
                         </div>

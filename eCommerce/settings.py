@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-h+1t^hll*3n-7*j3-d*g-(fp%341rp6&4t9z2^kih&=2w0dt!s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "*",
+    'apojean.pythonanywhere.com',
+]
 
 
 # Application definition
@@ -130,3 +133,5 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/commerce_app/media')
 MEDIA_URL = '/media/'
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'

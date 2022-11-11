@@ -12,7 +12,7 @@
             </div>
         </div>
     </section>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <section style="background-color: #eee;">
             <div class="container py-5">
@@ -20,9 +20,12 @@
                     <div class="col-lg-4">
                         <div class="card mb-4">
                             <div class="card-body text-center">
-                                <img src={{ object.photo }}
+                                <img src={{ object.photo.url }}
                                              alt="avatar"
                                      class="rounded-circle img-fluid" style="width: 150px;">
+                                {% if edit %}
+                                <p>{{ form.photo }}</p>
+                                {% endif %}
                                 <h5 class="my-3">{{ object.name }}</h5>
                                 <p class="text-muted mb-1">{{ object.role }}</p>
                                 <p class="text-muted mb-4">{{ object.address }}</p>
@@ -33,26 +36,28 @@
                         <div class="card mb-4">
                             <div class="card-body">
                                 {% for field in form %}
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">{{ field.label }}</p>
+                                    {% if field.name != 'photo' %}
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">{{ field.label }}</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                {% if edit %}
+                                                    {{ field }}
+                                                {% else %}
+                                                    <p class="text-muted mb-0">{{ field.initial }}</p>
+                                                {% endif %}
+                                            </div>
                                         </div>
-                                        <div class="col-sm-9">
-                                            {% if edit %}
-                                                {{ field }}
-                                            {% else %}
-                                                <p class="text-muted mb-0">{{ field.initial }}</p>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                    <hr>
+                                        <hr>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                         </div>
                         {% if edit %}
                             <input type="submit" value="Save Profile">
                         {% else %}
-                            <a href="{% url 'edit-profile' %}"> Edit Profile <a>
+                            <a href="{% url 'edit-profile' %}"> Edit Profile </a>
                         {% endif %}
                     </div>
                 </div>
@@ -60,4 +65,7 @@
             </div>
         </section>
     </form>
+    <!-- product section -->
+    {% include 'commerce_app/includes/products.html' %}
+    <!-- end product section -->
 {% endblock %}

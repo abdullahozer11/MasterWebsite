@@ -4,7 +4,11 @@
     <div class="container">
         <div class="heading_container heading_center">
             <h2>
-                Our <span>products</span>
+                {% if request.path == '/profile/' %}
+                    Your <span>favorites</span>
+                {% else %}
+                    Our <span>products</span>
+                {% endif %}
             </h2>
         </div>
         <div class="row">
@@ -16,7 +20,7 @@
                                 <a href="{% url 'cart-add' product_id=product.id %}" class="option1">
                                     Add To Cart
                                 </a>
-                                <a href="" class="option2">
+                                <a href="{% url 'checkout-add-direct' product_id=product.id %}" class="option2">
                                     Buy Now
                                 </a>
                             </div>
@@ -36,10 +40,12 @@
                 </div>
             {% endfor %}
         </div>
+    {% if not request.path == '/product/' %}
         <div class="btn-box">
             <a href="{% url "product" %}">
                 View All products
             </a>
         </div>
+    {% endif %}
     </div>
 </section>

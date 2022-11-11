@@ -1,0 +1,112 @@
+{% extends "base_subpage.html" %}
+{% load static %}
+
+{% block innercontent %}
+    <!-- inner page section -->
+    <section class="inner_page_head">
+        <div class="container_fuild">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="full">
+                        <h3>PAYMENT</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container my-container ">
+        <div class="card bg-white px-5">
+            <div class="card-body">
+                <div class="row ">
+                    <!-- Left Half -->
+                    <div class="col-md-5 ">
+                        <div class="card mt-2 border-0 second-card">
+                            <!-- Form -->
+                            <div class="card-body">
+                                <h5 class="card-title">Enter Payment details</h5>
+                                <div class="row">
+                                    <div class="col-md-auto col-sm-auto ">
+                                        <div class="custom-control custom-radio custom-control-inline "><input
+                                                id="customRadioInline11" type="radio" name="customRadioInline11"
+                                                class="custom-control-input" checked="true"> <label
+                                                for="customRadioInline11" class="custom-control-label label-radio"><img
+                                                src="{% static 'commerce_app/icons/visa.png' %}"
+                                                class="card-image"> </label></div>
+                                    </div>
+                                    <div class="col-md-auto col-sm">
+                                        <div class="custom-control custom-radio custom-control-inline "><input
+                                                id="customRadioInline22" type="radio" name="customRadioInline11"
+                                                class="custom-control-input"> <label for="customRadioInline22"
+                                                                                     class="custom-control-label label-radio"><img
+                                                src="{% static 'commerce_app/icons/discover.png' %}"
+                                                class="card-image"></label></div>
+                                    </div>
+                                </div> <!-- Payment Form -->
+                                <form method="get" action="">
+                                    <div class="form-group "><label for="cc-number" class="control-label mt-3">Card
+                                        number</label> <input id="cc-number" name="cc-number" type="tel"
+                                                              placeholder="xxxx-xxxx-xxxx-xxxx"
+                                                              class="form-control form-control-lg cc-number identified visa "
+                                                              value="" data-val="true"
+                                                              data-val-required="Please enter the card number"
+                                                              data-val-cc-number="Please enter a valid card number"
+                                                              autocomplete="cc-number"></div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6 col-sm-6"><label for="cc-exp"
+                                                                                         class="control-label ">Expiration
+                                            date</label> <input id="cc-exp" type="tel"
+                                                                class=" form-control form-control-lg cc-exp"
+                                                                autocomplete="cc-exp" placeholder="MM / YY" required>
+                                        </div>
+                                        <div class="form-group col-md-6 col-sm-6"><label for="cc-cvc"
+                                                                                         class="control-label ">CVV<span><i
+                                                class="fa fa-info-circle px-2" aria-hidden="true"></i> </span> </label>
+                                            <input id="cc-cvc" type="tel" class="form-control-lg form-control cc-cvc "
+                                                   autocomplete="off" placeholder="&bull;&bull;&bull;" required></div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-8 col-sm-6"><label for="inputState">State</label>
+                                            <select id="inputState" class="form-control form-control-lg">
+                                                <option selected>France</option>
+                                                <option>United States</option>
+                                                <option>Greece</option>
+                                                <option>Turkey</option>
+                                            </select></div>
+                                        <div class="form-group col-md-4 col-sm-6"><label for="inputZip">Zip</label>
+                                            <input type="text" class="form-control form-control-lg" id="inputZip"
+                                                   placeholder="111111"></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1 d-none d-sm-block"></div> <!-- Right Half -->
+                    <div class="col-md-6">
+                        <div class="card right-card ">
+                            <div class="card-header ">
+                                <h3 class="font-weight"><b>Vasom eCommerce</b></h3>
+                                <h6><b>Billed Now : ${{ cart_total }}</b></h6>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Vasom eCommerce Corporation is a <span class="text-primary">professional eCommerce shopping website development company</span>
+                                    which offers a variety of clothing and electronic equipments for your home.<br><br>
+                                    <span class="text-primary"> Total customer satisfaction</span>.
+                                    is guaranteed and products can be returned
+                                    <span class="text-primary"> up to 10 days </span> no questions asked.</p>
+                                <div class="custom-control custom-checkbox checkbox-lg"><input type="checkbox"
+                                                                                               class="custom-control-input"
+                                                                                               id="checkbox-2"><label
+                                        class="custom-control-label" for="checkbox-2">I agree <span
+                                        class="text-primary cursor-pointer"><u> Vasom Terms</u> </span> </label>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary btn-lg">Buy now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock innercontent %}

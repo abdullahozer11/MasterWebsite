@@ -60,24 +60,20 @@
                               </svg>
                         </a>
                     </li>
-                    <form class="form-inline">
-                        <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                        </button>
-                    </form>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {% if user.is_authenticated %}
-                                <img src="{{ user.profile.avatar.url }}" width="28" class="rounded-circle mx-auto">
+                                <img src="{{ user.profile.photo.url }}" width="28" class="rounded-circle mx-auto">
                             {% else %}
-                                <img src="{% static "commerce_app/media/profile_photos/default.png" %}" width="28"
+                                <img src="{% static "commerce_app/media/profile_photos/no_user.png" %}"
+                                     width="28"
                                      class="rounded-circle mx-auto">
                             {% endif %}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             {% if user.is_authenticated %}
-                                {#                                <a class="dropdown-item" href="{% url "dashboard" %}">Dashboard</a>#}
+                                {#<a class="dropdown-item" href="{% url "dashboard" %}">Dashboard</a>#}
                                 <a class="dropdown-item" href="{% url "profile" %}">Profile</a>
                                 <a class="dropdown-item" href="{% url "logout" %}">Log Out</a>
                             {% else %}

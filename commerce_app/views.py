@@ -1,36 +1,36 @@
 # Create your views here.
+from datetime import datetime, timedelta
+
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView
-
-from commerce_app.forms import ProfileForm
+from commerce_app.forms import ProfileForm, CustomerForm
 from commerce_app.models import Product, Profile, OrderProduct
 
 
-class IndexView(TemplateView):
+class IndexView(ListView):
     template_name = "commerce_app/index.html"
-
-    def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
-        context["product_list"] = Product.objects.all()
-        return context
+    model = Product
 
 
 class AboutView(TemplateView):
     template_name = "commerce_app/about.html"
 
 
-class ContactView(TemplateView):
+class ContactView(SuccessMessageMixin, CreateView):
+    form_class = CustomerForm
     template_name = "commerce_app/contact.html"
+    success_url = reverse_lazy("contact")
+    success_message = "Your customer contact form is saved successfully!"
 
 
 class ProductView(ListView):
     template_name = "commerce_app/product.html"
     model = Product
-    paginate_by = 30
 
 
 class TestimonialView(TemplateView):
@@ -53,6 +53,11 @@ class ProfileView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         return self.request.user.profile
 
+    def get_context_data(self, **kwargs):
+        context = super(ProfileView, self).get_context_data(**kwargs)
+        context['object_list'] = Product.objects.filter(favorites__username__contains=self.request.user)
+        return context
+
 
 class LoginPageView(NotLoggedAllow, LoginView):
     next_page = 'index'
@@ -67,35 +72,70 @@ class SignupView(NotLoggedAllow, CreateView):
         return reverse_lazy("login")
 
 
+def get_cart_total():
+    total = 0
+    for obj in OrderProduct.objects.all():
+        total += obj.get_total()
+    return total
+
 class CartView(LoginRequiredMixin, ListView):
     template_name = "commerce_app/cart.html"
     model = OrderProduct
-    paginate_by = 5
     login_url = '/login/'
 
     def get_queryset(self):
         return OrderProduct.objects.filter(in_cart_quantity__gte=1)
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(CartView, self).get_context_data()
+        context["cart_total"] = get_cart_total()
+        context["delivery_min"] = (datetime.today() + timedelta(days=3)).strftime("%d.%m.%Y")
+        context["delivery_max"] = (datetime.today() + timedelta(days=7)).strftime("%d.%m.%Y")
+        return context
+
+
+class CheckoutView(LoginRequiredMixin, TemplateView):
+    template_name = "commerce_app/checkout.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(CheckoutView, self).get_context_data(**kwargs)
+        context["cart_total"] = get_cart_total()
+        return context
 
 def CartAddView(request, product_id):
-    product = Product.objects.get(id=product_id)
-    order_product = OrderProduct.objects.filter(product=product)
-    if order_product:
-        order_product.in_cart_quantity += 1
+    if request.user.is_authenticated:
+        product = Product.objects.get(id=product_id)
+        order_product = OrderProduct.objects.filter(product=product)
+        if order_product:
+            order_product[0].in_cart_quantity += 1
+            order_product[0].save()
+        else:
+            OrderProduct(user=request.user, product=product).save()
+        return HttpResponseRedirect(reverse('cart'))
     else:
-        OrderProduct(user=request.user, product=product).save()
-    return HttpResponseRedirect(reverse('cart'))
+        return HttpResponseRedirect(reverse('login'))
 
 
-def take_order(user, product):
-    return OrderProduct(user=user, product=product)
+def CheckoutAddDirectView(request, product_id):
+    if request.user.is_authenticated:
+        product = Product.objects.get(id=product_id)
+        order_product = OrderProduct.objects.filter(product=product)
+        if order_product:
+            order_product[0].in_cart_quantity += 1
+            order_product[0].save()
+        else:
+            OrderProduct(user=request.user, product=product).save()
+        return HttpResponseRedirect(reverse('checkout'))
+    else:
+        return HttpResponseRedirect(reverse('login'))
+
 
 def CartItemFavorView(request, product_id):
-    OrderProduct.objects.get(id=product_id).product.favourites.add(request.user)
-    return HttpResponseRedirect(redirect_to="#")
+    OrderProduct.objects.get(id=product_id).product.favorites.add(request.user)
+    return HttpResponseRedirect(reverse("cart"))
 
 def ItemFavorView(request, product_id):
-    Product.objects.get(id=product_id).favourites.add(request.user)
+    Product.objects.get(id=product_id).favorites.add(request.user)
 
 def IncreaseCartItemCount(request, product_id):
     cart_product = OrderProduct.objects.get(id=product_id)
