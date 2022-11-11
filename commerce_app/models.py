@@ -15,20 +15,16 @@ class Product(models.Model):
     color = models.CharField(max_length=20, default="black")
     sizes = [('S', 'SMALL'), ('M', 'MEDIUM'), ('L', 'LARGE'), ('XL', 'X-LARGE')]
     size = models.CharField(default='M', choices=sizes, max_length=10)
+    favourites = models.ManyToManyField(User, related_name='favourites', blank=True)
+    quantity = models.IntegerField(default=50)
 
     def __str__(self):
         return self.name
 
-
-class OrderProduct(Product):
+class OrderProduct(models.Model):
     user = models.ForeignKey(User, on_delete=CASCADE)
+    product = models.ForeignKey(Product, on_delete=CASCADE)
     in_cart_quantity = models.IntegerField(default=1)
-
-
-class InventoryProduct(Product):
-    favorite = models.BooleanField(default=False)
-    quantity = models.IntegerField(default=50)
-
 
 class Profile(models.Model):
     name = models.CharField(max_length=30, default="Jean Dupont")
