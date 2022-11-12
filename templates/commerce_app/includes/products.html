@@ -11,7 +11,7 @@
                 {% endif %}
             </h2>
         </div>
-        {% if request.path == '/product/' %}
+        {% if '/product/' in request.path %}
             {% include 'commerce_app/includes/search_bar.html' %}
         {% endif %}
         <div class="row">
