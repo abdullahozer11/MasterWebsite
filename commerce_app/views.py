@@ -5,7 +5,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView
 from commerce_app.forms import ProfileForm, CustomerForm
@@ -15,6 +17,10 @@ from commerce_app.models import Product, Profile, OrderProduct
 class IndexView(ListView):
     template_name = "commerce_app/index.html"
     model = Product
+    paginate_by = 6
+
+    def get_queryset(self):
+        return Product.objects.all().order_by('id')
 
 
 class AboutView(TemplateView):
@@ -31,6 +37,10 @@ class ContactView(SuccessMessageMixin, CreateView):
 class ProductView(ListView):
     template_name = "commerce_app/product.html"
     model = Product
+    paginate_by = 6
+
+    def get_queryset(self):
+        return Product.objects.all().order_by('id')
 
 
 class TestimonialView(TemplateView):
@@ -55,7 +65,15 @@ class ProfileView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs)
-        context['object_list'] = Product.objects.filter(favorites__username__contains=self.request.user)
+        paginator = Paginator(Product.objects.filter(favorites__username__contains=self.request.user).order_by('id'), 6)
+        page_number = self.request.GET.get('page')
+        context['page_obj'] = paginator.get_page(page_number)
+        try:
+            context['object_list'] = paginator.page(page_number)
+        except PageNotAnInteger:
+            context['object_list'] = paginator.page(1)
+        except EmptyPage:
+            context['object_list'] = paginator.page(paginator.num_pages)
         return context
 
 
@@ -136,6 +154,7 @@ def CartItemFavorView(request, product_id):
 
 def ItemFavorView(request, product_id):
     Product.objects.get(id=product_id).favorites.add(request.user)
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 def IncreaseCartItemCount(request, product_id):
     cart_product = OrderProduct.objects.get(id=product_id)
