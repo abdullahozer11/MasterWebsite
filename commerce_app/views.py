@@ -10,8 +10,11 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView
+from rest_framework import viewsets, permissions
+
 from commerce_app.forms import ProfileForm, CustomerForm
 from commerce_app.models import Product, Profile, OrderProduct
+from commerce_app.serializers import ProductSerializer
 
 
 class IndexView(ListView):
@@ -191,3 +194,14 @@ def RemoveCartItem(request, product_id):
     cart_product = OrderProduct.objects.get(id=product_id)
     cart_product.delete()
     return HttpResponseRedirect(reverse('cart'))
+
+# create a viewset
+class ProductViewSet(viewsets.ModelViewSet):
+    # define queryset
+    queryset = Product.objects.all()
+
+    # specify serializer to be used
+    serializer_class = ProductSerializer
+
+    # specify permission
+    permission_classes = [permissions.IsAuthenticated]
