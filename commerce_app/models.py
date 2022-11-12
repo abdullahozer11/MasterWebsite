@@ -21,6 +21,11 @@ class Product(models.Model):
     size = models.CharField(default='medium', choices=SIZES, max_length=10)
     favorites = models.ManyToManyField(User, related_name='favorites', blank=True)
     quantity = models.IntegerField(default=50)
+    GENDERS = (
+        ('men', 'menwear'),
+        ('women', 'womenwear'),
+    )
+    gender = models.CharField(default='men', choices=GENDERS, max_length=10)
 
     def __str__(self):
         return self.name

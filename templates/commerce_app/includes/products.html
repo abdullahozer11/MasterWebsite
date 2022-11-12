@@ -11,6 +11,9 @@
                 {% endif %}
             </h2>
         </div>
+        {% if request.path == '/product/' %}
+            {% include 'commerce_app/includes/search_bar.html' %}
+        {% endif %}
         <div class="row">
             {% for product in object_list %}
                 <div class="col-sm-6 col-md-4 col-lg-4">
@@ -25,7 +28,7 @@
                                    class="option2">
                                     Buy Now
                                 </a>
-                                    {% if request.user in product.favorites.all %}
+                                {% if request.user in product.favorites.all %}
                                     <a href="{% url 'item-defavor' product_id=product.id %}">
                                         <i class="fa mydefavbutton fa-heart"></i>
                                     </a>

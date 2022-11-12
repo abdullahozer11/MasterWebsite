@@ -40,7 +40,23 @@ class ProductView(ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        return Product.objects.all().order_by('id')
+        query = self.request.GET.get("q_search")
+        if query:
+            object_list = Product.objects.filter(name__icontains=query)
+        else:
+            object_list = Product.objects.all()
+        return object_list.order_by('id')
+
+
+class ProductViewHtoL(ProductView):
+    def get_queryset(self):
+        object_list = super(ProductViewHtoL, self).get_queryset()
+        return object_list.order_by('-price')
+
+class ProductViewLtoH(ProductView):
+    def get_queryset(self):
+        object_list = super(ProductViewLtoH, self).get_queryset()
+        return object_list.order_by('price')
 
 
 class TestimonialView(TemplateView):

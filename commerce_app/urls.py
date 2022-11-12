@@ -4,7 +4,8 @@ from django.urls import path, reverse_lazy
 
 from commerce_app.views import IndexView, AboutView, ContactView, ProductView, TestimonialView, ProfileView, \
     SignupView, LoginPageView, CartView, CartAddView, RemoveCartItem, IncreaseCartItemCount, \
-    DecreaseCartItemCount, ItemFavorView, CheckoutView, CheckoutAddDirectView, ItemDefavorView
+    DecreaseCartItemCount, ItemFavorView, CheckoutView, CheckoutAddDirectView, ItemDefavorView, ProductViewHtoL, \
+    ProductViewLtoH
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from eCommerce import settings
@@ -16,6 +17,8 @@ urlpatterns = [
     path('about/', AboutView.as_view(), name='about'),
     path('contact/', ContactView.as_view(), name='contact'),
     path('product/', ProductView.as_view(), name='product'),
+    path('product/htol', ProductViewHtoL.as_view(), name='product-htol'),
+    path('product/ltoh/', ProductViewLtoH.as_view(), name='product-ltoh'),
     path('testimonial/', TestimonialView.as_view(), name='testimonial'),
     path('profile/', ProfileView.as_view(), name='profile'),
     path('login/', LoginPageView.as_view(), name='login'),
