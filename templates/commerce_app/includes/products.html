@@ -25,9 +25,15 @@
                                    class="option2">
                                     Buy Now
                                 </a>
-                                <a href="{% url 'item-favor' product_id=product.id %}">
-                                    <i class="fa myfavbutton fa-heart"></i>
-                                </a>
+                                    {% if request.user in product.favorites.all %}
+                                    <a href="{% url 'item-defavor' product_id=product.id %}">
+                                        <i class="fa mydefavbutton fa-heart"></i>
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'item-favor' product_id=product.id %}">
+                                        <i class="fa myfavbutton fa-heart"></i>
+                                    </a>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="img-box">

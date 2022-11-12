@@ -495,6 +495,17 @@ a:focus {
     transform: scale(1.2);
 }
 
+.product_section .options .mydefavbutton {
+    color: #f7444e;
+    font-size: 25px;
+    transition: transform .2s;
+}
+
+.product_section .options .mydefavbutton:hover {
+    color: #ffffff;
+    transform: scale(1.2);
+}
+
 .product_section .options .option1:hover {
     background-color: transparent;
     color: #f7444e;

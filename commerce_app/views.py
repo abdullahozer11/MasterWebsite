@@ -148,12 +148,12 @@ def CheckoutAddDirectView(request, product_id):
         return HttpResponseRedirect(reverse('login'))
 
 
-def CartItemFavorView(request, product_id):
-    OrderProduct.objects.get(id=product_id).product.favorites.add(request.user)
-    return HttpResponseRedirect(reverse("cart"))
-
 def ItemFavorView(request, product_id):
     Product.objects.get(id=product_id).favorites.add(request.user)
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+def ItemDefavorView(request, product_id):
+    Product.objects.get(id=product_id).favorites.remove(request.user)
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 def IncreaseCartItemCount(request, product_id):
