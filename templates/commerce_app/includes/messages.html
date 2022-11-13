@@ -1,9 +1,24 @@
 <!-- messages section -->
 {% if messages %}
-    <ul class="messages">
+    <ul class="messages" id="msg">
         {% for message in messages %}
-            <p{% if message.tags == "success" %} class="alert alert-success "{% endif %}>{{ message }}</p>
+            <p style="text-align: center"
+            {% if message.tags == "success" %}
+                class="alert alert-success"
+            {% elif message.tags == "error" %}
+                class="alert alert-danger"
+            {% elif message.tags == "info" %}
+                class="alert alert-info"
+            {% endif %}>{{ message }}
+            </p>
         {% endfor %}
     </ul>
 {% endif %}
 <!-- end messages section -->
+<script>
+    setTimeout(function(){
+        if ($('#msg').length > 0) {
+            $('#msg').remove();
+        }
+    }, 2000)    // 2000 millisecond
+</script>

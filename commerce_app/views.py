@@ -1,6 +1,7 @@
 # Create your views here.
 from datetime import datetime, timedelta
 
+from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.contrib.auth.views import LoginView
@@ -77,14 +78,22 @@ class NotLoggedAllow(UserPassesTestMixin):
         return not self.request.user.is_authenticated
 
     def handle_no_permission(self):
-        return HttpResponseRedirect(reverse("login", kwargs={'message': 'Login is required !' }))
+        messages.add_message(self.request, messages.ERROR, 'You must log out first!')
+        super(NotLoggedAllow, self).handle_no_permission()
+
+LOGIN_REQUIRED_MESSAGE = 'Login is required for the action!'
+class CustomLoginRequiredMixin(LoginRequiredMixin):
+
+    def handle_no_permission(self):
+        messages.add_message(self.request, messages.INFO, LOGIN_REQUIRED_MESSAGE)
+        return HttpResponseRedirect(reverse(self.login_url))
 
 
-class ProfileView(LoginRequiredMixin, UpdateView):
+class ProfileView(CustomLoginRequiredMixin, UpdateView):
     template_name = "commerce_app/profile.html"
     model = Profile
     form_class = ProfileForm
-    login_url = '/login/'
+    login_url = 'login'
     extra_context = {'inner_page_header_title': 'Profile'}
 
     def get_object(self, queryset=None):
@@ -125,10 +134,10 @@ def get_cart_total():
         total += obj.get_total()
     return total
 
-class CartView(LoginRequiredMixin, ListView):
+class CartView(CustomLoginRequiredMixin, ListView):
     template_name = "commerce_app/cart.html"
     model = OrderProduct
-    login_url = '/login/'
+    login_url = 'login'
     extra_context = {'inner_page_header_title': 'Shopping Cart'}
 
     def get_queryset(self):
@@ -142,7 +151,7 @@ class CartView(LoginRequiredMixin, ListView):
         return context
 
 
-class CheckoutView(LoginRequiredMixin, TemplateView):
+class CheckoutView(CustomLoginRequiredMixin, TemplateView):
     template_name = "commerce_app/checkout.html"
     extra_context = {'inner_page_header_title': 'Checkout'}
 
@@ -160,9 +169,9 @@ def CartAddView(request, product_id):
             order_product[0].save()
         else:
             OrderProduct(user=request.user, product=product).save()
-        return HttpResponseRedirect(reverse('cart'))
     else:
-        return HttpResponseRedirect(reverse('login'))
+        messages.add_message(request, messages.INFO, LOGIN_REQUIRED_MESSAGE)
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 def CheckoutAddDirectView(request, product_id):
@@ -174,17 +183,17 @@ def CheckoutAddDirectView(request, product_id):
             order_product[0].save()
         else:
             OrderProduct(user=request.user, product=product).save()
-        return HttpResponseRedirect(reverse('checkout'))
     else:
-        return HttpResponseRedirect(reverse('login'))
+        messages.add_message(request, messages.INFO, LOGIN_REQUIRED_MESSAGE)
+        return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 def ItemFavorView(request, product_id):
     if request.user.is_authenticated:
         Product.objects.get(id=product_id).favorites.add(request.user)
-        return redirect(request.META.get('HTTP_REFERER', '/'))
     else:
-        return reverse('login')
+        messages.add_message(request, messages.INFO, LOGIN_REQUIRED_MESSAGE)
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 def ItemDefavorView(request, product_id):
     Product.objects.get(id=product_id).favorites.remove(request.user)
