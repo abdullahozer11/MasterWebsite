@@ -23,7 +23,7 @@ class IndexView(ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        return Product.objects.all().order_by('id')
+        return Product.objects.all()
 
 
 class AboutView(TemplateView):
@@ -48,7 +48,7 @@ class ProductView(ListView):
             object_list = Product.objects.filter(name__icontains=query)
         else:
             object_list = Product.objects.all()
-        return object_list.order_by('id')
+        return object_list
 
 
 class ProductViewHtoL(ProductView):
@@ -84,7 +84,7 @@ class ProfileView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs)
-        paginator = Paginator(Product.objects.filter(favorites__username__contains=self.request.user).order_by('id'), 6)
+        paginator = Paginator(Product.objects.filter(favorites__username__contains=self.request.user), 6)
         page_number = self.request.GET.get('page')
         context['page_obj'] = paginator.get_page(page_number)
         try:
@@ -168,8 +168,11 @@ def CheckoutAddDirectView(request, product_id):
 
 
 def ItemFavorView(request, product_id):
-    Product.objects.get(id=product_id).favorites.add(request.user)
-    return redirect(request.META.get('HTTP_REFERER', '/'))
+    if request.user.is_authenticated:
+        Product.objects.get(id=product_id).favorites.add(request.user)
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+    else:
+        return reverse('login')
 
 def ItemDefavorView(request, product_id):
     Product.objects.get(id=product_id).favorites.remove(request.user)
