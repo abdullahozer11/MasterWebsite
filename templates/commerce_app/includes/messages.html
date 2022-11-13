@@ -1,0 +1,9 @@
+<!-- messages section -->
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <p{% if message.tags == "success" %} class="alert alert-success "{% endif %}>{{ message }}</p>
+        {% endfor %}
+    </ul>
+{% endif %}
+<!-- end messages section -->

@@ -1,17 +1,6 @@
 {% extends "base_subpage.html" %}
 
 {% block innercontent %}
-    <section class="inner_page_head">
-        <div class="container_fuild">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="full">
-                        <h3>LOG IN</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <form method="post">
         {% csrf_token %}
         <table style="margin-top: 50px;

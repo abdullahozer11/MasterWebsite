@@ -2,19 +2,6 @@
 {% load static %}
 
 {% block innercontent %}
-    <!-- inner page section -->
-    <section class="inner_page_head">
-        <div class="container_fuild">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="full">
-                        <h3>Contact us</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end inner page section -->
     <!-- contactus section -->
     <section class="why_section layout_padding">
         <div class="container">
@@ -37,13 +24,4 @@
         </div>
     </section>
     <!-- end contactus section -->
-    <!-- messages section -->
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <p{% if message.tags == "success" %} class="alert alert-success "{% endif %}>{{ message }}</p>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    <!-- end messages section -->
 {% endblock innercontent %}
