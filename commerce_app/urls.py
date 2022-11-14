@@ -44,6 +44,8 @@ urlpatterns = [
     path('cart/delete/<product_id>', RemoveCartItem, name='cart-remove'),
     path('cart/increase/<product_id>', IncreaseCartItemCount, name='item-increase'),
     path('cart/decrease/<product_id>', DecreaseCartItemCount, name='item-decrease'),
+    # captcha
+    path('captcha/', include('captcha.urls')),
     # rest_framework views
     path('api-auth/', include('rest_framework.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

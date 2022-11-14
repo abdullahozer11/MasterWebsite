@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.mail import send_mail, BadHeaderError
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
@@ -16,6 +17,8 @@ from rest_framework import viewsets, permissions
 from commerce_app.forms import ProfileForm, CustomerForm
 from commerce_app.models import Product, Profile, OrderProduct
 from commerce_app.serializers import ProductSerializer
+
+LOGIN_REQUIRED_MESSAGE = 'Login is required for the action!'
 
 
 class IndexView(ListView):
@@ -36,8 +39,24 @@ class ContactView(SuccessMessageMixin, CreateView):
     form_class = CustomerForm
     template_name = "commerce_app/contact.html"
     success_url = reverse_lazy("contact")
-    success_message = "Your customer contact form is saved successfully!"
     extra_context = {'inner_page_header_title': 'Contact Us'}
+
+    def form_valid(self, form):
+        subject = "Website Inquiry"
+        body = {
+            'name': form.cleaned_data['name'],
+            'email': form.cleaned_data['email'],
+            'subject': form.cleaned_data['subject'],
+            'message': form.cleaned_data['message'],
+        }
+        message = "\n".join(body.values())
+        try:
+            send_mail(subject, message, 'abdullahdrive1@gmail.com', ['abdullahozer11@hotmail.com'])
+            messages.add_message(self.request, messages.SUCCESS, "Your customer contact form is saved successfully!")
+        except BadHeaderError:
+            messages.add_message(self.request, messages.ERROR, "Bad Header Error")
+        response = super().form_valid(form)
+        return response
 
 
 class ProductView(ListView):
@@ -60,6 +79,7 @@ class ProductViewHtoL(ProductView):
         object_list = super(ProductViewHtoL, self).get_queryset()
         return object_list.order_by('-price')
 
+
 class ProductViewLtoH(ProductView):
     def get_queryset(self):
         object_list = super(ProductViewLtoH, self).get_queryset()
@@ -81,7 +101,7 @@ class NotLoggedAllow(UserPassesTestMixin):
         messages.add_message(self.request, messages.ERROR, 'You must log out first!')
         super(NotLoggedAllow, self).handle_no_permission()
 
-LOGIN_REQUIRED_MESSAGE = 'Login is required for the action!'
+
 class CustomLoginRequiredMixin(LoginRequiredMixin):
 
     def handle_no_permission(self):
@@ -134,6 +154,7 @@ def get_cart_total():
         total += obj.get_total()
     return total
 
+
 class CartView(CustomLoginRequiredMixin, ListView):
     template_name = "commerce_app/cart.html"
     model = OrderProduct
@@ -159,6 +180,7 @@ class CheckoutView(CustomLoginRequiredMixin, TemplateView):
         context = super(CheckoutView, self).get_context_data(**kwargs)
         context["cart_total"] = get_cart_total()
         return context
+
 
 def CartAddView(request, product_id):
     if request.user.is_authenticated:
@@ -195,15 +217,18 @@ def ItemFavorView(request, product_id):
         messages.add_message(request, messages.INFO, LOGIN_REQUIRED_MESSAGE)
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
+
 def ItemDefavorView(request, product_id):
     Product.objects.get(id=product_id).favorites.remove(request.user)
     return redirect(request.META.get('HTTP_REFERER', '/'))
+
 
 def IncreaseCartItemCount(request, product_id):
     cart_product = OrderProduct.objects.get(id=product_id)
     cart_product.in_cart_quantity += 1
     cart_product.save()
     return HttpResponseRedirect(reverse('cart'))
+
 
 def DecreaseCartItemCount(request, product_id):
     cart_product = OrderProduct.objects.get(id=product_id)
@@ -214,10 +239,12 @@ def DecreaseCartItemCount(request, product_id):
         cart_product.save()
     return HttpResponseRedirect(reverse('cart'))
 
+
 def RemoveCartItem(request, product_id):
     cart_product = OrderProduct.objects.get(id=product_id)
     cart_product.delete()
     return HttpResponseRedirect(reverse('cart'))
+
 
 # create a viewset
 class ProductViewSet(viewsets.ModelViewSet):
