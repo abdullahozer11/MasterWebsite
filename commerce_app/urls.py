@@ -1,6 +1,7 @@
 from django.conf.urls.static import static
 from django.contrib.auth.views import LogoutView
 from django.urls import path, reverse_lazy, include
+from django.views.generic import TemplateView
 from rest_framework import routers
 
 from commerce_app.views import IndexView, AboutView, ContactView, ProductView, TestimonialView, ProfileView, \
@@ -19,6 +20,7 @@ urlpatterns = [
     # main views
     path('', IndexView.as_view(), name='index'),
     path('about/', AboutView.as_view(), name='about'),
+    path('disclaimer/', TemplateView.as_view(template_name='commerce_app/disclaimer.html'), name='disclaimer'),
     path('contact/', ContactView.as_view(), name='contact'),
     path('testimonial/', TestimonialView.as_view(), name='testimonial'),
     # profile views

@@ -1,10 +1,8 @@
-import uuid
-
 from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
-from django.db.models import CASCADE, Choices
+from django.db.models import CASCADE
 from django.urls import reverse
 
 
