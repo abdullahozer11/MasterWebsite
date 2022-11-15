@@ -23,8 +23,8 @@ from eCommerce import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('commerce/', include('commerce_app.urls')),
-    path('', TemplateView.as_view(template_name='portfolio/index.html')),
+    path('', include('commerce_app.urls')),
+    path('portfolio/', TemplateView.as_view(template_name='portfolio/index.html')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
