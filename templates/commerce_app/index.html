@@ -1,16 +1,16 @@
-{% extends "base.html" %}
+{% extends "commerce_app/base.html" %}
 {% load static %}
 
 {% block content %}
     <body>
     <div class="hero_area">
         <!-- header section strats -->
-        {% include 'header.html' %}
+        {% include 'commerce_app/header.html' %}
         <!-- end header section -->
         <!-- slider section -->
         <section class="slider_section ">
             <div class="slider_bg_box">
-                <img src="{% static "commerce_app/media/images/slider-bg.jpg" %}" alt="">
+                <img src="{% static "commerce_app/images/slider-bg.jpg" %}" alt="">
             </div>
             <div id="customCarousel1" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
@@ -126,8 +126,8 @@
     {% include 'commerce_app/includes/client_review.html' %}
     <!-- end client section -->
     <!-- footer start -->
-    {% include 'footer.html' %}
+    {% include 'commerce_app/footer.html' %}
     <!-- footer end -->
-    {% include 'scripts.html' %}
+    {% include 'commerce_app/scripts.html' %}
     </body>
 {% endblock content %}

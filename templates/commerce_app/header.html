@@ -4,7 +4,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
             <a class="navbar-brand" href="{% url "index" %}"><img width="250"
-                                                                  src="{% static "commerce_app/media/images/logo.png" %}"
+                                                                  src="{% static "commerce_app/images/logo.png" %}"
                                                                   alt="#"/></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -69,7 +69,7 @@
                             {% if user.is_authenticated %}
                                 <img src="{{ user.profile.photo.url }}" width="28" class="rounded-circle mx-auto">
                             {% else %}
-                                <img src="{% static "commerce_app/media/profile_photos/no_user.png" %}"
+                                <img src="{% static "commerce_app/images/no_user.png" %}"
                                      width="28"
                                      class="rounded-circle mx-auto">
                             {% endif %}

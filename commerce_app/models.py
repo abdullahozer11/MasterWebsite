@@ -15,7 +15,7 @@ class Product(models.Model):
     )
     name = models.CharField(max_length=100, default="Men's Shirt")
     price = models.FloatField(default=0.00)
-    photo = models.ImageField(default="product_photos/default.png", upload_to="product_photos")
+    photo = models.ImageField(default="commerce_app/product_photos/default.png", upload_to="product_photos")
     color = models.CharField(max_length=20, default="black")
     size = models.CharField(default='medium', choices=SIZES, max_length=10)
     favorites = models.ManyToManyField(User, related_name='favorites', blank=True)
@@ -55,7 +55,7 @@ class Profile(models.Model):
     mobile = models.CharField(max_length=15, default="07 69 92 92 92")
     address = models.CharField(max_length=99, default="Saint Cyr L'Ecole, Paris")
     user = models.OneToOneField(User, on_delete=CASCADE)
-    photo = models.ImageField(default="profile_photos/default.png", upload_to="profile_photos")
+    photo = models.ImageField(default="commerce_app/profile_photos/default.png", upload_to="profile_photos")
     role = models.CharField(default='client', choices=ROLES, max_length=6)
 
     def __str__(self):

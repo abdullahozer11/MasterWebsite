@@ -1,11 +1,11 @@
-{% extends "base.html" %}
+{% extends "commerce_app/base.html" %}
 {% load static %}
 
 {% block content %}
     <body class="sub_page">
         <div class="hero_area">
             <!-- header section strats -->
-            {% include 'header.html' %}
+            {% include 'commerce_app/header.html' %}
             <!-- end header section -->
         </div>
         <!-- inner page section -->
@@ -29,8 +29,8 @@
         {% endblock innercontent %}
         <!-- inner content end -->
         <!-- footer start -->
-        {% include 'footer.html' %}
+        {% include 'commerce_app/footer.html' %}
         <!-- footer end -->
-        {% include 'scripts.html' %}
+        {% include 'commerce_app/scripts.html' %}
     </body>
 {% endblock content %}

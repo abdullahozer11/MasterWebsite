@@ -1,7 +1,11 @@
-from captcha.fields import CaptchaField
-from django.forms import ModelForm
+from captcha.fields import CaptchaField, CaptchaTextInput
+from django.forms import ModelForm, Form
 
 from commerce_app.models import Profile, CustomerFormModel
+
+
+class CustomCaptchaTextInput(CaptchaTextInput):
+    template_name = 'commerce_app/custom_field.html'
 
 
 class ProfileForm(ModelForm):
@@ -11,7 +15,8 @@ class ProfileForm(ModelForm):
 
 
 class CustomerForm(ModelForm):
-    captcha = CaptchaField()
+    captcha = CaptchaField(widget=CustomCaptchaTextInput)
     class Meta:
         model = CustomerFormModel
         fields = '__all__'
+

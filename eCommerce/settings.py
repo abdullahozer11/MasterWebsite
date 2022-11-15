@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.forms',
     'rest_framework',
     'commerce_app',
     'captcha',
@@ -51,8 +52,7 @@ ROOT_URLCONF = 'eCommerce.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'commerce_app/../templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -98,8 +98,8 @@ USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # need to verify
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = '/static/'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -108,16 +108,18 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/commerce_app/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
-CAPTCHA_IMAGE_SIZE = [200, 100]
-CAPTCHA_FONT_SIZE = 45
+CAPTCHA_IMAGE_SIZE = [300, 150]
+CAPTCHA_FONT_SIZE = 50
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'abdullahdrive1@gmail.com'
 EMAIL_HOST_PASSWORD = 'eikjeybwhayigqjw'
+
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
