@@ -11,17 +11,18 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+from django.core.management.utils import get_random_secret_key
+
+# Here you used the getenv method to check for an environment variable named DJANGO_SECRET_KEY (set in hosting platform)
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-h+1t^hll*3n-7*j3-d*g-(fp%341rp6&4t9z2^kih&=2w0dt!s'
+# If DEBUG variable isn’t found, we should default to False for safety.
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['www.apojean.com', '127.0.0.1', 'apojean.com']
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
 # Application definition
 INSTALLED_APPS = [
@@ -95,18 +96,18 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
+USE_L10N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = '/static/'
-
-# Default primary key field type
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# Default primary key field type
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

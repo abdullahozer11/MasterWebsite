@@ -1,4 +1,3 @@
-from django.conf.urls.static import static
 from django.contrib.auth.views import LogoutView
 from django.urls import path, reverse_lazy, include
 from django.views.generic import TemplateView
@@ -8,9 +7,6 @@ from commerce_app.views import IndexView, AboutView, ContactView, ProductView, T
     SignupView, LoginPageView, CartView, CartAddView, RemoveCartItem, IncreaseCartItemCount, \
     DecreaseCartItemCount, ItemFavorView, CheckoutView, CheckoutAddDirectView, ItemDefavorView, ProductViewHtoL, \
     ProductViewLtoH, ProductViewSet
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
-from eCommerce import settings
 
 router = routers.DefaultRouter()
 router.register(r'products', ProductViewSet)
