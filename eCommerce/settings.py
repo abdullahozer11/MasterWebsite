@@ -131,7 +131,7 @@ CAPTCHA_FONT_SIZE = 50
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'abdullahdrive1@gmail.com'
-EMAIL_HOST_PASSWORD = 'eikjeybwhayigqjw'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'myemail@gmail.com')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '123456789')
 
 FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
