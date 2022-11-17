@@ -17,7 +17,7 @@ import dj_database_url
 
 
 # Here you used the getenv method to check for an environment variable named DJANGO_SECRET_KEY (set in hosting platform)
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", '9bu_rux-9!h)5f$2#xm@6)$jp-f$1x9@h=a4%-5hkdl_50g$p_')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
     'django.forms',
     'rest_framework',
     'commerce_app',
@@ -110,18 +111,32 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+# https://spacepo.ams3.digitaloceanspaces.com/
+if not DEBUG:
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "DO00RF2TK2JYEBRY6GEG")
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "INlVSjNN7QopNhABwVNQxXbiCtmzBhEeEi5d8uBOs48")
+    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME", "spacepo_dev")
+    AWS_S3_ENDPOINT_URL = 'https://spacepo.ams3.digitaloceanspaces.com/'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    # static
+    AWS_LOCATION = 'static'
+    STATIC_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, AWS_LOCATION)
+    STATICFILES_STORAGE = 'eCommerce.storage_backends.S3Boto3Storage'
+    AWS_S3_SIGNATURE_VERSION = 's3v4'
+    # media
+    PUBLIC_MEDIA_LOCATION = 'media'
+    MEDIA_URL = f'https://{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/'
+    DEFAULT_FILE_STORAGE = 'eCommerce.storage_backends.PublicMediaStorage'
+else:
+    STATIC_URL = '/static/'
+    MEDIA_URL = '/media/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+STATICFILES_DIRS = (BASE_DIR / 'static',)
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 

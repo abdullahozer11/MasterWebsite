@@ -15,7 +15,7 @@ class Product(models.Model):
     )
     name = models.CharField(max_length=100, default="Men's Shirt")
     price = models.FloatField(default=0.00)
-    photo = models.ImageField(default="commerce_app/product_photos/default.png", upload_to="product_photos")
+    photo = models.ImageField(upload_to="product_photos")
     color = models.CharField(max_length=20, default="black")
     size = models.CharField(default='medium', choices=SIZES, max_length=10)
     favorites = models.ManyToManyField(User, related_name='favorites', blank=True)
