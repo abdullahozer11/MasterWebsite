@@ -17,7 +17,7 @@ import dj_database_url
 
 
 # Here you used the getenv method to check for an environment variable named DJANGO_SECRET_KEY (set in hosting platform)
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", '9bu_rux-9!h)5f$2#xm@6)$jp-f$1x9@h=a4%-5hkdl_50g$p_')
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
