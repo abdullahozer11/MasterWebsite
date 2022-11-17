@@ -112,7 +112,8 @@ USE_L10N = True
 USE_TZ = True
 
 # https://spacepo.ams3.digitaloceanspaces.com/
-if not DEBUG:
+USE_SPACES = os.getenv("USE_SPACES", "False") == "True"
+if USE_SPACES:
     AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "DO00RF2TK2JYEBRY6GEG")
     AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "INlVSjNN7QopNhABwVNQxXbiCtmzBhEeEi5d8uBOs48")
     AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME", "spacepo_dev")
