@@ -30,16 +30,10 @@ class IndexView(ListView):
         return Product.objects.all()
 
 
-class AboutView(TemplateView):
-    template_name = "commerce_app/about.html"
-    extra_context = {'inner_page_header_title': 'About'}
-
-
 class ContactView(SuccessMessageMixin, CreateView):
     form_class = CustomerForm
     template_name = "commerce_app/contact.html"
     success_url = reverse_lazy("commerce:contact")
-    extra_context = {'inner_page_header_title': 'Contact Us'}
 
     def form_valid(self, form):
         subject = "Website Inquiry"
@@ -63,7 +57,6 @@ class ProductView(ListView):
     template_name = "commerce_app/product.html"
     model = Product
     paginate_by = 6
-    extra_context = {'inner_page_header_title': 'Products'}
 
     def get_queryset(self):
         query = self.request.GET.get("q_search")
@@ -84,11 +77,6 @@ class ProductViewLtoH(ProductView):
     def get_queryset(self):
         object_list = super(ProductViewLtoH, self).get_queryset()
         return object_list.order_by('price')
-
-
-class TestimonialView(TemplateView):
-    template_name = "commerce_app/testimonial.html"
-    extra_context = {'inner_page_header_title': 'Testimonial'}
 
 
 class NotLoggedAllow(UserPassesTestMixin):
@@ -114,7 +102,6 @@ class ProfileView(CustomLoginRequiredMixin, UpdateView):
     template_name = "commerce_app/profile.html"
     model = Profile
     form_class = ProfileForm
-    extra_context = {'inner_page_header_title': 'Profile'}
 
     def get_object(self, queryset=None):
         return self.request.user.profile
@@ -136,13 +123,11 @@ class ProfileView(CustomLoginRequiredMixin, UpdateView):
 class LoginPageView(NotLoggedAllow, LoginView):
     next_page = 'commerce:index'
     template_name = "commerce_app/registration/login.html"
-    extra_context = {'inner_page_header_title': 'LOGIN'}
 
 
 class SignupView(NotLoggedAllow, CreateView):
     form_class = UserCreationForm
     template_name = "commerce_app/registration/signup.html"
-    extra_context = {'inner_page_header_title': 'SIGN UP'}
 
     def get_success_url(self):
         return reverse_lazy("commerce:login")
@@ -158,7 +143,6 @@ def get_cart_total():
 class CartView(CustomLoginRequiredMixin, ListView):
     template_name = "commerce_app/cart.html"
     model = OrderProduct
-    extra_context = {'inner_page_header_title': 'Shopping Cart'}
 
     def get_queryset(self):
         return OrderProduct.objects.filter(in_cart_quantity__gte=1)
@@ -173,7 +157,6 @@ class CartView(CustomLoginRequiredMixin, ListView):
 
 class CheckoutView(CustomLoginRequiredMixin, TemplateView):
     template_name = "commerce_app/checkout.html"
-    extra_context = {'inner_page_header_title': 'Checkout'}
 
     def get_context_data(self, **kwargs):
         context = super(CheckoutView, self).get_context_data(**kwargs)
@@ -249,9 +232,7 @@ def RemoveCartItem(request, product_id):
 class ProductViewSet(viewsets.ModelViewSet):
     # define queryset
     queryset = Product.objects.all()
-
     # specify serializer to be used
     serializer_class = ProductSerializer
-
     # specify permission
     permission_classes = [permissions.IsAuthenticated]

@@ -1,5 +1,7 @@
 {% extends "commerce_app/base_subpage.html" %}
 
+{% block inner_page_title %}Profile{% endblock inner_page_title %}
+
 {% block innercontent %}
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}

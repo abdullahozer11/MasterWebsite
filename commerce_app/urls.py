@@ -3,7 +3,7 @@ from django.urls import path, reverse_lazy
 from django.views.generic import TemplateView
 from rest_framework import routers
 
-from commerce_app.views import IndexView, AboutView, ContactView, ProductView, TestimonialView, ProfileView, \
+from commerce_app.views import IndexView, ContactView, ProductView, ProfileView, \
     SignupView, LoginPageView, CartView, CartAddView, RemoveCartItem, IncreaseCartItemCount, \
     DecreaseCartItemCount, ItemFavorView, CheckoutView, CheckoutAddDirectView, ItemDefavorView, ProductViewHtoL, \
     ProductViewLtoH, ProductViewSet
@@ -16,10 +16,10 @@ app_name = "commerce"
 urlpatterns = [
     # main views
     path('', IndexView.as_view(), name='index'),
-    path('about/', AboutView.as_view(), name='about'),
+    path('about/', TemplateView.as_view(template_name="commerce_app/about.html"), name='about'),
     path('disclaimer/', TemplateView.as_view(template_name='commerce_app/disclaimer.html'), name='disclaimer'),
     path('contact/', ContactView.as_view(), name='contact'),
-    path('testimonial/', TestimonialView.as_view(), name='testimonial'),
+    path('testimonial/', TemplateView.as_view(template_name="commerce_app/testimonial.html"), name='testimonial'),
     # profile views
     path('profile/', ProfileView.as_view(), name='profile'),
     path('edit-profile/', ProfileView.as_view(extra_context={"edit": True}, success_url=reverse_lazy("commerce:profile")), name='edit-profile'),
