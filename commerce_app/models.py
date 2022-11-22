@@ -30,7 +30,7 @@ class Product(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        reverse('product')
+        reverse('commerce:product')
 
     class Meta:
         ordering = ['id']

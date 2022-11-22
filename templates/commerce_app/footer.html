@@ -6,7 +6,7 @@
             <div class="col-md-4">
                 <div class="full">
                     <div class="logo_footer">
-                        <a href="{% url "index" %}"><img width="210" src="{% static "commerce_app/images/logo.png" %}"
+                        <a href="{% url "commerce:index" %}"><img width="210" src="{% static "commerce_app/images/logo.png" %}"
                                          alt="#"/></a>
                     </div>
                     <div class="information_f">
@@ -24,10 +24,10 @@
                                 <div class="widget_menu">
                                     <h3>Menu</h3>
                                     <ul>
-                                        <li><a href="{% url "index" %}">Home</a></li>
-                                        <li><a href="{% url "about" %}">About</a></li>
-                                        <li><a href="{% url "testimonial" %}">Testimonial</a></li>
-                                        <li><a href="{% url "contact" %}">Contact</a></li>
+                                        <li><a href="{% url "commerce:index" %}">Home</a></li>
+                                        <li><a href="{% url "commerce:about" %}">About</a></li>
+                                        <li><a href="{% url "commerce:testimonial" %}">Testimonial</a></li>
+                                        <li><a href="{% url "commerce:contact" %}">Contact</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -70,5 +70,5 @@
 </footer>
 
 <div class="cpy_">
-    <p>© 2022 All Rights Reserved By <a href="{% url "contact" %}">Abdullah OZER</a></p>
+    <p>© 2022 All Rights Reserved By <a href="{% url "commerce:contact" %}">Abdullah OZER</a></p>
 </div>

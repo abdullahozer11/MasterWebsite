@@ -41,6 +41,7 @@
                 <li><a href="#experience" class="smoothScroll">Experiences</a></li>
                 <li><a href="#quotes" class="smoothScroll">Testimonial</a></li>
                 <li><a href="#contact" class="smoothScroll">Contact</a></li>
+                <li><a href="{% url 'commerce:index' %}" class="smoothScroll">eCommerce</a></li>
             </ul>
         </div>
     </div>
@@ -58,11 +59,12 @@
                         <h4 class="wow fadeInUp" data-wow-delay="0.3s">welcome to my website</h4>
                         <h1 class="wow fadeInUp" data-wow-delay="0.6s">Hello, I am <strong>Abdullah</strong> currently
                             based in Paris.</h1>
-                        <p class="wow fadeInUp" data-wow-delay="0.9s">Donec auctor arcu at efficitur lacinia. Praesent
-                            bibendum efficitur ipsum, et mattis tellus interdum in. Ut a dictum purus. Vestibulum non
-                            pellentesque felis, sed dignissim urna. Vestibulum id accumsan quam.</p>
+                        <p class="wow fadeInUp" data-wow-delay="0.9s">
+                            I am a self inspired Django developer.
+                            {# todo make more interesting#}
+                        </p>
                         <a href="#about" class="wow fadeInUp smoothScroll section-btn btn btn-success"
-                           data-wow-delay="1.4s">Get Started</a>
+                           data-wow-delay="1.4s">Know More</a>
                     </div>
                 </div>
             </div>
@@ -76,14 +78,19 @@
             <div class="col-md-6 col-sm-12">
                 <div class="about-thumb">
                     <div class="wow fadeInUp section-title" data-wow-delay="0.4s">
-                        <h1>Donec auctor</h1>
-                        <p class="color-yellow">Sed vulputate vitae diam quis bibendum</p>
+                        <h1>About Me</h1>
+                        <p class="color-yellow"></p>
                     </div>
                     <div class="wow fadeInUp" data-wow-delay="0.8s">
-                        <p>Phasellus vulputate tellus nec tortor varius elementum. Curabitur at pulvinar ante. Duis dui
-                            urna, faucibus eget felis eu, iaculis congue sem. Mauris convallis eros massa.</p>
-                        <p>Quisque viverra iaculis aliquam. Etiam volutpat, justo non aliquam bibendum, sem nibh mollis
-                            erat, quis porta odio odio at velit.</p>
+                        <p>
+                            I'm an expat from Turkey currently living in Paris.
+                            My interest in French culture and language which was sparkled
+                            by watching old French movies brought me to all the way to Paris.
+                        </p>
+                        <p>
+                            After years of test engineering, I discovered a strong interest towards
+                            Django and web development with Python and started working on it.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -109,6 +116,12 @@
                             <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="70"
                                  aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
                         </div>
+                        <strong>TODO</strong>
+                        <span class="color-white pull-right">70%</span>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="70"
+                                 aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -122,9 +135,8 @@
             <div class="bg-yellow col-md-3 col-sm-6">
                 <div class="wow fadeInUp color-white service-thumb" data-wow-delay="0.8s">
                     <i class="fa fa-desktop"></i>
-                    <h3>Interface Design</h3>
-                    <p class="color-white">Phasellus vulputate tellus nec tortor varius elementum. Curabitur at pulvinar
-                        ante.</p>
+                    <h3>Languages</h3>
+                    <p class="color-white">English<br>French<br>Turkish<br>Greek(learning)</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
@@ -140,14 +152,14 @@
                     <i class="fa fa-table"></i>
                     <h3>Mobile App</h3>
                     <p class="color-white">Mauris convallis eros massa, vitae euismod arcu tempus ut. Quisque viverra
-                        iaculis.</p>
+                        iaculis iaculisiaculis iaculis </p>
                 </div>
             </div>
             <div class="bg-white col-md-3 col-sm-6">
                 <div class="wow fadeInUp service-thumb" data-wow-delay="1.8s">
                     <i class="fa fa-html5"></i>
                     <h3>Coding</h3>
-                    <p>Mauris convallis eros massa, vitae euismod arcu tempus ut. Quisque viverra iaculis.</p>
+                    <p>I have high level of experience with Python and some level of experience with others. todo todo todo </p>
                 </div>
             </div>
         </div>
@@ -172,7 +184,8 @@
                         </div>
                         <div class="media-body">
                             <h3 class="media-heading">Python Developer <small>2019 Aug - Now</small></h3>
-                            <p class="color-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            <p class="color-white">Development of testing framework.
+                                Python scripting to test highly technical software and devices.</p>
                         </div>
                     </div>
                     <div class="wow fadeInUp color-white media" data-wow-delay="1.6s">
@@ -181,7 +194,8 @@
                         </div>
                         <div class="media-body">
                             <h3 class="media-heading">Test Engineer <small>2016 Feb - 2018 Feb</small></h3>
-                            <p class="color-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            <p class="color-white">I contributed to Q&A team by developing tools and
+                                devices to be used in their test automation systems.</p>
                         </div>
                     </div>
                 </div>
@@ -197,7 +211,7 @@
                 <div class="color-white education-thumb">
                     <div class="wow fadeInUp section-title" data-wow-delay="0.8s">
                         <h1>My Education</h1>
-                        <p class="color-white">In cursus orci non ipsum gravida dignissim</p>
+                        <p class="color-white">License and Masters</p>
                     </div>
                     <div class="wow fadeInUp color-white media" data-wow-delay="1.2s">
                         <div class="media-object media-left">
@@ -294,26 +308,6 @@
         </div>
     </div>
 </section>
-<!-- Footer Section -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <div class="wow fadeInUp footer-copyright" data-wow-delay="1.8s">
-                    <p>Copyright &copy; 2016 Your Company
-                        | Design: <a href="http://www.google.com/+templatemo" target="_parent">templatemo</a></p>
-                </div>
-                <ul class="wow fadeInUp social-icon" data-wow-delay="2s">
-                    <li><a href="#" class="fa fa-facebook"></a></li>
-                    <li><a href="#" class="fa fa-twitter"></a></li>
-                    <li><a href="#" class="fa fa-google-plus"></a></li>
-                    <li><a href="#" class="fa fa-dribbble"></a></li>
-                    <li><a href="#" class="fa fa-linkedin"></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
 <!-- SCRIPTS -->
 <script src="{% static 'portfolio/js/jquery.js' %}"></script>
 <script src="{% static 'portfolio/js/bootstrap.min.js' %}"></script>

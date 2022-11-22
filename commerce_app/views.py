@@ -38,7 +38,7 @@ class AboutView(TemplateView):
 class ContactView(SuccessMessageMixin, CreateView):
     form_class = CustomerForm
     template_name = "commerce_app/contact.html"
-    success_url = reverse_lazy("contact")
+    success_url = reverse_lazy("commerce:contact")
     extra_context = {'inner_page_header_title': 'Contact Us'}
 
     def form_valid(self, form):
@@ -92,7 +92,7 @@ class TestimonialView(TemplateView):
 
 
 class NotLoggedAllow(UserPassesTestMixin):
-    login_url = '/login/'
+    login_url = 'commerce:login'
 
     def test_func(self):
         return not self.request.user.is_authenticated
@@ -103,6 +103,7 @@ class NotLoggedAllow(UserPassesTestMixin):
 
 
 class CustomLoginRequiredMixin(LoginRequiredMixin):
+    login_url = 'commerce:login'
 
     def handle_no_permission(self):
         messages.add_message(self.request, messages.INFO, LOGIN_REQUIRED_MESSAGE)
@@ -113,7 +114,6 @@ class ProfileView(CustomLoginRequiredMixin, UpdateView):
     template_name = "commerce_app/profile.html"
     model = Profile
     form_class = ProfileForm
-    login_url = 'login'
     extra_context = {'inner_page_header_title': 'Profile'}
 
     def get_object(self, queryset=None):
@@ -134,7 +134,7 @@ class ProfileView(CustomLoginRequiredMixin, UpdateView):
 
 
 class LoginPageView(NotLoggedAllow, LoginView):
-    next_page = 'index'
+    next_page = 'commerce:index'
     template_name = "commerce_app/registration/login.html"
     extra_context = {'inner_page_header_title': 'LOGIN'}
 
@@ -145,7 +145,7 @@ class SignupView(NotLoggedAllow, CreateView):
     extra_context = {'inner_page_header_title': 'SIGN UP'}
 
     def get_success_url(self):
-        return reverse_lazy("login")
+        return reverse_lazy("commerce:login")
 
 
 def get_cart_total():
@@ -158,7 +158,6 @@ def get_cart_total():
 class CartView(CustomLoginRequiredMixin, ListView):
     template_name = "commerce_app/cart.html"
     model = OrderProduct
-    login_url = 'login'
     extra_context = {'inner_page_header_title': 'Shopping Cart'}
 
     def get_queryset(self):
@@ -227,7 +226,7 @@ def IncreaseCartItemCount(request, product_id):
     cart_product = OrderProduct.objects.get(id=product_id)
     cart_product.in_cart_quantity += 1
     cart_product.save()
-    return HttpResponseRedirect(reverse('cart'))
+    return HttpResponseRedirect(reverse('commerce:cart'))
 
 
 def DecreaseCartItemCount(request, product_id):
@@ -237,13 +236,13 @@ def DecreaseCartItemCount(request, product_id):
     else:
         cart_product.in_cart_quantity -= 1
         cart_product.save()
-    return HttpResponseRedirect(reverse('cart'))
+    return HttpResponseRedirect(reverse('commerce:cart'))
 
 
 def RemoveCartItem(request, product_id):
     cart_product = OrderProduct.objects.get(id=product_id)
     cart_product.delete()
-    return HttpResponseRedirect(reverse('cart'))
+    return HttpResponseRedirect(reverse('commerce:cart'))
 
 
 # create a viewset

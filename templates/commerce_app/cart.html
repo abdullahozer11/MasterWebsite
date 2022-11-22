@@ -43,13 +43,13 @@
                                         <p><strong>{{ order_product.product.name }}</strong></p>
                                         <p>Color: {{ order_product.product.color }}</p>
                                         <p>Size: {{ order_product.product.size }}</p>
-                                        <button onclick="location.href='{% url 'cart-remove' order_product.id %}'"
+                                        <button onclick="location.href='{% url 'commerce:cart-remove' order_product.id %}'"
                                                 type="button" class="btn btn-primary btn-sm me-1 mb-2"
                                                 data-mdb-toggle="tooltip"
                                                 title="Remove item">
                                             <i class="fa button fa-trash"></i>
                                         </button>
-                                        <button onclick="location.href='{% url 'item-favor' product_id=order_product.product.id %}'"
+                                        <button onclick="location.href='{% url 'commerce:item-favor' product_id=order_product.product.id %}'"
                                                 type="button" class="btn btn-danger btn-sm mb-2"
                                                 data-mdb-toggle="tooltip"
                                                 title="Move to the wish list">
@@ -62,7 +62,7 @@
                                         <!-- Quantity -->
                                         <div class="d-flex mb-4" style="max-width: 300px">
                                             <button class="btn btn-primary px-3 me-2"
-                                                    onclick="location.href='{% url 'item-decrease' order_product.id %}'">
+                                                    onclick="location.href='{% url 'commerce:item-decrease' order_product.id %}'">
                                                 <i class="fa button fa-minus"></i>
                                             </button>
 
@@ -73,7 +73,7 @@
                                             </div>
 
                                             <button class="btn btn-primary px-3 ms-2"
-                                                    onclick="location.href='{% url 'item-increase' order_product.id %}'">
+                                                    onclick="location.href='{% url 'commerce:item-increase' order_product.id %}'">
                                                 <i class="fa button fa-plus"></i>
                                             </button>
                                         </div>
@@ -142,7 +142,7 @@
                                     <span><strong>${{ cart_total }}</strong></span>
                                 </li>
                             </ul>
-                            <button onclick="location.href='{% url 'checkout' %}'"
+                            <button onclick="location.href='{% url 'commerce:checkout' %}'"
                                     type="button"
                                     class="btn btn-primary btn-lg btn-block">
                                 Go to checkout

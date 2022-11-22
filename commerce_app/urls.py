@@ -1,5 +1,5 @@
 from django.contrib.auth.views import LogoutView
-from django.urls import path, reverse_lazy, include
+from django.urls import path, reverse_lazy
 from django.views.generic import TemplateView
 from rest_framework import routers
 
@@ -11,6 +11,7 @@ from commerce_app.views import IndexView, AboutView, ContactView, ProductView, T
 router = routers.DefaultRouter()
 router.register(r'products', ProductViewSet)
 
+app_name = "commerce"
 
 urlpatterns = [
     # main views
@@ -21,11 +22,11 @@ urlpatterns = [
     path('testimonial/', TestimonialView.as_view(), name='testimonial'),
     # profile views
     path('profile/', ProfileView.as_view(), name='profile'),
-    path('edit-profile/', ProfileView.as_view(extra_context={"edit": True}, success_url=reverse_lazy("profile")), name='edit-profile'),
+    path('edit-profile/', ProfileView.as_view(extra_context={"edit": True}, success_url=reverse_lazy("commerce:profile")), name='edit-profile'),
     # auth views
     path('login/', LoginPageView.as_view(), name='login'),
     path('signup/', SignupView.as_view(), name='signup'),
-    path('logout/', LogoutView.as_view(next_page="index"), name='logout'),
+    path('logout/', LogoutView.as_view(next_page="commerce:index"), name='logout'),
     # product views
     path('product/', ProductView.as_view(), name='product'),
     path('product/htol', ProductViewHtoL.as_view(), name='product-htol'),
@@ -40,10 +41,6 @@ urlpatterns = [
     path('cart/delete/<product_id>', RemoveCartItem, name='cart-remove'),
     path('cart/increase/<product_id>', IncreaseCartItemCount, name='item-increase'),
     path('cart/decrease/<product_id>', DecreaseCartItemCount, name='item-decrease'),
-    # captcha
-    path('captcha/', include('captcha.urls')),
-    # rest_framework views
-    path('api-auth/', include('rest_framework.urls'))
 ]
 
 urlpatterns += router.urls
