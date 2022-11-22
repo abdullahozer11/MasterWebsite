@@ -26,9 +26,6 @@ class IndexView(ListView):
     model = Product
     paginate_by = 6
 
-    def get_queryset(self):
-        return Product.objects.all()
-
 
 class ContactView(SuccessMessageMixin, CreateView):
     form_class = CustomerForm
@@ -59,23 +56,22 @@ class ProductView(ListView):
     paginate_by = 6
 
     def get_queryset(self):
+        object_list = super().get_queryset()
         query = self.request.GET.get("q_search")
         if query:
             object_list = Product.objects.filter(name__icontains=query)
-        else:
-            object_list = Product.objects.all()
         return object_list
 
 
 class ProductViewHtoL(ProductView):
     def get_queryset(self):
-        object_list = super(ProductViewHtoL, self).get_queryset()
+        object_list = super().get_queryset()
         return object_list.order_by('-price')
 
 
 class ProductViewLtoH(ProductView):
     def get_queryset(self):
-        object_list = super(ProductViewLtoH, self).get_queryset()
+        object_list = super().get_queryset()
         return object_list.order_by('price')
 
 
@@ -87,7 +83,7 @@ class NotLoggedAllow(UserPassesTestMixin):
 
     def handle_no_permission(self):
         messages.add_message(self.request, messages.ERROR, 'You must log out first!')
-        super(NotLoggedAllow, self).handle_no_permission()
+        super().handle_no_permission()
 
 
 class CustomLoginRequiredMixin(LoginRequiredMixin):
@@ -107,7 +103,7 @@ class ProfileView(CustomLoginRequiredMixin, UpdateView):
         return self.request.user.profile
 
     def get_context_data(self, **kwargs):
-        context = super(ProfileView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         paginator = Paginator(Product.objects.filter(favorites__username__contains=self.request.user), 6)
         page_number = self.request.GET.get('page')
         context['page_obj'] = paginator.get_page(page_number)
@@ -148,7 +144,7 @@ class CartView(CustomLoginRequiredMixin, ListView):
         return OrderProduct.objects.filter(in_cart_quantity__gte=1)
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context = super(CartView, self).get_context_data()
+        context = super().get_context_data()
         context["cart_total"] = get_cart_total()
         context["delivery_min"] = (datetime.today() + timedelta(days=3)).strftime("%d.%m.%Y")
         context["delivery_max"] = (datetime.today() + timedelta(days=7)).strftime("%d.%m.%Y")
@@ -159,7 +155,7 @@ class CheckoutView(CustomLoginRequiredMixin, TemplateView):
     template_name = "commerce_app/checkout.html"
 
     def get_context_data(self, **kwargs):
-        context = super(CheckoutView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context["cart_total"] = get_cart_total()
         return context
 
@@ -187,6 +183,7 @@ def CheckoutAddDirectView(request, product_id):
             order_product[0].save()
         else:
             OrderProduct(user=request.user, product=product).save()
+        return HttpResponseRedirect(reverse("commerce:checkout"))
     else:
         messages.add_message(request, messages.INFO, LOGIN_REQUIRED_MESSAGE)
         return redirect(request.META.get('HTTP_REFERER', '/'))
