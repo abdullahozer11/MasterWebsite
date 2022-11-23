@@ -31,16 +31,16 @@ urlpatterns = [
     path('product/', ProductView.as_view(), name='product'),
     path('product/htol', ProductViewHtoL.as_view(), name='product-htol'),
     path('product/ltoh/', ProductViewLtoH.as_view(), name='product-ltoh'),
-    path('item-favor/<product_id>', ItemFavorView, name='item-favor'),
-    path('item-defavor/<product_id>', ItemDefavorView, name='item-defavor'),
+    path('item-favor/<product_id>', ItemFavorView.as_view(), name='item-favor'),
+    path('item-defavor/<product_id>', ItemDefavorView.as_view(), name='item-defavor'),
     # purchasing views
     path('cart/', CartView.as_view(), name='cart'),
-    path('cart/add/<product_id>', CartAddView, name='cart-add'),
+    path('cart/add/<product_id>', CartAddView.as_view(), name='cart-add'),
     path('checkout/', CheckoutView.as_view(), name='checkout'),
-    path('checkout/add/<product_id>', CheckoutAddDirectView, name='checkout-add'),
-    path('cart/delete/<product_id>', RemoveCartItem, name='cart-remove'),
-    path('cart/increase/<product_id>', IncreaseCartItemCount, name='item-increase'),
-    path('cart/decrease/<product_id>', DecreaseCartItemCount, name='item-decrease'),
+    path('checkout/add/<product_id>', CheckoutAddDirectView.as_view(), name='checkout-add'),
+    path('cart/delete/<product_id>', RemoveCartItem.as_view(), name='cart-remove'),
+    path('cart/increase/<product_id>', IncreaseCartItemCount.as_view(), name='item-increase'),
+    path('cart/decrease/<product_id>', DecreaseCartItemCount.as_view(), name='item-decrease'),
 ]
 
 urlpatterns += router.urls

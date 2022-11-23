@@ -11,6 +11,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
+from django.views import View
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView
 from rest_framework import viewsets, permissions
 
@@ -159,70 +160,67 @@ class CheckoutView(CustomLoginRequiredMixin, TemplateView):
         context["cart_total"] = get_cart_total()
         return context
 
+class CartAddView(CustomLoginRequiredMixin, View):
+    success_url = "commerce:cart"
 
-def CartAddView(request, product_id):
-    if request.user.is_authenticated:
-        product = Product.objects.get(id=product_id)
-        order_product = OrderProduct.objects.filter(product=product)
-        if order_product:
-            order_product[0].in_cart_quantity += 1
-            order_product[0].save()
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            product = Product.objects.get(id=kwargs['product_id'])
+            order_product = OrderProduct.objects.filter(product=product)
+            if order_product:
+                order_product[0].in_cart_quantity += 1
+                order_product[0].save()
+            else:
+                OrderProduct(user=self.request.user, product=product).save()
+            return HttpResponseRedirect(reverse(self.success_url))
         else:
-            OrderProduct(user=request.user, product=product).save()
-    else:
-        messages.add_message(request, messages.INFO, LOGIN_REQUIRED_MESSAGE)
-    return redirect(request.META.get('HTTP_REFERER', '/'))
+            messages.add_message(self.request, messages.INFO, LOGIN_REQUIRED_MESSAGE)
+            return redirect(self.request.META.get('HTTP_REFERER', '/'))
 
 
-def CheckoutAddDirectView(request, product_id):
-    if request.user.is_authenticated:
-        product = Product.objects.get(id=product_id)
-        order_product = OrderProduct.objects.filter(product=product)
-        if order_product:
-            order_product[0].in_cart_quantity += 1
-            order_product[0].save()
+class CheckoutAddDirectView(CartAddView):
+    success_url = "commerce:checkout"
+
+
+class ItemFavorView(CustomLoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            Product.objects.get(id=kwargs['product_id']).favorites.add(self.request.user)
         else:
-            OrderProduct(user=request.user, product=product).save()
-        return HttpResponseRedirect(reverse("commerce:checkout"))
-    else:
-        messages.add_message(request, messages.INFO, LOGIN_REQUIRED_MESSAGE)
-        return redirect(request.META.get('HTTP_REFERER', '/'))
+            messages.add_message(self.request, messages.INFO, LOGIN_REQUIRED_MESSAGE)
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
 
 
-def ItemFavorView(request, product_id):
-    if request.user.is_authenticated:
-        Product.objects.get(id=product_id).favorites.add(request.user)
-    else:
-        messages.add_message(request, messages.INFO, LOGIN_REQUIRED_MESSAGE)
-    return redirect(request.META.get('HTTP_REFERER', '/'))
+class ItemDefavorView(CustomLoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        Product.objects.get(id=kwargs['product_id']).favorites.remove(self.request.user)
+        return redirect(self.request.META.get('HTTP_REFERER', '/'))
 
 
-def ItemDefavorView(request, product_id):
-    Product.objects.get(id=product_id).favorites.remove(request.user)
-    return redirect(request.META.get('HTTP_REFERER', '/'))
-
-
-def IncreaseCartItemCount(request, product_id):
-    cart_product = OrderProduct.objects.get(id=product_id)
-    cart_product.in_cart_quantity += 1
-    cart_product.save()
-    return HttpResponseRedirect(reverse('commerce:cart'))
-
-
-def DecreaseCartItemCount(request, product_id):
-    cart_product = OrderProduct.objects.get(id=product_id)
-    if cart_product.in_cart_quantity == 1:
-        cart_product.delete()
-    else:
-        cart_product.in_cart_quantity -= 1
+class IncreaseCartItemCount(CustomLoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        cart_product = OrderProduct.objects.get(id=kwargs['product_id'])
+        cart_product.in_cart_quantity += 1
         cart_product.save()
-    return HttpResponseRedirect(reverse('commerce:cart'))
+        return HttpResponseRedirect(reverse('commerce:cart'))
 
 
-def RemoveCartItem(request, product_id):
-    cart_product = OrderProduct.objects.get(id=product_id)
-    cart_product.delete()
-    return HttpResponseRedirect(reverse('commerce:cart'))
+class DecreaseCartItemCount(CustomLoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        cart_product = OrderProduct.objects.get(id=kwargs['product_id'])
+        if cart_product.in_cart_quantity == 1:
+            cart_product.delete()
+        else:
+            cart_product.in_cart_quantity -= 1
+            cart_product.save()
+        return HttpResponseRedirect(reverse('commerce:cart'))
+
+
+class RemoveCartItem(CustomLoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        cart_product = OrderProduct.objects.get(id=kwargs['product_id'])
+        cart_product.delete()
+        return HttpResponseRedirect(reverse('commerce:cart'))
 
 
 # create a viewset
