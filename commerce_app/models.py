@@ -7,7 +7,7 @@ from django.db import models
 
 # Create your models here.
 from django.db.models import CASCADE
-from django.urls import reverse
+
 
 THUMBNAIL_SIZE = (400, 400)
 

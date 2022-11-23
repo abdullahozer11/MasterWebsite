@@ -1,5 +1,5 @@
 from captcha.fields import CaptchaField, CaptchaTextInput
-from django.forms import ModelForm, Form
+from django.forms import ModelForm, ImageField, FileInput
 
 from commerce_app.models import Profile, CustomerFormModel
 
@@ -9,6 +9,7 @@ class CustomCaptchaTextInput(CaptchaTextInput):
 
 
 class ProfileForm(ModelForm):
+    photo = ImageField(widget=FileInput)
     class Meta:
         model = Profile
         exclude = ['user', 'role']
