@@ -34,9 +34,6 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-    def get_absolute_url(self):
-        reverse('commerce:product')
-
     class Meta:
         ordering = ['id']
 
@@ -48,9 +45,6 @@ class OrderProduct(models.Model):
 
     def get_total(self):
         return self.product.price * self.in_cart_quantity
-
-    def get_absolute_url(self):
-        reverse('commerce:cart')
 
 
 class Profile(models.Model):
@@ -68,9 +62,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
-
-    def get_absolute_url(self):
-        return reverse("commerce:profile")
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         super().save()
