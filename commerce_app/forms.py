@@ -5,7 +5,7 @@ from commerce_app.models import Profile, CustomerFormModel
 
 
 class CustomCaptchaTextInput(CaptchaTextInput):
-    template_name = 'commerce_app/custom_field.html'
+    template_name = 'commerce_app/custom_captcha.html'
 
 
 class ProfileForm(ModelForm):
