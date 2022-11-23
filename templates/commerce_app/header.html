@@ -70,7 +70,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {% if user.is_authenticated %}
-                                <img src="{{ user.profile.photo.url }}" width="28" class="rounded-circle mx-auto">
+                                <img src="{{ user.profile.get_thumbnail_photo_url }}" width="28" class="rounded-circle mx-auto">
                             {% else %}
                                 <img src="{% static "commerce_app/images/no_user.png" %}"
                                      width="28"
