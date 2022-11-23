@@ -24,6 +24,3 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
     if instance.photo:
         if os.path.isfile(instance.photo.path):
             os.remove(instance.photo.path)
-
-def create_required_objects(sender, **kwargs):
-    pass
