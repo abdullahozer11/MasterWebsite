@@ -67,8 +67,6 @@ class Profile(models.Model):
         super().save()
         # generate thumbnail version
         self.generate_thumbnail()
-        # delete the original photo
-        self.photo.delete(save=False)
 
     def generate_thumbnail(self):
         file_path = self.photo.name
