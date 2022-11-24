@@ -1,0 +1,92 @@
+.skillsGrid p {
+    font-family: FontAwesome;
+}
+
+.skills {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.skillsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    height: auto;
+}
+
+/* Small Screens max width 640px */
+@media screen and (max-width: 640px) {
+    .skillsGrid {
+        gap: 20px;
+        margin-top: 50px;
+    }
+
+    .skillsGrid img {
+        height: 100px;
+        width: 100px;
+    }
+
+    .skills {
+        margin-bottom: 50px;
+    }
+
+    .skillsGrid p {
+        margin-top: 10px;
+        font-size: 20px;
+    }
+}
+
+/* Medium Screens min width 641px change to 4 columns */
+@media screen and (min-width: 641px) {
+    .skillsGrid {
+        gap: 30px;
+        margin-top: 50px;
+    }
+
+    .skillsGrid img {
+        height: 150px;
+        width: 150px;
+    }
+
+    .skills {
+        margin-bottom: 50px;
+    }
+
+    .skillsGrid p {
+        margin-top: 15px;
+        font-size: 30px;
+    }
+}
+
+
+@media screen and (min-width: 1080px) {
+    .skillsGrid {
+        gap: 50px;
+        margin-top: 50px;
+    }
+
+    .skillsGrid img {
+        height: 200px;
+        width: 200px;
+    }
+
+    .skills {
+        margin-bottom: 50px;
+    }
+
+    .skillsGrid p {
+        margin-top: 20px;
+        font-size: 40px;
+    }
+}
+
+
+.about-me p {
+    font-size: 30px;
+    font-family: FontAwesome;
+}

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'commerce_app',
     'captcha',
+    'portfolio',
 ]
 
 MIDDLEWARE = [
@@ -114,8 +115,8 @@ USE_TZ = True
 # https://spacepo.ams3.digitaloceanspaces.com/
 USE_SPACES = os.getenv("USE_SPACES", "False") == "True"
 if USE_SPACES:
-    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "DO00RF2TK2JYEBRY6GEG")
-    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "INlVSjNN7QopNhABwVNQxXbiCtmzBhEeEi5d8uBOs48")
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", None)
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", None)
     AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME", "spacepo_dev")
     AWS_S3_ENDPOINT_URL = 'https://spacepo.ams3.digitaloceanspaces.com/'
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
@@ -147,8 +148,8 @@ CAPTCHA_FONT_SIZE = 50
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'myemail@gmail.com')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '123456789')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', None)
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', None)
 
 FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 

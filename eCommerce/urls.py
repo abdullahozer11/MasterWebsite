@@ -16,14 +16,15 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import TemplateView
+from django.views.generic import ListView
 
 from eCommerce import settings
+from portfolio.models import Skill
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('commerce_app.urls', namespace="commerce")),
-    path('portfolio/', TemplateView.as_view(template_name='portfolio/index.html'), name="portfolio"),
+    path('commerce/', include('commerce_app.urls', namespace="commerce")),
+    path('', ListView.as_view(template_name='portfolio/index.html', model=Skill), name="portfolio"),
     # captcha
     path('captcha/', include('captcha.urls')),
     # rest_framework views
