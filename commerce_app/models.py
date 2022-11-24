@@ -1,15 +1,8 @@
-import os.path
-
-from PIL import Image
+from django.db.models import CASCADE
+from django_resized import ResizedImageField
 from django.contrib.auth.models import User
-from django.core.files.storage import default_storage as storage
 from django.db import models
 
-# Create your models here.
-from django.db.models import CASCADE
-
-
-THUMBNAIL_SIZE = (400, 400)
 
 class Product(models.Model):
     SIZES = (
@@ -57,52 +50,12 @@ class Profile(models.Model):
     mobile = models.CharField(max_length=15, default="07 69 92 92 92")
     address = models.CharField(max_length=99, default="Saint Cyr L'Ecole, Paris")
     user = models.OneToOneField(User, on_delete=CASCADE)
-    photo = models.ImageField(default="commerce_app/profile_photos/default.png", upload_to="profile_photos")
+    photo = ResizedImageField(size=[500, 500], default="commerce_app/profile_photos/default.png", upload_to="profile_photos")
     role = models.CharField(default='client', choices=ROLES, max_length=6)
 
     def __str__(self):
         return self.user.username
 
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        super().save()
-        # generate thumbnail version
-        self.generate_thumbnail()
-
-    def generate_thumbnail(self):
-        file_path = self.photo.name
-        file_base_name, file_extension = os.path.splitext(file_path)
-        thumbnail_file_path = f"{file_base_name}_thumbnail.jpg"
-        f = storage.open(file_path, "rb")
-        image = Image.open(f)
-        image = image.convert('RGB')
-        width, height = image.size
-
-        if width > height:
-            delta = width - height
-            left = int(delta / 2)
-            upper = 0
-            right = height + left
-            lower = height
-        else:
-            delta = height - width
-            left = 0
-            upper = int(delta / 2)
-            right = width
-            lower = width + upper
-
-        image = image.crop((left, upper, right, lower))
-        image = image.resize(THUMBNAIL_SIZE, Image.ANTIALIAS)
-        f_mob = storage.open(thumbnail_file_path, "w")
-        image.save(f_mob, "JPEG")
-        f_mob.close()
-
-    def get_thumbnail_photo_url(self):
-        file_path = self.photo.name
-        file_base_name, file_extension = os.path.splitext(file_path)
-        thumbnail_file_path = f"{file_base_name}_thumbnail.jpg"
-        if storage.exists(thumbnail_file_path):
-            return storage.url(thumbnail_file_path)
-        return None
 
 class CustomerFormModel(models.Model):
     name = models.CharField(max_length=30)
