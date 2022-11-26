@@ -1,4 +1,4 @@
-"""eCommerce URL Configuration
+"""MasterWebsite URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import ListView
 
-from eCommerce import settings
+from MasterWebsite import settings
 from portfolio.models import Skill
 
 urlpatterns = [
