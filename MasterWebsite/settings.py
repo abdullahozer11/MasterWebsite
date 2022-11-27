@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'commerce_app',
     'captcha',
     'portfolio',
+    'todo_app',
 ]
 
 MIDDLEWARE = [

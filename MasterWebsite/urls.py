@@ -23,6 +23,7 @@ from portfolio.models import Skill
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('todo/', include('todo_app.urls', namespace="todo")),
     path('commerce/', include('commerce_app.urls', namespace="commerce")),
     path('', ListView.as_view(template_name='portfolio/index.html', model=Skill), name="portfolio"),
     # captcha

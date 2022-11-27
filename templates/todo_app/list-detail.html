@@ -1,0 +1,14 @@
+{% extends "todo_app/base.html" %}
+
+{% block content %}
+
+    <h5> {{ todo_list.title }}</h5>
+
+    <ul>
+    {% for todo_item in object_list %}
+        <li onclick="location.href='{% url "todo:item-update" list_id=todo_list.id pk=todo_item.id %}'"> {{ todo_item.title }}</li>
+    {% endfor %}
+    </ul>
+    <input type="button" value="Add new task" class="text" onclick="location.href='{% url "todo:item-add" todo_list.id %}'">
+    <input type="button" value="Delete" class="text" onclick="location.href='{% url "todo:list-delete" todo_list.id %}'">
+{% endblock %}

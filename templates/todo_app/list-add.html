@@ -1,0 +1,12 @@
+{% extends "todo_app/base.html" %}
+
+{% block content %}
+    <h3> Add a new list</h3>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit"> Add</button>
+    </form>
+
+{% endblock %}

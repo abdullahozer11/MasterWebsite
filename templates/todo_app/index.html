@@ -1,0 +1,12 @@
+{% extends "todo_app/base.html" %}
+
+{% block content %}
+    <h3 style="margin-top: 50px"> ToDo Lists </h3>
+    <ul>
+    {% for todo_list in object_list %}
+        <li onclick="location.href='{% url 'todo:item-view' todo_list.id %}'"> {{ todo_list.title }}</li>
+    {% endfor %}
+    </ul>
+    <input type="button" value="Add new list" class="text"
+    onclick="location.href='{% url "todo:list-add" %}'">
+{% endblock %}

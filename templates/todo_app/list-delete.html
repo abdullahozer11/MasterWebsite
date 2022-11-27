@@ -1,0 +1,10 @@
+{%  extends "todo_app/base.html" %}
+
+{% block content %}
+    Are you sure to delete the list "{{ todo_list.title }}"
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Yes, delete">
+        <input type="button" value="Cancel" onclick="location.href='{% url "todo:index" %}'">
+    </form>
+{% endblock %}
