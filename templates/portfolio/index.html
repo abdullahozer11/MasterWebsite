@@ -1,377 +1,357 @@
-<!DOCTYPE html>
+{% extends "portfolio/base.html" %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet"/>
 
-    <title>Welcome to my site</title>
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'portfolio/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
+{% block content %}
+<!-- Sidebar Menu -->
+<div class="responsive-nav">
+    <i class="fa fa-bars" id="menu-toggle"></i>
+    <div id="menu" class="menu">
+        <i class="fa fa-times" id="menu-close"></i>
+        <div class="container">
+            <div class="image">
+                <a href="#"><img src="{% static 'portfolio/assets/images/author-image.jpg' %}" alt=""/></a>
+            </div>
+            <div class="author-content">
+                <h4> Abdullah Ozer </h4>
+                <span>Django Developer</span>
+            </div>
+            <nav class="main-nav" role="navigation">
+                <ul class="main-menu">
+                    <li><a href="#section1">About Me</a></li>
+                    <li><a href="#section2">My Skills</a></li>
+                    <li><a href="#section3">My Demos</a></li>
+                    <li><a href="#section4">My Life</a></li>
+                    <li><a href="#section5">Contact Me</a></li>
+                </ul>
+            </nav>
+            <div class="social-network">
+                <ul class="soial-icons">
+                    <li>
+                        <a href="https://www.linkedin.com/in/abdullah-ozer-a23733107"><i class="fa fa-linkedin"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-rss"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="{% static 'portfolio/assets/css/fontawesome.css' %}"/>
-    <link rel="stylesheet" href="{% static 'portfolio/assets/css/templatemo-style.css' %}"/>
-    <link rel="stylesheet" href="{% static 'portfolio/assets/css/owl.css' %}"/>
-    <link rel="stylesheet" href="{% static 'portfolio/assets/css/lightbox.css' %}"/>
-    <link rel="stylesheet" href="{% static 'portfolio/assets/css/custom.css' %}"/>
-</head>
+<section class="section about-me" data-section="section1">
+    <div class="container">
+        <div class="section-heading">
+            <h2>About Me</h2>
+            <div class="line-dec"></div>
+            <span>Welcome to my personal portfolio web page.</span>
+        </div>
+        <p>I'm a Django Developer currently living in Paris.
+            My interest in French culture and language brought me to all the way to Paris.
+            After years of test engineering and working with Python, I discovered a strong interest towards
+            Django and web development and started working on it.</p>
+        <div class="about-image">
+            <img src="{% static 'portfolio/assets/images/about.jpg' %}" alt="Me working"/>
+        </div>
+    </div>
+</section>
 
-<body>
-<div id="page-wraper">
-    <!-- Sidebar Menu -->
-    <div class="responsive-nav">
-        <i class="fa fa-bars" id="menu-toggle"></i>
-        <div id="menu" class="menu">
-            <i class="fa fa-times" id="menu-close"></i>
-            <div class="container">
-                <div class="image">
-                    <a href="#"><img src="{% static 'portfolio/assets/images/author-image.jpg' %}" alt=""/></a>
+<section class="section my-skills" data-section="section2">
+    <div class="container">
+        <div class="section-heading">
+            <h2>My Skills</h2>
+            <div class="line-dec"></div>
+            <span>
+                    We are not born with experience. It takes time and effort.
+                </span>
+
+            <div class="skillsGrid">
+                {% for skill in object_list %}
+                <div class="skills">
+                    <img src={{ skill.icon.url }}/>
+                    <p>{{ skill.name }}</p>
                 </div>
-                <div class="author-content">
-                    <h4> Abdullah Ozer </h4>
-                    <span>Django Developer</span>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section my-demos" data-section="section3">
+    <div class="container">
+        <div class="section-heading">
+            <h2>My Demos</h2>
+            <div class="line-dec"></div>
+            <span>
+                    <q>I only believe in what I see and hear with my own eyes and ears.</q>
+                </span>
+            <br><i style="margin-left: 300px">Elisabeth Kubler-Ross</i>
+        </div>
+        <div class="left-image-post">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="left-image">
+                        <img src="{% static 'portfolio/assets/images/todo.png' %}" alt=""/>
+                    </div>
                 </div>
-                <nav class="main-nav" role="navigation">
-                    <ul class="main-menu">
-                        <li><a href="#section1">About Me</a></li>
-                        <li><a href="#section2">My Skills</a></li>
-                        <li><a href="#section3">My Demos</a></li>
-                        <li><a href="#section4">My Life</a></li>
-                        <li><a href="#section5">Contact Me</a></li>
-                    </ul>
-                </nav>
-                <div class="social-network">
-                    <ul class="soial-icons">
-                        <li>
-                            <a href="https://www.linkedin.com/in/abdullah-ozer-a23733107"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-rss"></i></a>
-                        </li>
-                    </ul>
+                <div class="col-md-6">
+                    <div class="right-text">
+                        <h4>ToDo App</h4>
+                        <p>A basic app to keep track of tasks
+                        </p>
+                        <div class="white-button">
+                            <a href="{% url 'todo:index' %}">Go to demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-image-post">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="left-text">
+                        <h4>
+                            eCommerce Website</h4>
+                        <p>
+                            An eCommerce website with generic class based views.
+                        </p>
+                        <div class="white-button">
+                            <a href="{% url 'commerce:index' %}">Go to demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="right-image">
+                        <img src="{% static 'portfolio/assets/images/commerce.jpg' %}" alt=""/>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <section class="section about-me" data-section="section1">
-        <div class="container">
-            <div class="section-heading">
-                <h2>About Me</h2>
-                <div class="line-dec"></div>
-                <span>Welcome to my personal portfolio web page.</span>
-            </div>
-            <p>I'm a Django Developer currently living in Paris.
-                My interest in French culture and language brought me to all the way to Paris.
-                After years of test engineering and working with Python, I discovered a strong interest towards
-                Django and web development and started working on it.</p>
-            <div class="about-image">
-                <img src="{% static 'portfolio/assets/images/about.jpg' %}" alt="Me working"/>
-            </div>
+<section class="section my-life" data-section="section4">
+    <div class="container">
+        <div class="section-heading">
+            <h2>My Life</h2>
+            <div class="line-dec"></div>
+            <span> Life is a big collection of memories. </span>
         </div>
-    </section>
-
-    <section class="section my-skills" data-section="section2">
-        <div class="container">
-            <div class="section-heading">
-                <h2>My Skills</h2>
-                <div class="line-dec"></div>
-                <span>
-                    We are not born with experience. It takes time and effort.
-                </span>
-
-                <div class="skillsGrid">
-                    {% for skill in object_list %}
-                    <div class="skills">
-                        <img src={{ skill.icon.url }}/>
-                        <p>{{ skill.name }}</p>
+        <div class="row">
+            <div class="isotope-wrapper">
+                <form class="isotope-toolbar">
+                    <label
+                    ><input
+                            type="radio"
+                            data-type="*"
+                            checked=""
+                            name="isotope-filter"
+                    />
+                        <span>all</span></label
+                    >
+                    <label
+                    ><input
+                            type="radio"
+                            data-type="city"
+                            name="isotope-filter"
+                    />
+                        <span>city</span></label
+                    >
+                    <label
+                    ><input
+                            type="radio"
+                            data-type="nature"
+                            name="isotope-filter"
+                    />
+                        <span>nature</span></label
+                    >
+                    <label
+                    ><input
+                            type="radio"
+                            data-type="art"
+                            name="isotope-filter"
+                    />
+                        <span>art</span></label
+                    >
+                    <label
+                    ><input
+                            type="radio"
+                            data-type="sports"
+                            name="isotope-filter"
+                    />
+                        <span>sports</span></label
+                    >
+                </form>
+                <div class="isotope-box">
+                    <div class="isotope-item" data-type="city">
+                        <figure class="snip1321">
+                            <img
+                                    src="{% static 'portfolio/assets/images/portfolio-01.jpg' %}"
+                                    alt="sq-sample26"
+                            />
+                            <figcaption>
+                                <a
+                                        href="{% static 'portfolio/assets/images/portfolio-01.jpg' %}"
+                                        data-lightbox="image-1"
+                                        data-title="Caption"
+                                ><i class="fa fa-search"></i
+                                ></a>
+                                <h4>Bachelors in Bogazici University</h4>
+                                <span>2022 Istanbul</span>
+                            </figcaption>
+                        </figure>
                     </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="section my-demos" data-section="section3">
-        <div class="container">
-            <div class="section-heading">
-                <h2>My Demos</h2>
-                <div class="line-dec"></div>
-                <span>
-                    <q>I only believe in what I see and hear with my own eyes and ears.</q>
-                </span>
-                <br><i style="margin-left: 300px">Elisabeth Kubler-Ross</i>
-            </div>
-            <div class="left-image-post">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="left-image">
-                            <img src="{% static 'portfolio/assets/images/todo.png' %}" alt=""/>
-                        </div>
+                    <div class="isotope-item" data-type="art">
+                        <figure class="snip1321">
+                            <img
+                                    src="{% static 'portfolio/assets/images/portfolio-02.jpg' %}"
+                                    alt="sq-sample26"
+                            />
+                            <figcaption>
+                                <a
+                                        href="{% static 'portfolio/assets/images/portfolio-02.jpg' %}"
+                                        data-lightbox="image-1"
+                                        data-title="Caption"
+                                ><i class="fa fa-search"></i
+                                ></a>
+                                <h4>Getting lost in Louvre regularly</h4>
+                                <span>2022 Musée du Louvre</span>
+                            </figcaption>
+                        </figure>
                     </div>
-                    <div class="col-md-6">
-                        <div class="right-text">
-                            <h4>ToDo App</h4>
-                            <p>A basic app to keep track of tasks
-                            </p>
-                            <div class="white-button">
-                                <a href="{% url 'todo:index' %}">Go to demo</a>
-                            </div>
-                        </div>
+
+                    <div class="isotope-item" data-type="city">
+                        <figure class="snip1321">
+                            <img
+                                    src="{% static 'portfolio/assets/images/portfolio-03.jpg' %}"
+                                    alt="sq-sample26"
+                            />
+                            <figcaption>
+                                <a href="{% static 'portfolio/assets/images/portfolio-03.jpg' %}"
+                                   data-lightbox="image-1"
+                                   data-title="Caption"
+                                ><i class="fa fa-search"></i
+                                ></a>
+                                <h4>Paris is magical</h4>
+                                <span>2022 Paris</span>
+                            </figcaption>
+                        </figure>
                     </div>
-                </div>
-            </div>
-            <div class="right-image-post">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="left-text">
-                            <h4>
-                                eCommerce Website</h4>
-                            <p>
-                                An eCommerce website with generic class based views.
-                            </p>
-                            <div class="white-button">
-                                <a href="{% url 'commerce:index' %}">Go to demo</a>
-                            </div>
-                        </div>
+
+                    <div class="isotope-item" data-type="nature">
+                        <figure class="snip1321">
+                            <img
+                                    src="{% static 'portfolio/assets/images/portfolio-04.jpg' %}"
+                                    alt="sq-sample26"
+                            />
+                            <figcaption>
+                                <a
+                                        href="{% static 'portfolio/assets/images/portfolio-04.jpg' %}"
+                                        data-lightbox="image-1"
+                                        data-title="Caption"
+                                ><i class="fa fa-search"></i
+                                ></a>
+                                <h4>Recharge yourself in nature</h4>
+                                <span>2020 Grenoble</span>
+                            </figcaption>
+                        </figure>
                     </div>
-                    <div class="col-md-6">
-                        <div class="right-image">
-                            <img src="{% static 'portfolio/assets/images/commerce.jpg' %}" alt=""/>
-                        </div>
+
+                    <div class="isotope-item" data-type="nature">
+                        <figure class="snip1321">
+                            <img
+                                    src="{% static 'portfolio/assets/images/portfolio-05.jpg' %}"
+                                    alt="sq-sample26"
+                            />
+                            <figcaption>
+                                <a
+                                        href="{% static 'portfolio/assets/images/portfolio-05.jpg' %}"
+                                        data-lightbox="image-1"
+                                        data-title="Caption"
+                                ><i class="fa fa-search"></i
+                                ></a>
+                                <h4>It's always easy to make friends with animals</h4>
+                                <span>2022 Saint Quentin en Yvelines</span>
+                            </figcaption>
+                        </figure>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="section my-life" data-section="section4">
-        <div class="container">
-            <div class="section-heading">
-                <h2>My Life</h2>
-                <div class="line-dec"></div>
-                <span> Life is a big collection of memories. </span>
-            </div>
-            <div class="row">
-                <div class="isotope-wrapper">
-                    <form class="isotope-toolbar">
-                        <label
-                        ><input
-                                type="radio"
-                                data-type="*"
-                                checked=""
-                                name="isotope-filter"
-                        />
-                            <span>all</span></label
-                        >
-                        <label
-                        ><input
-                                type="radio"
-                                data-type="city"
-                                name="isotope-filter"
-                        />
-                            <span>city</span></label
-                        >
-                        <label
-                        ><input
-                                type="radio"
-                                data-type="nature"
-                                name="isotope-filter"
-                        />
-                            <span>nature</span></label
-                        >
-                        <label
-                        ><input
-                                type="radio"
-                                data-type="art"
-                                name="isotope-filter"
-                        />
-                            <span>art</span></label
-                        >
-                        <label
-                        ><input
-                                type="radio"
-                                data-type="sports"
-                                name="isotope-filter"
-                        />
-                            <span>sports</span></label
-                        >
-                    </form>
-                    <div class="isotope-box">
-                        <div class="isotope-item" data-type="city">
-                            <figure class="snip1321">
-                                <img
-                                        src="{% static 'portfolio/assets/images/portfolio-01.jpg' %}"
-                                        alt="sq-sample26"
-                                />
-                                <figcaption>
-                                    <a
-                                            href="{% static 'portfolio/assets/images/portfolio-01.jpg' %}"
-                                            data-lightbox="image-1"
-                                            data-title="Caption"
-                                    ><i class="fa fa-search"></i
-                                    ></a>
-                                    <h4>Bachelors in Bogazici University</h4>
-                                    <span>2022 Istanbul</span>
-                                </figcaption>
-                            </figure>
-                        </div>
-
-                        <div class="isotope-item" data-type="art">
-                            <figure class="snip1321">
-                                <img
-                                        src="{% static 'portfolio/assets/images/portfolio-02.jpg' %}"
-                                        alt="sq-sample26"
-                                />
-                                <figcaption>
-                                    <a
-                                            href="{% static 'portfolio/assets/images/portfolio-02.jpg' %}"
-                                            data-lightbox="image-1"
-                                            data-title="Caption"
-                                    ><i class="fa fa-search"></i
-                                    ></a>
-                                    <h4>Getting lost in Louvre regularly</h4>
-                                    <span>2022 Musée du Louvre</span>
-                                </figcaption>
-                            </figure>
-                        </div>
-
-                        <div class="isotope-item" data-type="city">
-                            <figure class="snip1321">
-                                <img
-                                        src="{% static 'portfolio/assets/images/portfolio-03.jpg' %}"
-                                        alt="sq-sample26"
-                                />
-                                <figcaption>
-                                    <a href="{% static 'portfolio/assets/images/portfolio-03.jpg' %}"
-                                       data-lightbox="image-1"
-                                       data-title="Caption"
-                                    ><i class="fa fa-search"></i
-                                    ></a>
-                                    <h4>Paris is magical</h4>
-                                    <span>2022 Paris</span>
-                                </figcaption>
-                            </figure>
-                        </div>
-
-                        <div class="isotope-item" data-type="nature">
-                            <figure class="snip1321">
-                                <img
-                                        src="{% static 'portfolio/assets/images/portfolio-04.jpg' %}"
-                                        alt="sq-sample26"
-                                />
-                                <figcaption>
-                                    <a
-                                            href="{% static 'portfolio/assets/images/portfolio-04.jpg' %}"
-                                            data-lightbox="image-1"
-                                            data-title="Caption"
-                                    ><i class="fa fa-search"></i
-                                    ></a>
-                                    <h4>Recharge yourself in nature</h4>
-                                    <span>2020 Grenoble</span>
-                                </figcaption>
-                            </figure>
-                        </div>
-
-                        <div class="isotope-item" data-type="nature">
-                            <figure class="snip1321">
-                                <img
-                                        src="{% static 'portfolio/assets/images/portfolio-05.jpg' %}"
-                                        alt="sq-sample26"
-                                />
-                                <figcaption>
-                                    <a
-                                            href="{% static 'portfolio/assets/images/portfolio-05.jpg' %}"
-                                            data-lightbox="image-1"
-                                            data-title="Caption"
-                                    ><i class="fa fa-search"></i
-                                    ></a>
-                                    <h4>It's always easy to make friends with animals</h4>
-                                    <span>2022 Saint Quentin en Yvelines</span>
-                                </figcaption>
-                            </figure>
-                        </div>
-
-                        <div class="isotope-item" data-type="sports">
-                            <figure class="snip1321">
-                                <img
-                                        src="{% static 'portfolio/assets/images/portfolio-06.jpg' %}"
-                                        alt="sq-sample26"
-                                />
-                                <figcaption>
-                                    <a
-                                            href="{% static 'portfolio/assets/images/portfolio-06.jpg' %}"
-                                            data-lightbox="image-1"
-                                            data-title="Caption"
-                                    ><i class="fa fa-search"></i
-                                    ></a>
-                                    <h4>Golf is a peaceful sport</h4>
-                                    <span>2022 Saint Quentin en Yvelines</span>
-                                </figcaption>
-                            </figure>
-                        </div>
+                    <div class="isotope-item" data-type="sports">
+                        <figure class="snip1321">
+                            <img
+                                    src="{% static 'portfolio/assets/images/portfolio-06.jpg' %}"
+                                    alt="sq-sample26"
+                            />
+                            <figcaption>
+                                <a
+                                        href="{% static 'portfolio/assets/images/portfolio-06.jpg' %}"
+                                        data-lightbox="image-1"
+                                        data-title="Caption"
+                                ><i class="fa fa-search"></i
+                                ></a>
+                                <h4>Golf is a peaceful sport</h4>
+                                <span>2022 Saint Quentin en Yvelines</span>
+                            </figcaption>
+                        </figure>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="section contact-me" data-section="section5">
-        <div class="container">
-            <div class="section-heading">
-                <h2>Contact Me</h2>
-                <div class="line-dec"></div>
-                <span>
+<section class="section contact-me" data-section="section5">
+    <div class="container">
+        <div class="section-heading">
+            <h2>Contact Me</h2>
+            <div class="line-dec"></div>
+            <span>
                     Feel free to message me. I'll respond shortly.
                 </span>
-            </div>
-            <div class="row">
-                <div class="right-content">
-                    <div class="container">
-                        <form id="contact" action="" method="post">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <fieldset>
-                                        <input
-                                                name="name"
-                                                type="text"
-                                                class="form-control"
-                                                id="name"
-                                                placeholder="Your name..."
-                                                required=""
-                                        />
-                                    </fieldset>
-                                </div>
-                                <div class="col-md-6">
-                                    <fieldset>
-                                        <input
-                                                name="email"
-                                                type="text"
-                                                class="form-control"
-                                                id="email"
-                                                placeholder="Your email..."
-                                                required=""
-                                        />
-                                    </fieldset>
-                                </div>
-                                <div class="col-md-12">
-                                    <fieldset>
-                                        <input
-                                                name="subject"
-                                                type="text"
-                                                class="form-control"
-                                                id="subject"
-                                                placeholder="Subject..."
-                                                required=""
-                                        />
-                                    </fieldset>
-                                </div>
-                                <div class="col-md-12">
-                                    <fieldset>
+        </div>
+        <div class="row">
+            <div class="right-content">
+                <div class="container">
+                    <form id="contact" action="" method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <input
+                                            name="name"
+                                            type="text"
+                                            class="form-control"
+                                            id="name"
+                                            placeholder="Your name..."
+                                            required=""
+                                    />
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <input
+                                            name="email"
+                                            type="text"
+                                            class="form-control"
+                                            id="email"
+                                            placeholder="Your email..."
+                                            required=""
+                                    />
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <input
+                                            name="subject"
+                                            type="text"
+                                            class="form-control"
+                                            id="subject"
+                                            placeholder="Subject..."
+                                            required=""
+                                    />
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12">
+                                <fieldset>
                         <textarea
                                 name="message"
                                 rows="6"
@@ -380,82 +360,20 @@
                                 placeholder="Your message..."
                                 required=""
                         ></textarea>
-                                    </fieldset>
-                                </div>
-                                <div class="col-md-12">
-                                    <fieldset>
-                                        <button type="submit" id="form-submit" class="button">
-                                            Send Message
-                                        </button>
-                                    </fieldset>
-                                </div>
+                                </fieldset>
                             </div>
-                        </form>
-                    </div>
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <button type="submit" id="form-submit" class="button">
+                                        Send Message
+                                    </button>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
-
-</div>
-
-<!-- Scripts -->
-<!-- Bootstrap core JavaScript -->
-<script src="{% static 'portfolio/vendor/jquery/jquery.min.js' %}"></script>
-<script src="{% static 'portfolio/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'portfolio/assets/js/isotope.min.js' %}"></script>
-<script src="{% static 'portfolio/assets/js/owl-carousel.js' %}"></script>
-<script src="{% static 'portfolio/assets/js/lightbox.js' %}"></script>
-<script src="{% static 'portfolio/assets/js/custom.js' %}"></script>
-<script>
-    //according to loftblog tut
-    $(".main-menu li:first").addClass("active");
-
-    var showSection = function showSection(section, isAnimate) {
-        var direction = section.replace(/#/, ""),
-            reqSection = $(".section").filter(
-                '[data-section="' + direction + '"]'
-            ),
-            reqSectionPos = reqSection.offset().top - 0;
-
-        if (isAnimate) {
-            $("body, html").animate(
-                {
-                    scrollTop: reqSectionPos
-                },
-                800
-            );
-        } else {
-            $("body, html").scrollTop(reqSectionPos);
-        }
-    };
-
-    var checkSection = function checkSection() {
-        $(".section").each(function () {
-            var $this = $(this),
-                topEdge = $this.offset().top - 80,
-                bottomEdge = topEdge + $this.height(),
-                wScroll = $(window).scrollTop();
-            if (topEdge < wScroll && bottomEdge > wScroll) {
-                var currentId = $this.data("section"),
-                    reqLink = $("a").filter("[href*=\\#" + currentId + "]");
-                reqLink
-                    .closest("li")
-                    .addClass("active")
-                    .siblings()
-                    .removeClass("active");
-            }
-        });
-    };
-
-    $(".main-menu").on("click", "a", function (e) {
-        e.preventDefault();
-        showSection($(this).attr("href"), true);
-    });
-
-    $(window).scroll(function () {
-        checkSection();
-    });
-</script>
-</body>
-</html>
+    </div>
+</section>
+{% endblock %}

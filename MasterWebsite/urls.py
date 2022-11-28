@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.shortcuts import render
 from django.urls import path, include
 from django.views.generic import ListView
 
@@ -29,9 +30,20 @@ urlpatterns = [
     # captcha
     path('captcha/', include('captcha.urls')),
     # rest_framework views
-    path('api-auth/', include('rest_framework.urls'))
+    path('api-auth/', include('rest_framework.urls')),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+def page_not_found_view(request, exception):
+    if request.path.startswith('/commerce/'):
+        return render(request, 'commerce_app/404.html', status=404)
+    elif request.path.startswith('/todo/'):
+        return render(request, 'todo_app/404.html', status=404)
+    else:
+        return render(request, 'portfolio/404.html', status=404)
+
+handler404 = "MasterWebsite.urls.page_not_found_view"

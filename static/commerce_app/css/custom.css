@@ -1,0 +1,17 @@
+/*This is my custom css file*/
+
+.page_not_found {
+    margin-top: 50px;
+}
+
+.page_not_found img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page_not_found h2 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+}

@@ -1,0 +1,12 @@
+{% extends "commerce_app/base_subpage.html" %}
+{% load static %}
+
+{% block inner_page_title %}404{% endblock inner_page_title %}
+
+{% block innercontent %}
+<div class="page_not_found">
+    <img src="{% static '404.svg' %}" alt="PAGE NOT FOUND SVG"/>
+    <h2>PAGE NOT FOUND</h2>
+</div>
+
+{% endblock innercontent %}
