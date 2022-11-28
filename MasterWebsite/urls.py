@@ -15,18 +15,16 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.shortcuts import render
 from django.urls import path, include
-from django.views.generic import ListView
 
 from MasterWebsite import settings
-from portfolio.models import Skill
+from portfolio.views import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('todo/', include('todo_app.urls', namespace="todo")),
     path('commerce/', include('commerce_app.urls', namespace="commerce")),
-    path('', ListView.as_view(template_name='portfolio/index.html', model=Skill), name="portfolio"),
+    path('', IndexView.as_view(), name="portfolio"),
     # captcha
     path('captcha/', include('captcha.urls')),
     # rest_framework views

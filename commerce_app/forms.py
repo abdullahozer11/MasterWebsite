@@ -20,4 +20,3 @@ class CustomerForm(ModelForm):
     class Meta:
         model = CustomerFormModel
         fields = '__all__'
-

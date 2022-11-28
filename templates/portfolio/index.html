@@ -313,6 +313,7 @@
             <div class="right-content">
                 <div class="container">
                     <form id="contact" action="" method="post">
+                        {% csrf_token %}
                         <div class="row">
                             <div class="col-md-6">
                                 <fieldset>
@@ -360,6 +361,11 @@
                                 placeholder="Your message..."
                                 required=""
                         ></textarea>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12">
+                                <fieldset>
+                                    {{ form.captcha }}
                                 </fieldset>
                             </div>
                             <div class="col-md-12">
