@@ -37,13 +37,4 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-
-def page_not_found_view(request, exception):
-    if request.path.startswith('/commerce/'):
-        return render(request, 'commerce_app/404.html', status=404)
-    elif request.path.startswith('/todo/'):
-        return render(request, 'todo_app/404.html', status=404)
-    else:
-        return render(request, 'portfolio/404.html', status=404)
-
-handler404 = "MasterWebsite.urls.page_not_found_view"
+handler404 = "MasterWebsite.views.page_not_found_view"
