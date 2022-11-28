@@ -45,11 +45,11 @@
             <div class="line-dec"></div>
             <span>Welcome to my personal portfolio web page.</span>
         </div>
-        <p>I'm a Django Developer currently living in Paris.
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;I'm a Django Developer currently living in Paris.
             My interest in French culture and language brought me to all the way to Paris.
             After years of test engineering and working with Python, I discovered a strong interest towards
             Django and web development and started working on it.</p>
-        <div class="about-image">
+        <div id="about-image">
             <img src="{% static 'portfolio/assets/images/about.jpg' %}" alt="Me working"/>
         </div>
     </div>
@@ -60,10 +60,7 @@
         <div class="section-heading">
             <h2>My Skills</h2>
             <div class="line-dec"></div>
-            <span>
-                    We are not born with experience. It takes time and effort.
-                </span>
-
+            <span> We are not born with experience. It takes time and effort.</span>
             <div class="skillsGrid">
                 {% for skill in object_list %}
                 <div class="skills">
@@ -81,9 +78,7 @@
         <div class="section-heading">
             <h2>My Demos</h2>
             <div class="line-dec"></div>
-            <span>
-                    <q>I only believe in what I see and hear with my own eyes and ears.</q>
-                </span>
+            <span><q>I only believe in what I see and hear with my own eyes and ears.</q></span>
             <br><i style="margin-left: 300px">Elisabeth Kubler-Ross</i>
         </div>
         <div class="left-image-post">
