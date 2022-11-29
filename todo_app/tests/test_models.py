@@ -16,15 +16,15 @@ class ToDoListTest(TestCase):
     def create_todolist(self, title="Only a test list"):
         return ToDoList.objects.create(user=self.user, title=title)
 
+    def create_todoitem(self):
+        todo_list = ToDoList.objects.create(user=self.user)
+        return ToDoItem.objects.create(title="Test item", todo_list=todo_list)
+
     def test_todolist_creation(self):
         obj = self.create_todolist()
         self.assertTrue(isinstance(obj, ToDoList))
         self.assertEqual(obj.__str__(), obj.title)
         self.delete_todolist()
-
-    def create_todoitem(self):
-        todo_list = ToDoList.objects.create(user=self.user)
-        return ToDoItem.objects.create(title="Test item", todo_list=todo_list)
 
     def test_todoitem_creation(self):
         obj = self.create_todoitem()
