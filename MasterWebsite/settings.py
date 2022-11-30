@@ -131,25 +131,23 @@ USE_SPACES = os.getenv("USE_SPACES", "False") == "True"
 if USE_SPACES:
     AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", None)
     AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", None)
-    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME", "spacepo_dev")
-    AWS_S3_ENDPOINT_URL = 'https://spacepo.ams3.digitaloceanspaces.com/'
+    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME", "spacepo")
+    AWS_S3_ENDPOINT_URL = 'https://ams3.digitaloceanspaces.com'
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
     # static
-    AWS_LOCATION = 'static'
-    STATIC_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, AWS_LOCATION)
-    STATICFILES_STORAGE = 'MasterWebsite.storage_backends.S3Boto3Storage'
-    AWS_S3_SIGNATURE_VERSION = 's3v4'
+    AWS_LOCATION = 'https://spacepo.ams3.digitaloceanspaces.com'
+    STATICFILES_STORAGE = 'MasterWebsite.storage_backends.StaticStorage'
+    # AWS_S3_SIGNATURE_VERSION = 's3v4'
     # media
     PUBLIC_MEDIA_LOCATION = 'media'
     MEDIA_URL = f'https://{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/'
     DEFAULT_FILE_STORAGE = 'MasterWebsite.storage_backends.PublicMediaStorage'
-else:
-    STATIC_URL = '/static/'
-    MEDIA_URL = '/media/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-MEDIA_ROOT = BASE_DIR / 'media'
 
+STATIC_URL = '/static/'
 STATICFILES_DIRS = (BASE_DIR / 'static',)
+
+STATIC_ROOT = BASE_DIR / "staticfiles-cdn"  # in production, we want cdn
+MEDIA_ROOT = BASE_DIR / "staticfiles-cdn" / "uploads"
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
