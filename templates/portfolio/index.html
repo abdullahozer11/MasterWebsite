@@ -38,19 +38,27 @@
     </div>
 </div>
 
-<section class="section about-me" data-section="section1">
+<section class="section" data-section="section1">
     <div class="container">
         <div class="section-heading">
             <h2>About Me</h2>
             <div class="line-dec"></div>
             <span>Welcome to my personal portfolio web page.</span>
         </div>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;I'm a Django Developer currently living in Paris.
-            My interest in French culture and language brought me to all the way to Paris.
-            After years of test engineering and working with Python, I discovered a strong interest towards
-            Django and web development and started working on it.</p>
-        <div id="about-image">
-            <img src="{% static 'portfolio/assets/images/about.jpg' %}" alt="Me working"/>
+        <div class="row align-items-center">
+            <div class="col-6">
+                <p id="about-text">
+                    I'm a Django developer living in Paris.
+                    My interest in the beautiful French culture and language brought me to all the way to Paris.
+                    After years of working with Python, I discovered a strong interest towards Django and web
+                    development and
+                    started working on it.
+                </p>
+            </div>
+            <div class="col-6">
+                <img src="{% static 'portfolio/assets/images/about.jpg' %}" alt="Me working"
+                     id="about-image"/>
+            </div>
         </div>
     </div>
 </section>
@@ -79,7 +87,7 @@
             <h2>My Demos</h2>
             <div class="line-dec"></div>
             <span><q>I only believe in what I see and hear with my own eyes and ears.</q></span>
-            <br><i style="margin-left: 300px">Elisabeth Kubler-Ross</i>
+            <br><i id="quote-writer">Elisabeth Kubler-Ross</i>
         </div>
         <div class="left-image-post">
             <div class="row">

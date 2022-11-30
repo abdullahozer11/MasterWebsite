@@ -118,10 +118,17 @@
     font-weight: bold;
 }
 
+#about-text {
+    font-size: 26px;
+    font-weight: lighter;
+    line-height: normal;
+    text-align: justify;
+}
+
 #about-image {
-    margin-top: 60px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
+    border-radius: 50%;
+}
+
+#quote-writer {
+    margin-left: 300px;
 }
