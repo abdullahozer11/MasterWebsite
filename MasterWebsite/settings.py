@@ -142,6 +142,8 @@ if USE_SPACES:
     PUBLIC_MEDIA_LOCATION = 'media'
     MEDIA_URL = f'https://{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/'
     DEFAULT_FILE_STORAGE = 'MasterWebsite.storage_backends.PublicMediaStorage'
+else:
+    MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (BASE_DIR / 'static',)
