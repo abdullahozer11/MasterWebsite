@@ -275,7 +275,7 @@ class CartAddView(CustomLoginRequiredMixin, View):
     """
     success_url = "commerce:cart"
 
-    def get(self, **kwargs):
+    def get(self, *args, **kwargs):
         """
         method get is overwritten to add products to shopping cart or
         to increase count of products in the shopping cart.
@@ -312,7 +312,7 @@ class ItemFavorView(CustomLoginRequiredMixin, View):
     ItemFavorView
     View class to add a product to a users favorites list.
     """
-    def get(self, **kwargs):
+    def get(self, *args, **kwargs):
         """
         Override get method to add product_id to favorites list of a user.
 
@@ -332,9 +332,10 @@ class ItemDefavorView(CustomLoginRequiredMixin, View):
     ItemDefavorView
     View class to remove a product from a users favorites list.
     """
-    def get(self, **kwargs):
+    def get(self, *args, **kwargs):
         """
         this method removes the product from favorites.
+        :param args:
         :param kwargs:
         :return:
         """
@@ -347,9 +348,10 @@ class IncreaseCartItemCount(CustomLoginRequiredMixin, View):
     IncreaseCartItemCount
     View class to increase a cart item count.
     """
-    def get(self, **kwargs):
+    def get(self, *args, **kwargs):
         """
         get method is overwritten to increase in_cart_quantity of a cart product instance.
+        :param args:
         :param kwargs:
         :return:
         """
@@ -364,9 +366,10 @@ class DecreaseCartItemCount(CustomLoginRequiredMixin, View):
     DecreaseCartItemCount
     This view class is to decrease items cart in cart quantity count.
     """
-    def get(self, **kwargs):
+    def get(self, *args, **kwargs):
         """
         this method is overwritten to get a product and decrease its in cart quantity.
+        :param args:
         :param kwargs:
         :return:
         """
@@ -384,9 +387,10 @@ class RemoveCartItem(CustomLoginRequiredMixin, View):
     RemoveCartItem
     This view class removes a cart item from the shopping cart.
     """
-    def get(self, **kwargs):
+    def get(self, *args, **kwargs):
         """
         This method is overwritten to get and remove a product from the shopping cart.
+        :param args:
         :param kwargs:
         :return:
         """
