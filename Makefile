@@ -25,3 +25,6 @@ mm:
 m:
 	@echo "migrate"
 	python manage.py migrate
+
+lint:
+	pylint *
