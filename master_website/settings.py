@@ -68,7 +68,7 @@ CORS_ALLOW_METHODS = [
     'GET',
 ]
 
-ROOT_URLCONF = 'MasterWebsite.urls'
+ROOT_URLCONF = 'master_website.urls'
 
 TEMPLATES = [
     {
@@ -86,7 +86,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'MasterWebsite.wsgi.application'
+WSGI_APPLICATION = 'master_website.wsgi.application'
 
 if DEVELOPMENT_MODE is True:
     DATABASES = {
@@ -136,12 +136,12 @@ if USE_SPACES:
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
     # static
     AWS_LOCATION = 'https://spacepo.ams3.digitaloceanspaces.com'
-    STATICFILES_STORAGE = 'MasterWebsite.storage_backends.StaticStorage'
+    STATICFILES_STORAGE = 'master_website.storage_backends.StaticStorage'
     # AWS_S3_SIGNATURE_VERSION = 's3v4'
     # media
     PUBLIC_MEDIA_LOCATION = 'media'
     MEDIA_URL = f'https://{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/'
-    DEFAULT_FILE_STORAGE = 'MasterWebsite.storage_backends.PublicMediaStorage'
+    DEFAULT_FILE_STORAGE = 'master_website.storage_backends.PublicMediaStorage'
 else:
     MEDIA_URL = '/media/'
 
