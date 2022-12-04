@@ -129,15 +129,15 @@ USE_TZ = True
 # https://spacepo.ams3.digitaloceanspaces.com/
 USE_SPACES = os.getenv("USE_SPACES", "False") == "True"
 if USE_SPACES:
-    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", None)
-    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", None)
-    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME", "spacepo")
-    AWS_S3_ENDPOINT_URL = 'https://ams3.digitaloceanspaces.com'
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+    AWS_S3_ENDPOINT_URL = os.getenv("AWS_S3_ENDPOINT_URL")
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
     # static
-    AWS_LOCATION = 'https://spacepo.ams3.digitaloceanspaces.com'
+    AWS_LOCATION = os.getenv("AWS_LOCATION")
     STATICFILES_STORAGE = 'master_website.storage_backends.StaticStorage'
-    # AWS_S3_SIGNATURE_VERSION = 's3v4'
+    AWS_S3_SIGNATURE_VERSION = 's3v4'
     # media
     PUBLIC_MEDIA_LOCATION = 'media'
     MEDIA_URL = f'https://{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/'
