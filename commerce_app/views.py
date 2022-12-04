@@ -1,6 +1,7 @@
 """views.py. Create your views here."""
 # pylint: disable=no-member
 # pylint: disable=too-many-ancestors
+# pylint: disable=unused-argument
 from datetime import datetime, timedelta
 
 from django.contrib import messages
