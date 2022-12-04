@@ -1,10 +1,16 @@
+"""models.py file for commerce_app. Create your models here"""
+# pylint: disable=no-member
 from django.db.models import CASCADE
-from django_resized import ResizedImageField
-from django.contrib.auth.models import User
 from django.db import models
+from django.contrib.auth.models import User
+
+from django_resized import ResizedImageField
 
 
 class Product(models.Model):
+    """
+    Product model. This model represents the merchandise of the eCommerce website.
+    """
     SIZES = (
         ('small', 'Size Small'),
         ('medium', 'Size Medium'),
@@ -25,22 +31,33 @@ class Product(models.Model):
     gender = models.CharField(default='men', choices=GENDERS, max_length=10)
 
     def __str__(self):
-        return self.name
+        return f'{self.name}'
 
+    # pylint: disable=too-few-public-methods
     class Meta:
+        """set class meta attributes here"""
         ordering = ['id']
 
 
 class OrderProduct(models.Model):
+    """
+    OrderProduct model.
+    This model represents the product transformed into an order with information related to a purchase.
+    """
     user = models.ForeignKey(User, on_delete=CASCADE)
     product = models.ForeignKey(Product, on_delete=CASCADE)
     in_cart_quantity = models.IntegerField(default=1)
 
     def get_total(self):
+        """this method returns the cart total price of a certain ordered product"""
         return self.product.price * self.in_cart_quantity
 
 
 class Profile(models.Model):
+    """
+    Profile model.
+    This model represents the profile of each user and their personal informations.
+    """
     ROLES = (
         ('client', 'CLIENT ROLE'),
         ('vendor', 'VENDOR ROLE'),
@@ -50,7 +67,8 @@ class Profile(models.Model):
     mobile = models.CharField(max_length=15, default="07 69 92 92 92")
     address = models.CharField(max_length=99, default="Saint Cyr L'Ecole, Paris")
     user = models.OneToOneField(User, on_delete=CASCADE)
-    photo = ResizedImageField(size=[500, 500], default="commerce_app/profile_photos/default.png", upload_to="commerce_app/profile_photos")
+    photo = ResizedImageField(size=[500, 500], default="commerce_app/profile_photos/default.png",
+                              upload_to="commerce_app/profile_photos")
     role = models.CharField(default='client', choices=ROLES, max_length=6)
 
     def __str__(self):
@@ -58,6 +76,10 @@ class Profile(models.Model):
 
 
 class CustomerFormModel(models.Model):
+    """
+    CustomerFormModel.
+    This model represents the information passed in contact us form.
+    """
     name = models.CharField(max_length=30)
     email = models.EmailField()
     subject = models.CharField(max_length=99)

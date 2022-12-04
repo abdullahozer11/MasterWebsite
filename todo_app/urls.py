@@ -1,12 +1,13 @@
+"""This is _todo app urls file"""
 from django.urls import path
 
 from todo_app.views import IndexView, ItemListView, ListAddView, ItemAddView, ItemUpdateView, ListDeleteView, \
-    ItemDeleteView, SignUpView, AboutView, LoginPageView, LogoutView
+    ItemDeleteView, SignUpView, about_view, LoginPageView, LogoutView
 
 app_name = 'todo'
 urlpatterns = [
     path('', IndexView.as_view(), name="index"),
-    path('about', AboutView, name="about"),
+    path('about', about_view, name="about"),
     path('list/add/', ListAddView.as_view(), name="list-add"),
     path('list/<pk>/', ItemListView.as_view(), name="item-view"),
     path('list/<pk>/delete/', ListDeleteView.as_view(), name="list-delete"),

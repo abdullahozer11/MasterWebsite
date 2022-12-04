@@ -1,3 +1,4 @@
+"""This is eCommerce app urls file"""
 from django.contrib.auth.views import LogoutView
 from django.urls import path, reverse_lazy
 from django.views.generic import TemplateView
@@ -22,7 +23,8 @@ urlpatterns = [
     path('testimonial/', TemplateView.as_view(template_name="commerce_app/testimonial.html"), name='testimonial'),
     # profile views
     path('profile/', ProfileView.as_view(), name='profile'),
-    path('edit-profile/', ProfileView.as_view(extra_context={"edit": True}, success_url=reverse_lazy("commerce:profile")), name='edit-profile'),
+    path('edit-profile/', ProfileView.as_view(extra_context={"edit": True},
+                                              success_url=reverse_lazy("commerce:profile")), name='edit-profile'),
     # auth views
     path('login/', LoginPageView.as_view(), name='login'),
     path('signup/', SignupView.as_view(), name='signup'),
