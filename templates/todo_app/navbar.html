@@ -8,20 +8,22 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 text-secondary" onclick="location.href='{% url "todo:index" %}'">Home</a></li>
-                <li><a href="#" class="nav-link px-2 text-white" onclick="location.href='{% url "todo:about" %}'">About</a></li>
-                <li><a href="#" class="nav-link px-2 text-secondary" onclick="location.href='{% url "portfolio" %}'">Portfolio</a></li>
+                {% if request.path == "/todo/about" %}
+                <li><a class="nav-link px-2 text-secondary" href="{% url 'todo:index' %}">Home</a></li>
+                <li><a class="nav-link px-2 text-white" href="{% url 'todo:about' %}">About</a></li>
+                {% else %}
+                <li><a class="nav-link px-2 text-white" href="{% url 'todo:index' %}">Home</a></li>
+                <li><a class="nav-link px-2 text-secondary" href="{% url 'todo:about' %}">About</a></li>
+                {% endif %}
+                <li><a class="nav-link px-2 text-secondary" href="{% url 'portfolio' %}">Portfolio</a></li>
             </ul>
 
             <div class="text-end">
                 {% if user.is_authenticated %}
-                    <button type="button" class="btn btn-warning"
-                            onclick="location.href='{% url "todo:logout" %}'">Logout</button>
+                    <a href="{% url 'todo:logout' %}"><button type="button" class="btn btn-warning">Logout</button></a>
                 {% else %}
-                    <button type="button" class="btn btn-outline-light me-2"
-                            onclick="location.href='{% url "todo:login" %}'">Login</button>
-                    <button type="button" class="btn btn-warning"
-                            onclick="location.href='{% url "todo:signup" %}'">Sign-up</button>
+                    <a href="{% url 'todo:login' %}"><button type="button" class="btn btn-outline-light me-2">Login</button></a>
+                    <a href="{% url 'todo:signup' %}"><button type="button" class="btn btn-warning">Sign-up</button></a>
                 {% endif %}
             </div>
         </div>
