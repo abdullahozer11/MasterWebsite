@@ -73,7 +73,7 @@
             <div class="skillsGrid">
                 {% for skill in object_list %}
                 <div class="skills">
-                    <img src={{ skill.icon.url }} alt="Skill logo"/>
+                    <img src={{ skill.icon.url }} alt="{{ skill.name }} logo"/>
                     <p>{{ skill.name }}</p>
                 </div>
                 {% endfor %}
