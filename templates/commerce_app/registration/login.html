@@ -5,13 +5,10 @@
 {% block innercontent %}
     <form method="post">
         {% csrf_token %}
-        <table style="margin-top: 50px;
-                      margin-bottom: 50px;
-                      margin-right: auto;
-                      margin-left: auto;">
+        <table id="login-form-table">
             {{ form.as_table }}
             <td></td>
-            <td><input style="margin-right: 0" type="submit" value="login"></td>
+            <td><input type="submit" value="login"></td>
         </table>
     </form>
 {% endblock innercontent %}
