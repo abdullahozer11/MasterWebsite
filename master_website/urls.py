@@ -29,6 +29,8 @@ urlpatterns = [
     path('captcha/', include('captcha.urls')),
     # rest_framework views
     path('api-auth/', include('rest_framework.urls')),
+    # allauth urls
+    path('accounts/', include('allauth.urls')),
 ]
 
 if settings.DEBUG:

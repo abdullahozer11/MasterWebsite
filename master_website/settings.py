@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 import sys
 from pathlib import Path
+
 from django.core.management.utils import get_random_secret_key
 import dj_database_url
 
@@ -28,6 +29,14 @@ DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "True") == "True"
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
+# site id is necessary with allauth
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -36,14 +45,25 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'storages',
+    'django.contrib.sites',
     'django.forms',
     'rest_framework',
-    'commerce_app',
+    # third party aps
+    'storages',
     'captcha',
+    # not sure if useful
+    'corsheaders',
+    # my apps
+    'commerce_app',
     'portfolio',
     'todo_app',
-    'corsheaders',
+    # allauth related apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.twitter',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +90,8 @@ CORS_ALLOW_METHODS = [
 
 ROOT_URLCONF = 'master_website.urls'
 
+LOGIN_REDIRECT_URL = '/commerce/'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -81,6 +103,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -148,8 +171,8 @@ else:
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (BASE_DIR / 'static',)
 
-STATIC_ROOT = BASE_DIR / "staticfiles-cdn"  # in production, we want cdn
-MEDIA_ROOT = BASE_DIR / "staticfiles-cdn" / "uploads"
+STATIC_ROOT = BASE_DIR / "static-cdn"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -174,3 +197,28 @@ DJANGORESIZED_DEFAULT_KEEP_META = True
 DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
 DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'JPEG': ".jpg"}
 DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
+
+# add your social account providers here with the authentican keys
+SOCIALACCOUNT_PROVIDERS = {
+    'github': {
+        'APP': {
+            'client_id': 'ff1528c4b491347202dd',
+            'secret': '706c45bf3e73c769a8955c75c07b079b4cd62fb5',
+            'key': '',
+        }
+    },
+    'facebook': {
+        'APP': {
+            'client_id': '1486461688509914',
+            'secret': '2bb79c9867bd896dc7fa2d788fbf0ca8',
+            'key': '',
+        }
+    },
+    'twitter': {
+        'APP': {
+            'client_id': 'hPbNKO2GNpJEc3fVZtUa047D7',
+            'secret': 'Erh04q9u27uDQ8ttTr0yYUwp8XQHXRaWK6jbZlGu8C4WbhwN7J',
+            'key': '',
+        }
+    },
+}
