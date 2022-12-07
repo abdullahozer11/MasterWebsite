@@ -119,7 +119,7 @@ if DEVELOPMENT_MODE is True:
         }
     }
 elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
-    if os.getenv("DATABASE_URL", None) is None:
+    if os.getenv("DATABASE_URL") is None:
         raise Exception("DATABASE_URL environment variable not defined")
     DATABASES = {
         "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
@@ -185,8 +185,8 @@ CAPTCHA_FONT_SIZE = 50
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', None)
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', None)
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 
@@ -202,22 +202,22 @@ DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
 SOCIALACCOUNT_PROVIDERS = {
     'github': {
         'APP': {
-            'client_id': 'ff1528c4b491347202dd',
-            'secret': '706c45bf3e73c769a8955c75c07b079b4cd62fb5',
+            'client_id': os.getenv('GITHUB_ID'),
+            'secret': os.getenv('GITHUB_SECRET'),
             'key': '',
         }
     },
     'facebook': {
         'APP': {
-            'client_id': '1486461688509914',
-            'secret': '2bb79c9867bd896dc7fa2d788fbf0ca8',
+            'client_id': os.getenv('FACEBOOK_ID'),
+            'secret': os.getenv('FACEBOOK_SECRET'),
             'key': '',
         }
     },
     'twitter': {
         'APP': {
-            'client_id': 'hPbNKO2GNpJEc3fVZtUa047D7',
-            'secret': 'Erh04q9u27uDQ8ttTr0yYUwp8XQHXRaWK6jbZlGu8C4WbhwN7J',
+            'client_id': os.getenv('TWITTER_ID'),
+            'secret': os.getenv('TWITTER_SECRET'),
             'key': '',
         }
     },
