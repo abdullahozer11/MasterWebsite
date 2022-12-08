@@ -30,7 +30,7 @@ DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "True") == "True"
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
 # site id is necessary with allauth
-SITE_ID = 1
+SITE_ID = 2
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -60,8 +60,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
-    'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.twitter',
 ]
 
 MIDDLEWARE = [
@@ -190,20 +188,6 @@ SOCIALACCOUNT_PROVIDERS = {
         'APP': {
             'client_id': os.getenv('GITHUB_ID'),
             'secret': os.getenv('GITHUB_SECRET'),
-            'key': '',
-        }
-    },
-    'facebook': {
-        'APP': {
-            'client_id': os.getenv('FACEBOOK_ID'),
-            'secret': os.getenv('FACEBOOK_SECRET'),
-            'key': '',
-        }
-    },
-    'twitter': {
-        'APP': {
-            'client_id': os.getenv('TWITTER_ID'),
-            'secret': os.getenv('TWITTER_SECRET'),
             'key': '',
         }
     },
