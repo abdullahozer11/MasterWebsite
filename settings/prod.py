@@ -1,3 +1,5 @@
+import sys
+
 from django.core.management.utils import get_random_secret_key
 import dj_database_url
 
@@ -6,7 +8,7 @@ from .base import *
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 DEBUG = os.getenv("DEBUG", "False") == "True"
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split(",")
 
 # Application definition
 INSTALLED_APPS = [
@@ -14,16 +16,19 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.messages',
+    # Django built-in
     'django.contrib.sites',
     'django.forms',
     'rest_framework',
-    'storages',
-    'captcha',
+    # Main apps
     'commerce_app',
     'portfolio',
     'todo_app',
+    # Third party
+    'storages',
+    'captcha',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -40,9 +45,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-DATABASES = {
-    "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
-}
+if len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
+    if os.getenv("DATABASE_URL") is None:
+        raise Exception("DATABASE_URL environment variable not defined")
+    DATABASES = {
+        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
+    }
 
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
