@@ -1,3 +1,4 @@
+"""base.py. Put your base settings here. This will be completely imported in local and production settings."""
 import os
 from pathlib import Path
 

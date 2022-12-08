@@ -1,3 +1,4 @@
+"""local.py. Put your local settings here."""
 import sys
 import dj_database_url
 
