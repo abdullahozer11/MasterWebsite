@@ -1,13 +1,11 @@
 """prod.py. Put your production settings here."""
 import sys
-
-from django.core.management.utils import get_random_secret_key
 import dj_database_url
 
 
 from .base import *
 
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", None)
 DEBUG = os.getenv("DEBUG", "False") == "True"
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split(",")
 
