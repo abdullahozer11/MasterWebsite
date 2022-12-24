@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('todo/', include('todo_app.urls', namespace="todo")),
     path('commerce/', include('commerce_app.urls', namespace="commerce")),
+    path('countdown/', include('countdown.urls', namespace="countdown")),
     path('', IndexView.as_view(), name="portfolio"),
     # captcha
     path('captcha/', include('captcha.urls')),

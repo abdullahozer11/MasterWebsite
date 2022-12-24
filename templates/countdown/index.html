@@ -1,0 +1,150 @@
+{% load static %}
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>The Final Countdown</title>
+    <style>
+        .cd-body {
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+            margin-right: 0;
+            padding: 0;
+            background-color: #51372f;
+            text-align: center;
+        }
+
+        .container {
+            position: relative;
+            display: inline-block; /* Make the width of box same as image */
+            vertical-align: middle;
+        }
+
+        #cd-image {
+            height: 100%;
+            width: auto;
+        }
+
+        .timings {
+            font-weight: bold;
+            color: #9a6859;
+        }
+
+        #days, #hours {
+            position: absolute;
+            top: 69%;
+            font-size: 12vh;
+        }
+
+        #minutes, #seconds {
+            position: absolute;
+            top: 40%;
+            font-size: 19vh;
+        }
+
+        @media screen and (orientation: portrait) {
+            /* Portrait styles */
+            #cd-image {
+                height: auto;
+                width: 100%;
+            }
+
+            #days, #hours {
+                font-size: 12vw;
+            }
+
+            #minutes, #seconds {
+                font-size: 19vw;
+            }
+
+            .cd-body {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        /* Landscape */
+        @media screen and (orientation: landscape) {
+            /* Landscape styles */
+            #cd-image {
+                height: 100%;
+                width: auto;
+            }
+
+            #days, #hours {
+                font-size: 12vh;
+            }
+
+            #minutes, #seconds {
+                font-size: 19vh;
+            }
+        }
+
+    </style>
+
+</head>
+<body class="cd-body">
+
+<div class="container">
+    <img id="cd-image"
+         src='{% static "countdown/images/bg.png" %}'
+         alt="Countdown background photo"/>
+    <div class="timings">
+        <span id="days"></span>
+        <span id="hours"></span>
+        <span id="minutes"></span>
+        <span id="seconds"></span>
+    </div>
+</div>
+
+
+<script>
+    function makeTimer() {
+        const currentDate = new Date();
+        endTime = new Date(Date.UTC(2023, 0, 21, 13, 30, 0));
+
+        const diffInMilliseconds = endTime.getTime() - currentDate.getTime();
+
+        // Calculate the number of days, hours, minutes, and seconds until the target date
+        const days = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diffInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diffInMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diffInMilliseconds % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerHTML = days;
+        document.getElementById('hours').innerHTML = hours;
+        document.getElementById('minutes').innerHTML = minutes;
+        document.getElementById('seconds').innerHTML = seconds;
+
+        if (days < 10) {
+            document.getElementById('days').style.left = '35%';
+        } else {
+            document.getElementById('days').style.left = '32%';
+        }
+
+        if (hours < 10) {
+            document.getElementById('hours').style.left = '58%';
+        } else {
+            document.getElementById('hours').style.left = '54%';
+        }
+
+        if (minutes < 10) {
+            document.getElementById('minutes').style.left = '31%';
+        } else {
+            document.getElementById('minutes').style.left = '27%';
+        }
+
+        if (seconds < 10) {
+            document.getElementById('seconds').style.left = '59%';
+        } else {
+            document.getElementById('seconds').style.left = '53%';
+        }
+    }
+
+    setInterval(function () {
+        makeTimer();
+    }, 1000);
+</script>
+</body>
+</html>

@@ -143,3 +143,4 @@ GitHub.sublime-settings
 !.elasticbeanstalk/*.global.yml
 
 todo.txt
+/.run/

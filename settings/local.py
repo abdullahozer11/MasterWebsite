@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'commerce_app',
     'portfolio',
     'todo_app',
+    'countdown',
     # Third party
     'storages',
     'captcha',
