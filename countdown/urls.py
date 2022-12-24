@@ -1,4 +1,4 @@
-"""This is _todo app urls file"""
+"""This is count down app urls file"""
 from django.urls import path
 from django.views.generic import TemplateView
 
