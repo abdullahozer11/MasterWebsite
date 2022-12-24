@@ -2,49 +2,13 @@
 import sys
 import dj_database_url
 
-
 from .base import *
+
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "Not a secret! Do not put the real me in vcs !")
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 DEBUG = True
 DEVELOPMENT_MODE = True
-
-# Application definition
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.staticfiles',
-    'django.contrib.messages',
-    # Django built-in
-    'django.contrib.sites',
-    'django.forms',
-    'rest_framework',
-    # Main apps
-    'commerce_app',
-    'portfolio',
-    'todo_app',
-    'countdown',
-    # Third party
-    'storages',
-    'captcha',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.github',
-]
-
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
 
 if DEVELOPMENT_MODE is True:
     DATABASES = {
