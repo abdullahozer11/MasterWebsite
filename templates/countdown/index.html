@@ -4,94 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>The Final Countdown</title>
-
-    <style>
-        .cd-body {
-            margin-top: 0;
-            margin-bottom: 0;
-            margin-left: 0;
-            margin-right: 0;
-            padding: 0;
-            background-color: #51372f;
-            text-align: center;
-        }
-
-        .container {
-            position: relative;
-            display: inline-block; /* Make the width of box same as image */
-            vertical-align: middle;
-        }
-
-        #cd-image {
-            height: 100%;
-            width: auto;
-        }
-
-        @font-face {
-            font-family: 'CustomFont';
-            src: url('/static/countdown/fonts/crashnumberings-serif.ttf');
-        }
-
-        .timings {
-            font-family: 'CustomFont';
-            color: #9a6859;
-        }
-
-        #days, #hours, #minutes, #seconds {
-            font-family: 'CustomFont';
-            position: absolute;
-        }
-
-        #days, #hours {
-            top: 70%;
-            font-size: 12vh;
-        }
-
-        #minutes, #seconds {
-            top: 40%;
-            font-size: 19vh;
-        }
-
-        @media screen and (orientation: portrait) {
-            /* Portrait styles */
-            #cd-image {
-                height: auto;
-                width: 100%;
-            }
-
-            #days, #hours {
-                font-size: 12vw;
-            }
-
-            #minutes, #seconds {
-                font-size: 19vw;
-            }
-
-            .cd-body {
-                display: flex;
-                align-items: center;
-            }
-        }
-
-        /* Landscape */
-        @media screen and (orientation: landscape) {
-            /* Landscape styles */
-            #cd-image {
-                height: 100%;
-                width: auto;
-            }
-
-            #days, #hours {
-                font-size: 12vh;
-            }
-
-            #minutes, #seconds {
-                font-size: 19vh;
-            }
-        }
-
-    </style>
-
+    <link href="{% static 'countdown/css/countdown.css' %}" rel="stylesheet"/>
 </head>
 <body class="cd-body">
 
@@ -106,7 +19,6 @@
         <span id="seconds"></span>
     </div>
 </div>
-
 
 <script>
     function makeTimer() {
