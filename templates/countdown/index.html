@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>The Final Countdown</title>
+
     <style>
         .cd-body {
             margin-top: 0;
@@ -26,19 +27,27 @@
             width: auto;
         }
 
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('/static/countdown/fonts/crashnumberings-serif.ttf');
+        }
+
         .timings {
-            font-weight: bold;
+            font-family: 'CustomFont';
             color: #9a6859;
         }
 
-        #days, #hours {
+        #days, #hours, #minutes, #seconds {
+            font-family: 'CustomFont';
             position: absolute;
-            top: 69%;
+        }
+
+        #days, #hours {
+            top: 70%;
             font-size: 12vh;
         }
 
         #minutes, #seconds {
-            position: absolute;
             top: 40%;
             font-size: 19vh;
         }
@@ -118,15 +127,15 @@
         document.getElementById('seconds').innerHTML = seconds;
 
         if (days < 10) {
-            document.getElementById('days').style.left = '35%';
+            document.getElementById('days').style.left = '36%';
         } else {
-            document.getElementById('days').style.left = '32%';
+            document.getElementById('days').style.left = '33%';
         }
 
         if (hours < 10) {
-            document.getElementById('hours').style.left = '58%';
+            document.getElementById('hours').style.left = '59%';
         } else {
-            document.getElementById('hours').style.left = '54%';
+            document.getElementById('hours').style.left = '55%';
         }
 
         if (minutes < 10) {
@@ -138,7 +147,7 @@
         if (seconds < 10) {
             document.getElementById('seconds').style.left = '59%';
         } else {
-            document.getElementById('seconds').style.left = '53%';
+            document.getElementById('seconds').style.left = '54%';
         }
     }
 
