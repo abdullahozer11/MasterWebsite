@@ -119,7 +119,7 @@ DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
 DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'JPEG': ".jpg"}
 DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
 
-# add your social account providers here with the authentican keys
+# add your social account providers here with the authentication keys
 SOCIALACCOUNT_PROVIDERS = {
     'github': {
         'APP': {
