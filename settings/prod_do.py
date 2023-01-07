@@ -1,4 +1,4 @@
-"""prod.py. Put your production settings here."""
+"""prod.py. Put your Digital Ocean production settings here."""
 import sys
 import dj_database_url
 
