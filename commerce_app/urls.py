@@ -10,7 +10,7 @@ from commerce_app.views import IndexView, ContactView, ProductView, ProfileView,
     ProductViewLtoH, ProductViewSet
 
 router = routers.DefaultRouter()
-router.register(r'products', ProductViewSet)
+router.register(r'api/products/get', ProductViewSet)
 
 app_name = "commerce"
 
