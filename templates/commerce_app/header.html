@@ -3,9 +3,9 @@
 <header class="header_section">
     <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-            <a class="navbar-brand" href="{% url "commerce:index" %}"><img width="250"
-                                                                  src="{% static "commerce_app/images/logo.png" %}"
-                                                                  alt="#"/></a>
+            <a class="navbar-brand" href="{% url 'commerce:index' %}">
+                <img height="45px" src="{% static 'commerce_app/images/logo.png' %}" alt="#"/>
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -14,34 +14,35 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url "commerce:index" %}">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{% url 'commerce:index' %}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
-                           aria-haspopup="true" aria-expanded="true"> <span class="nav-label"/>Pages <span
-                                class="caret"></span></a>
+                           aria-haspopup="true" aria-expanded="true">
+                            <span class="nav-label"/>Pages<span class="caret"></span>
+                        </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{% url "commerce:about" %}">About</a></li>
-                            <li><a href="{% url "commerce:testimonial" %}">Testimonial</a></li>
+                            <li><a href="{% url 'commerce:about' %}">About</a></li>
+                            <li><a href="{% url 'commerce:testimonial' %}">Testimonial</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url "commerce:product" %}">Products</a>
+                        <a class="nav-link" href="{% url 'commerce:product' %}">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url "commerce:contact" %}">Contact</a>
+                        <a class="nav-link" href="{% url 'commerce:contact' %}">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url "portfolio" %}">Portfolio</a>
+                        <a class="nav-link" href="{% url 'portfolio' %}">Portfolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url "commerce:disclaimer" %}">Disclaimer</a>
+                        <a class="nav-link" href="{% url 'commerce:disclaimer' %}">Disclaimer</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url "commerce:cart" %}">
+                        <a class="nav-link" href="{% url 'commerce:cart' %}">
                             <svg id="Capa_1"
                                  x="0px" y="0px"
-                                 viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;"
+                                 viewBox="0 0 456.029 456.029"
                                  xml:space="preserve">
                                  <g>
                                     <g>
@@ -70,21 +71,22 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {% if user.is_authenticated %}
-                                <img src="{{ user.profile.photo.url }}" width="28" class="rounded-circle mx-auto">
+                                <img src="{{ user.profile.photo.url }}" width="28" alt='Profile photo' class="rounded-circle mx-auto">
                             {% else %}
-                                <img src="{% static "commerce_app/images/no_user.png" %}"
+                                <img src="{% static 'commerce_app/images/no_user.png' %}"
+                                     alt="Profile photo"
                                      width="28"
                                      class="rounded-circle mx-auto">
                             {% endif %}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             {% if user.is_authenticated %}
-                                {#<a class="dropdown-item" href="{% url "commerce:dashboard" %}">Dashboard</a>#}
-                                <a class="dropdown-item" href="{% url "commerce:profile" %}">Profile</a>
-                                <a class="dropdown-item" href="{% url "commerce:logout" %}">Log Out</a>
+                                {#<a class="dropdown-item" href="{% url 'commerce:dashboard' %}">Dashboard</a>#}
+                                <a class="dropdown-item" href="{% url 'commerce:profile' %}">Profile</a>
+                                <a class="dropdown-item" href="{% url 'commerce:logout' %}">Log Out</a>
                             {% else %}
-                                <a class="dropdown-item" href="{% url "commerce:login" %}">Login</a>
-                                <a class="dropdown-item" href="{% url "commerce:signup" %}">Signup</a>
+                                <a class="dropdown-item" href="{% url 'commerce:login' %}">Login</a>
+                                <a class="dropdown-item" href="{% url 'commerce:signup' %}">Signup</a>
                             {% endif %}
                         </div>
                     </li>
