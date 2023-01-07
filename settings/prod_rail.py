@@ -22,3 +22,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (BASE_DIR / 'static',)
 STATIC_ROOT = BASE_DIR / "static-cdn"
 MEDIA_ROOT = BASE_DIR / "media"
+
+CORS_ORIGIN_WHITELIST = [
+    "https://apojean.com",
+    "https://www.apojean.com",
+    "https://django-server-production-ee9c.up.railway.app",
+]
