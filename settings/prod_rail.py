@@ -5,7 +5,6 @@ import dj_database_url
 
 from .base import *
 
-
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", None)
 DEBUG = os.getenv("DEBUG", "False") == "True"
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split(",")
@@ -22,3 +21,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (BASE_DIR / 'static',)
 STATIC_ROOT = BASE_DIR / "static-cdn"
 MEDIA_ROOT = BASE_DIR / "media"
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://apojean.com",
+    "https://www.apojean.com",
+    "https://django-server-production-ee9c.up.railway.app",
+]
