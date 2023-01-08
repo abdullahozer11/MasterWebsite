@@ -27,3 +27,6 @@ CSRF_TRUSTED_ORIGINS = [
     "https://www.apojean.com",
     "https://django-server-production-ee9c.up.railway.app",
 ]
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
