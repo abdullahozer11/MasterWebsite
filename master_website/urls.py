@@ -3,6 +3,7 @@ import os
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
 
 from portfolio.views import IndexView
 from portfolio2.views import IndexView2
@@ -21,6 +22,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     # allauth urls
     path('accounts/', include('allauth.urls')),
+    path('favicon.ico', RedirectView.as_view(url='/static/favicon.ico')),
 ]
 
 if os.getenv("LOCAL_DEV"):
