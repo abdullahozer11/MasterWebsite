@@ -5,8 +5,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
 
-from portfolio.views import IndexView
-from portfolio2.views import IndexView2
+from portfolio.views import PortfolioIndexView
+from portfolio2.views import Portfolio2IndexView
 from settings import local
 
 urlpatterns = [
@@ -14,8 +14,8 @@ urlpatterns = [
     path('todo/', include('todo_app.urls', namespace="todo")),
     path('commerce/', include('commerce_app.urls', namespace="commerce")),
     path('countdown/', include('countdown.urls', namespace="countdown")),
-    path('old/', IndexView.as_view(), name="portfolio"),
-    path('', IndexView2.as_view(), name="portfolio2"),
+    path('old/', PortfolioIndexView.as_view(), name="portfolio"),
+    path('', Portfolio2IndexView.as_view(), name="portfolio2"),
     # captcha
     path('captcha/', include('captcha.urls')),
     # rest_framework views

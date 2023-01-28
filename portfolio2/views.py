@@ -34,7 +34,7 @@ class ContactView(SuccessMessageMixin, CreateView):
 
 
 # Create your views here.
-class IndexView2(ContactView):
+class Portfolio2IndexView(ContactView):
     """
     IndexView
     This view class views the index page of the new portfolio design.

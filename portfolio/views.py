@@ -6,7 +6,7 @@ from portfolio.models import Skill
 
 
 # pylint: disable=too-many-ancestors
-class IndexView(ContactView):
+class PortfolioIndexView(ContactView):
     """
     IndexView
     This view class views the index page of portfolio.
