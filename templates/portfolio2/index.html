@@ -1,0 +1,112 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Comic Book</title>
+    <meta name="description" content="For My Comic Book animation">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'portfolio2/assets/css/styles.css' %}">
+    <style>
+        @media only screen and (orientation: landscape) {
+            .hero-image {
+                background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static 'portfolio2/assets/images/hero/landscape.png' %}");
+            }
+        }
+        @media only screen and (orientation: portrait) {
+            .hero-image {
+                background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static 'portfolio2/assets/images/hero/portrait.png' %}");
+            }
+        }
+    </style>
+</head>
+<body>
+<!--{# navbar start #}-->
+<div class="navbar">
+    <a class='navbar-item' href='#work'>WORK</a>
+    <a class='navbar-item' href='#about'>ABOUT</a>
+    <a class='navbar-item contact-button'>CONTACT</a>
+</div>
+<!--navbar end-->
+<!--icon sidebar start-->
+{% include 'portfolio2/includes/sidebar.html' %}
+<!--icon sidebar end-->
+<!--hero section start-->
+<div class="hero-image">
+    <div class="hero-text">
+        <h1>Abdullah Ozer</h1>
+        <p>Creative Web Design</p>
+    </div>
+    <div class="contact-section">
+        {% include 'portfolio2/includes/contact.html' %}
+    </div>
+</div>
+<!--hero section end-->
+<div class="work-section" id="work">
+    <h1 class="title work-title">WORK</h1>
+    <div class="line-separator work-separator"></div>
+    <div id="app" class="card-container">
+        <div class="card-with-button">
+            <card data-image="{% static 'portfolio2/assets/images/work/todo.png' %}">
+                <h1 slot="header">Todo App</h1>
+                <p slot="content">React powered dynamic task recorder</p>
+            </card>
+            <div class="demo-button">
+                <a class='button-text' href="{% url 'todo:index' %}">DEMO</a>
+            </div>
+        </div>
+        <div class="card-with-button">
+            <card data-image="{% static 'portfolio2/assets/images/work/commerce.png' %}">
+                <h1 slot="header">eCommerce</h1>
+                <p slot="content">Dynamic eCommerce website with user authentication and REST API</p>
+            </card>
+            <div class="demo-button">
+                <a class='button-text' href="{% url 'commerce:index' %}">DEMO</a>
+            </div>
+        </div>
+        <div class="card-with-button">
+            <card data-image="{% static 'portfolio2/assets/images/work/countdown.png' %}">
+                <h1 slot="header">Countdown</h1>
+                <p slot="content">AI powered customized count down design</p>
+            </card>
+            <div class="demo-button">
+                <a class='button-text' href="{% url 'countdown:index' %}">DEMO</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="about-section" id="about">
+    <h1 class="title about-title">ABOUT</h1>
+    <div class="line-separator about-separator"></div>
+    <div class="scrambling-text-container">
+        <div class="scrambling-text"></div>
+    </div>
+    <div class="comic-wrapper">
+        <div id="comic">
+            <div id="panels">
+                <div class="img-wrapper">
+                    <img class="cmc_img" src="{% static 'portfolio2/assets/images/comicbook.png' %}"
+                         onMouseDown="return false">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--footer section start-->
+    <div class="footer">
+        <div><img src="{% static 'portfolio2/assets/images/signature.png' %}" style="height: 100%"></div>
+        <div><a id='insta-link' href='https://www.instagram.com/aiwebtech'>INSTAGRAM</a></div>
+        <div>© 2023 by Abdullah OZER.</div>
+    </div>
+    <!--footer section end-->
+</div>
+<!--  scripts-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+<script src="{% static 'portfolio2/assets/js/app.js' %}"></script>
+<script src="{% static 'portfolio2/assets/js/work.js' %}"></script>
+<script src="{% static 'portfolio2/assets/js/contact.js' %}"></script>
+<script src="{% static 'portfolio2/assets/js/index.js' %}"></script>
+<script src="{% static 'portfolio2/assets/js/sidebar.js' %}"></script>
+</body>
+</html>

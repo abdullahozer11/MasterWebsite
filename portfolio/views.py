@@ -1,5 +1,4 @@
 """views.py. """
-# Create your views here.
 from django.urls import reverse_lazy
 
 from commerce_app.views import ContactView
