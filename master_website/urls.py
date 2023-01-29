@@ -3,7 +3,7 @@ import os
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import RedirectView
+from django.views.generic import RedirectView, TemplateView
 
 from portfolio.views import PortfolioIndexView
 from portfolio2.views import Portfolio2IndexView
@@ -11,7 +11,8 @@ from settings import local
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('todo/', include('todo_app.urls', namespace="todo")),
+    path('todo_old/', include('todo_app.urls', namespace="todo")),
+    path('todo/', TemplateView.as_view(template_name='todo_react.html'), name="todo_react"),
     path('commerce/', include('commerce_app.urls', namespace="commerce")),
     path('countdown/', include('countdown.urls', namespace="countdown")),
     path('old/', PortfolioIndexView.as_view(), name="portfolio"),
