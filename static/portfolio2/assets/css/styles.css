@@ -314,17 +314,17 @@ p, h1 {
 }
 
 .contact-section {
-  position: absolute;
+  position: fixed;
   top: 30vh;
   left: 30vw;
-  right: 30vw;
   margin-left: auto;
   margin-right: auto;
   background-color: #a5acb4;
-  opacity: 90%;
+  opacity: 95%;
   border-radius: 5vmin;
   display: None;
   text-align: center;
+  z-index: 1;
 }
 
 .contact-section.show {
@@ -489,7 +489,7 @@ p, h1 {
 }
 
 .message__item.active::before {
-  background-color: #347e20;
+  background-color: #d00001;
 }
 
 .icon {

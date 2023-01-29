@@ -335,17 +335,17 @@ p, h1 {
 
 //Contact Form
 .contact-section {
-  position: absolute;
+  position: fixed;
   top: 30vh;
   left: 30vw;
-  right: 30vw;
   margin-left: auto;
   margin-right: auto;
   background-color: $gray-chateau;
-  opacity: 90%;
+  opacity: 95%;
   border-radius: 5vmin;
   display: None;
   text-align: center;
+  z-index: 1;
 }
 
 .contact-section.show {
