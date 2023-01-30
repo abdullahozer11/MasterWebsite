@@ -521,7 +521,7 @@ p, h1 {
 //sidebar end
 
 /*Phone spesific*/
-@media only screen and (orientation: portrait) {
+@media (max-width: 640px) {
   .navbar {
     justify-content: center;
   }

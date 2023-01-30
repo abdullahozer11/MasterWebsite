@@ -497,7 +497,7 @@ p, h1 {
 }
 
 /*Phone spesific*/
-@media only screen and (orientation: portrait) {
+@media (max-width: 640px) {
   .navbar {
     justify-content: center;
   }

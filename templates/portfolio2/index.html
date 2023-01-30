@@ -6,14 +6,13 @@
     <meta name="description" content="For My Comic Book animation">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'portfolio2/assets/css/styles.css' %}">
-     <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
     <style>
-        @media only screen and (orientation: landscape) {
-            .hero-image {
-                background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static 'portfolio2/assets/images/hero/landscape.png' %}");
-            }
+        .hero-image {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static 'portfolio2/assets/images/hero/landscape.png' %}");
         }
-        @media only screen and (orientation: portrait) {
+
+        @media (max-width: 640px) {
             .hero-image {
                 background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static 'portfolio2/assets/images/hero/portrait.png' %}");
             }
