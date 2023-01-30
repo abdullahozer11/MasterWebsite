@@ -387,6 +387,10 @@ p, h1 {
   font-size: 2.1vh;
 }
 
+.section-heading h2, span {
+  cursor: default;
+}
+
 .contact-button {
   cursor: pointer;
 }
@@ -519,6 +523,42 @@ p, h1 {
     height: 0;
 }
 //sidebar end
+
+// messages start
+.messages {
+  margin-block-end: 0;
+  padding-inline-start: 0;
+}
+
+.alert {
+  position: relative;
+  top: -4vh;
+  width: 100%;
+  height: 2vh;
+  color: white;
+  text-align: center;
+  line-height: 2vh;
+  padding: 1vh 0 1vh 0;
+  transform: translateY(4vh);
+}
+
+.alert.hide {
+  transform: translateY(-4vh);
+}
+
+.alert-success {
+  background-color: #3e7d3e;
+}
+
+.alert-danger {
+  background-color: #eb1f12;
+}
+
+.alert-info {
+  background-color: #0090c8;
+}
+
+// messages end
 
 /*Phone spesific*/
 @media (max-width: 640px) {

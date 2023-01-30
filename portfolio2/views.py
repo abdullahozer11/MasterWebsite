@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.core.mail import send_mail, BadHeaderError
+from django.core.mail import send_mail
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from portfolio2.forms import CustomerForm
@@ -26,9 +27,9 @@ class ContactView(SuccessMessageMixin, CreateView):
         message = "\n".join(body.values())
         try:
             send_mail(subject, message, 'abdullahdrive1@gmail.com', ['abdullahozer11@hotmail.com'])
-            messages.add_message(self.request, messages.SUCCESS, "Your customer contact form is saved successfully!")
-        except BadHeaderError:
-            messages.add_message(self.request, messages.ERROR, "Bad Header Error")
+            messages.add_message(self.request, messages.SUCCESS, "Your message is sent!")
+        except:
+            messages.add_message(self.request, messages.ERROR, "An error happened :(")
         response = super().form_valid(form)
         return response
 
@@ -41,3 +42,12 @@ class Portfolio2IndexView(ContactView):
     """
     template_name = "portfolio2/index.html"
     success_url = reverse_lazy("portfolio2")
+    failure_url = reverse_lazy("portfolio2")
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            messages.add_message(self.request, messages.ERROR, "Invalid Email :(")
+            return HttpResponseRedirect(self.failure_url)
