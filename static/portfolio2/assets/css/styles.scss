@@ -407,122 +407,123 @@ p, h1 {
 
 //sidebar start
 .menu {
-    box-sizing: border-box;
-    --bgColorMenu: #1d1d27;
-    --duration: .7s;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    /* Works well with 100% width  */
-    width: 4em;
-    font-size: .8em;
-    padding: 0 1.5em;
-    padding-top: 1.5em;
-    padding-bottom: 1.5em;
-    align-items: center;
-    justify-content: center;
-    background-color: #1d1d27;
-    position: fixed;
-    right: 0;
-    top: 30%;
-    border-top-left-radius: 0.6em;
-    border-bottom-left-radius: 0.6em;
-    z-index: 1;
+  box-sizing: border-box;
+  --bgColorMenu: #1d1d27;
+  --duration: .7s;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  /* Works well with 100% width  */
+  width: 4em;
+  font-size: .8em;
+  padding: 0 1.5em;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  align-items: center;
+  justify-content: center;
+  background-color: #1d1d27;
+  position: fixed;
+  right: 0;
+  top: 30%;
+  border-top-left-radius: 0.6em;
+  border-bottom-left-radius: 0.6em;
+  z-index: 1;
 }
 
 .menu__item {
-    all: unset;
-    flex-grow: 1;
-    z-index: 100;
-    display: flex;
-    cursor: pointer;
-    position: relative;
-    border-radius: 50%;
-    align-items: center;
-    will-change: transform;
-    justify-content: center;
-    padding: 0.55em 0 0.85em;
-    transition: transform var(--timeOut, var(--duration));
+  all: unset;
+  flex-grow: 1;
+  z-index: 100;
+  display: flex;
+  cursor: pointer;
+  position: relative;
+  border-radius: 50%;
+  align-items: center;
+  will-change: transform;
+  justify-content: center;
+  padding: 0.55em 0 0.85em;
+  transition: transform var(--timeOut, var(--duration));
 }
 
 .menu__item::before {
-    content: "";
-    z-index: -1;
-    width: 4.2em;
-    height: 4.2em;
-    border-radius: 50%;
-    position: absolute;
-    transform: scale(0);
-    transition: background-color var(--duration), transform var(--duration);
+  content: "";
+  z-index: -1;
+  width: 4.2em;
+  height: 4.2em;
+  border-radius: 50%;
+  position: absolute;
+  transform: scale(0);
+  transition: background-color var(--duration), transform var(--duration);
 }
 
 .menu__item.active {
-    transform: translate3d(-0.8em, 0, 0);
+  transform: translate3d(-0.8em, 0, 0);
 }
 
 .menu__item.active::before {
-    transform: scale(1);
+  transform: scale(1);
 }
 
 .insta__item.active::before {
-    background-color: #c0328f;
+  background-color: #c0328f;
 }
 
 .github__item.active::before {
-    background-color: #26c4d8;
+  background-color: #26c4d8;
 }
 
 .linkedin__item.active::before {
-    background-color: #0365c1;
+  background-color: #0365c1;
 }
 
 .cv__item.active::before {
-    background-color: #fc6562;
+  background-color: #fc6562;
 }
 
 .message__item.active::before {
-    background-color: #327b1f;
+  background-color: #327b1f;
 }
 
 .icon {
-    width: 2.6em;
-    height: 2.6em;
-    stroke: white;
-    fill: transparent;
-    stroke-width: 1pt;
-    stroke-miterlimit: 10;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-dasharray: 400;
+  width: 2.6em;
+  height: 2.6em;
+  stroke: white;
+  fill: transparent;
+  stroke-width: 1pt;
+  stroke-miterlimit: 10;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 400;
 }
 
 .menu__item.active .icon {
-    animation: strok 1.5s reverse;
+  animation: strok 1.5s reverse;
 }
 
 @keyframes strok {
-    100% {
-        stroke-dashoffset: 400;
-    }
+  100% {
+    stroke-dashoffset: 400;
+  }
 }
 
 .menu__border {
-    top: 1em;
-    bottom: 1em;
-    left: -1.52em;
-    height: 9em;
-    width: 2.4em;
-    position: absolute;
-    clip-path: url(#menu);
-    will-change: transform;
-    background-color: var(--bgColorMenu);
-    transition: transform var(--timeOut, var(--duration));
+  top: 1em;
+  bottom: 1em;
+  left: -1.52em;
+  height: 9em;
+  width: 2.4em;
+  position: absolute;
+  clip-path: url(#menu);
+  will-change: transform;
+  background-color: var(--bgColorMenu);
+  transition: transform var(--timeOut, var(--duration));
 }
 
 .svg-container {
-    width: 0;
-    height: 0;
+  width: 0;
+  height: 0;
 }
+
 //sidebar end
 
 // messages start

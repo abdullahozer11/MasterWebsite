@@ -315,8 +315,9 @@ p, h1 {
 
 .contact-section {
   position: fixed;
-  top: 30vh;
-  left: 30vw;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   margin-left: auto;
   margin-right: auto;
   background-color: #a5acb4;
@@ -364,6 +365,10 @@ p, h1 {
 .section-heading span {
   color: #252f44;
   font-size: 2.1vh;
+}
+
+.section-heading h2, span {
+  cursor: default;
 }
 
 .contact-button {
@@ -494,6 +499,39 @@ p, h1 {
 .svg-container {
   width: 0;
   height: 0;
+}
+
+.messages {
+  margin-block-end: 0;
+  padding-inline-start: 0;
+}
+
+.alert {
+  position: relative;
+  top: -4vh;
+  width: 100%;
+  height: 2vh;
+  color: white;
+  text-align: center;
+  line-height: 2vh;
+  padding: 1vh 0 1vh 0;
+  transform: translateY(4vh);
+}
+
+.alert.hide {
+  transform: translateY(-4vh);
+}
+
+.alert-success {
+  background-color: #3e7d3e;
+}
+
+.alert-danger {
+  background-color: #eb1f12;
+}
+
+.alert-info {
+  background-color: #0090c8;
 }
 
 /*Phone spesific*/
