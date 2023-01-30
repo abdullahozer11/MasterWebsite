@@ -46,7 +46,7 @@ else:
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     BASE_DIR / 'static',
-    BASE_DIR / 'static/todo_react',
+    BASE_DIR / 'static/todo_react/static',
 )
 STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_ROOT = BASE_DIR / "media"
