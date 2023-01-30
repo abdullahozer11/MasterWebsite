@@ -374,41 +374,6 @@ p, h1 {
   border: None;
 }
 
-/*Phone spesific*/
-@media only screen and (orientation: portrait) {
-  .navbar {
-    justify-content: center;
-  }
-  .comic-wrapper {
-    margin-top: 15vh;
-  }
-  #comic {
-    height: 75vmin;
-    width: 75vmin;
-  }
-  #panels {
-    width: 187.5vmin;
-  }
-  .hero-text {
-    top: 25%;
-    left: 50%;
-    text-align: center;
-    max-width: 100vw;
-    width: 100%;
-    pointer-events: none;
-  }
-  .hero-text h1 {
-    font-size: 10vw;
-  }
-  .hero-text p {
-    font-size: 6vw;
-  }
-  .contact-section {
-    top: 20vh;
-    left: 2vw;
-    right: 2vw;
-  }
-}
 .line-separator {
   height: 3px;
   margin: auto;
@@ -529,6 +494,45 @@ p, h1 {
 .svg-container {
   width: 0;
   height: 0;
+}
+
+/*Phone spesific*/
+@media only screen and (orientation: portrait) {
+  .navbar {
+    justify-content: center;
+  }
+  .comic-wrapper {
+    margin-top: 15vh;
+  }
+  #comic {
+    height: 75vmin;
+    width: 75vmin;
+  }
+  #panels {
+    width: 187.5vmin;
+  }
+  .hero-text {
+    top: 25%;
+    left: 50%;
+    text-align: center;
+    max-width: 100vw;
+    width: 100%;
+    pointer-events: none;
+  }
+  .hero-text h1 {
+    font-size: 10vw;
+  }
+  .hero-text p {
+    font-size: 6vw;
+  }
+  .contact-section {
+    top: 20vh;
+    left: 2vw;
+    right: 2vw;
+  }
+  .menu {
+    font-size: 0.6em;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
