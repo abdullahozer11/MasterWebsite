@@ -30,13 +30,58 @@
 }
 
 #days, #hours {
-    top: 70%;
+    top: 71%;
     font-size: 12vh;
 }
 
 #minutes, #seconds {
-    top: 40%;
+    top: 41%;
     font-size: 19vh;
+}
+
+.timing-labels {
+    color: #9a6859;
+    font-family: "Century Schoolbook";
+    font-weight: bold;
+}
+
+.side-labels {
+    color: #f6d9b6;
+    font-size: 2.3vh;
+    font-family: "Monotype Corsiva";
+}
+
+.timing-labels p, .side-labels p {
+    position: absolute;
+}
+
+#minutes-label, #seconds-label {
+    top: 58%;
+    font-size: 3.1vh;
+}
+
+#hours-label, #days-label {
+    top: 82%;
+    font-size: 1.8vh;
+    margin: 1% 4% 1% 4%;
+}
+
+#minutes-label, #days-label {
+    right: 54%;
+}
+
+#seconds-label, #hours-label {
+    left: 54%;
+}
+
+#lovey-phrase {
+    top: 37.5%;
+    right: 14%;
+}
+
+#target-date {
+    top: 53.6%;
+    right: 12.8%;
 }
 
 @media screen and (orientation: portrait) {
@@ -54,26 +99,21 @@
         font-size: 19vw;
     }
 
+    .side-labels {
+        font-size: 2.3vw;
+    }
+
+    #minutes-label, #seconds-label {
+        font-size: 3.1vw;
+    }
+
+    #hours-label, #days-label {
+        font-size: 1.8vw;
+    }
+
     .cd-body {
         display: flex;
         align-items: center;
-    }
-}
-
-/* Landscape */
-@media screen and (orientation: landscape) {
-    /* Landscape styles */
-    #cd-image {
-        height: 100%;
-        width: auto;
-    }
-
-    #days, #hours {
-        font-size: 12vh;
-    }
-
-    #minutes, #seconds {
-        font-size: 19vh;
     }
 }
 
