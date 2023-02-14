@@ -41,14 +41,13 @@
 
 .timing-labels {
     color: #9a6859;
-    font-family: "Century Schoolbook";
     font-weight: bold;
 }
 
 .side-labels {
     color: #f6d9b6;
-    font-size: 2.3vh;
-    font-family: "Monotype Corsiva";
+    font-size: 2.7vh;
+    font-family: "NiconneRegular";
 }
 
 .timing-labels p, .side-labels p {
@@ -75,13 +74,13 @@
 }
 
 #lovey-phrase {
-    top: 37.5%;
-    right: 14%;
+    top: 35.8%;
+    right: 13.5%;
 }
 
 #target-date {
-    top: 53.6%;
-    right: 12.8%;
+    top: 52%;
+    right: 12.4%;
 }
 
 @media screen and (orientation: portrait) {
@@ -120,4 +119,9 @@
 @font-face {
     font-family: 'CustomFont';
     src: url('../fonts/crashnumberings-serif.ttf');
+}
+
+@font-face {
+    font-family: 'NiconneRegular';
+    src: url('../fonts/Niconne-Regular.ttf');
 }
