@@ -21,6 +21,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     BASE_DIR / 'static',
     BASE_DIR / 'static/todo_react',
+    BASE_DIR / 'static/word_game',
 )
 STATIC_ROOT = BASE_DIR / "static-cdn"
 MEDIA_ROOT = BASE_DIR / "media"

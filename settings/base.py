@@ -59,6 +59,7 @@ TEMPLATES = [
         'DIRS': [
             BASE_DIR / 'templates',
             BASE_DIR / 'static/todo_react',
+            BASE_DIR / 'static/word_game',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
