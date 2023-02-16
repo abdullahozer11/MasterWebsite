@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'portfolio2',
     'todo_app',
     'countdown',
+    'word_game_api',
     # Third party
     'storages',
     'captcha',

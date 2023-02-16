@@ -9,19 +9,19 @@ from portfolio.views import PortfolioIndexView
 from portfolio2.views import Portfolio2IndexView
 from settings import local
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('todo_old/', include('todo_app.urls', namespace="todo")),
     path('todo/', TemplateView.as_view(template_name='todo_react.html'), name="todo_react"),
     path('words/', TemplateView.as_view(template_name='word_game.html'), name="word_game"),
     path('commerce/', include('commerce_app.urls', namespace="commerce")),
+    path('words_api/', include('word_game_api.urls', namespace="words_api")),
     path('countdown/', include('countdown.urls', namespace="countdown")),
     path('old/', PortfolioIndexView.as_view(), name="portfolio"),
     path('', Portfolio2IndexView.as_view(), name="portfolio2"),
     # captcha
     path('captcha/', include('captcha.urls')),
-    # rest_framework views
-    path('api-auth/', include('rest_framework.urls')),
     # allauth urls
     path('accounts/', include('allauth.urls')),
     path('favicon.ico', RedirectView.as_view(url='/static/favicon.ico')),
