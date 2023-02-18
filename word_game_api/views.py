@@ -8,6 +8,7 @@ from django.http import JsonResponse
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 
+from settings.base import BASE_DIR
 from word_game_api.models import Word
 
 vowels = 'AEIOU'
@@ -50,7 +51,7 @@ def validate_word(request):
     return response
 
 def is_word_in_dictionary(word):
-    with open(os.path.join(settings.STATIC_ROOT, 'word_game_api/dictionary.txt')) as f:
+    with open(os.path.join(BASE_DIR / 'static', 'word_game_api/dictionary.txt')) as f:
         dictionary = [line.strip() for line in f]
     index = bisect.bisect_left(dictionary, word)
     if index < len(dictionary) and dictionary[index] == word:
