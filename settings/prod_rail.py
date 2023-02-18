@@ -31,3 +31,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://www.apojean.com",
     "https://django-server-production-ee9c.up.railway.app",
 ]
+
+CORS_ORIGIN_WHITELIST = [
+    "https://apojean.com",
+    "https://www.apojean.com",
+]
