@@ -33,3 +33,27 @@ class TestWordValidation(TestCase):
     def test_is_word_in_dictionary_invalid_word(self):
         result = is_word_in_dictionary('XYZTP')
         self.assertEqual(result, False)
+
+    def test_is_word_in_dictionary_empty_string(self):
+        result = is_word_in_dictionary('')
+        self.assertEqual(result, False)
+
+    def test_is_word_in_dictionary_non_string(self):
+        result = is_word_in_dictionary(123)
+        self.assertEqual(result, False)
+
+    def test_is_word_in_dictionary_none(self):
+        result = is_word_in_dictionary(None)
+        self.assertEqual(result, False)
+
+    def test_is_word_in_dictionary_non_ascii(self):
+        result = is_word_in_dictionary('ÅÄÖ')
+        self.assertEqual(result, False)
+
+    def test_validate_words_post_valid_word(self):
+        url = reverse('words_api:validate')
+        for word in ['MINCE', 'STILL', 'MINOR']:
+            data = {'word': word}
+            response = self.client.post(url, data=data)
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(json.loads(response.content), {'answer': 'valid'})

@@ -1,7 +1,6 @@
 import bisect
 import os
 import random
-import json
 
 from django.http import JsonResponse
 from django.utils import timezone
@@ -39,8 +38,7 @@ def get_random_letters(letters, count):
 @csrf_exempt
 def validate_word(request):
     if request.method == 'POST':
-        data = json.loads(request.body.decode('utf-8'))
-        if is_word_in_dictionary(data['word']):
+        if is_word_in_dictionary(request.POST['word']):
             data = {'answer': 'valid'}
         else:
             data = {'answer': 'invalid'}
@@ -50,6 +48,12 @@ def validate_word(request):
     return response
 
 def is_word_in_dictionary(word):
+    if not isinstance(word, str):
+        return False
+    if not word.isalpha():
+        return False
+    if not len(word) == 5:
+        return False
     with open(os.path.join(BASE_DIR / 'static', 'word_game_api/dictionary.txt')) as f:
         dictionary = [line.strip() for line in f]
     index = bisect.bisect_left(dictionary, word)
