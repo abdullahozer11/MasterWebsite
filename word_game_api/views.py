@@ -1,6 +1,7 @@
 import bisect
 import os
 import random
+import json
 
 from django.http import JsonResponse
 from django.utils import timezone
@@ -37,8 +38,15 @@ def get_random_letters(letters, count):
 
 @csrf_exempt
 def validate_word(request):
+    word = ''
     if request.method == 'POST':
-        if is_word_in_dictionary(request.POST['word']):
+        if request.POST.get('word'):
+            word = request.POST.get('word')
+        else:
+            body = json.loads(request.body)
+            if body.get('word'):
+                word = body['word']
+        if word and is_word_in_dictionary(word):
             data = {'answer': 'valid'}
         else:
             data = {'answer': 'invalid'}

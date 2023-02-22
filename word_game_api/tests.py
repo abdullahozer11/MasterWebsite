@@ -52,7 +52,7 @@ class TestWordValidation(TestCase):
 
     def test_validate_words_post_valid_word(self):
         url = reverse('words_api:validate')
-        for word in ['MINCE', 'STILL', 'MINOR']:
+        for word in ['AAHED', 'MINCE', 'STILL', 'MINOR', 'ZYMIC', 'ZYMIN', 'ROMAN']:
             data = {'word': word}
             response = self.client.post(url, data=data)
             self.assertEqual(response.status_code, 200)
