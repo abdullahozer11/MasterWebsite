@@ -1,0 +1,62 @@
+{% load static %}
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>See you in Toronto !</title>
+    <link rel="stylesheet" href="{% static 'toronto/css/style.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'toronto/images/bg.png' %}");
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="image">
+        <img src="{% static 'toronto/images/hero.png' %}" alt="Toronto">
+    </div>
+    <div class="padding1"></div>
+    <div class="days">
+        <span id="days"></span></br>
+        <label class="label">Days</label>
+    </div>
+    <div class="hours">
+        <span id="hours"></span></br>
+        <label class="label">Hours</label>
+    </div>
+    <div class="minutes">
+        <span id="minutes"></span></br>
+        <label class="label">Mins</label>
+    </div>
+    <div class="padding2"></div>
+</div>
+<script>
+    const currentDate = new Date();
+    const endTime = new Date({{year}}, {{month}} - 1, {{day}}, {{hour}}, {{minute}}, 0);
+
+    function makeTimer() {
+        const diffInMilliseconds = endTime.getTime() - currentDate.getTime();
+        const days = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diffInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diffInMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById('days').innerHTML = days;
+        document.getElementById('hours').innerHTML = hours;
+        document.getElementById('minutes').innerHTML = minutes;
+        if (days < 10) {
+            document.getElementById('days').style.marginLeft = '10%';
+        }
+        if (hours < 10) {
+            document.getElementById('hours').style.left = '59%';
+        }
+        if (minutes < 10) {
+            document.getElementById('minutes').style.right = '59%';
+        }
+    }
+    makeTimer();
+    setInterval(function () {
+        makeTimer();
+    }, 60000);
+</script>
+</body>
+</html>

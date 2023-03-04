@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'portfolio',
     'portfolio2',
     'todo_app',
+    'toronto',
     'countdown',
     'word_game_api',
     # Third party
