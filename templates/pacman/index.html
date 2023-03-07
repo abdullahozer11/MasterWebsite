@@ -1,0 +1,28 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=1.0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>welcome todo</title>
+    <link rel="stylesheet" href="{% static 'pacman/css/style.css' %}">
+</head>
+<body>
+<canvas id="myCanvas" width="420" height="500"></canvas>
+<div class="arrow-buttons">
+    <button id="left" class="arrow-button">Left</button>
+    <div class="verticals">
+        <button id="up" class="arrow-button">Up</button>
+        <button id="down" class="arrow-button">Down</button>
+    </div>
+    <button id="right" class="arrow-button">Right</button>
+</div>
+<img src="{% static 'pacman/images/animations.gif' %}" id="pacman-frames" style="display: none">
+<!--<img src="{% static 'pacman/images/ghost.png' %}" id="ghost-frames" style="display: none">-->
+<img src="{% static 'pacman/images/ghost2.png' %}" id="ghost-frames" style="display: none">
+<script src="{% static 'pacman/js/ghost.js' %}"></script>
+<script src="{% static 'pacman/js/pacman.js' %}"></script>
+<script src="{% static 'pacman/js/game.js' %}"></script>
+</body>
+</html>

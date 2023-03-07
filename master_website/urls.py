@@ -15,6 +15,7 @@ urlpatterns = [
     path('todo_old/', include('todo_app.urls', namespace="todo")),
     path('todo/', TemplateView.as_view(template_name='todo_react.html'), name="todo_react"),
     path('words/', TemplateView.as_view(template_name='word_game.html'), name="word_game"),
+    path('pacman/', TemplateView.as_view(template_name='pacman/index.html'), name="pacman"),
     path('commerce/', include('commerce_app.urls', namespace="commerce")),
     path('words_api/', include('word_game_api.urls', namespace="words_api")),
     path('countdown/', include('countdown.urls', namespace="countdown")),
