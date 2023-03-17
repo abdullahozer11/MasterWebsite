@@ -19,6 +19,7 @@ urlpatterns = [
     path('commerce/', include('commerce_app.urls', namespace="commerce")),
     path('words_api/', include('word_game_api.urls', namespace="words_api")),
     path('countdown/', include('countdown.urls', namespace="countdown")),
+    path('toronto/', include('toronto.urls', namespace="toronto")),
     path('old/', PortfolioIndexView.as_view(), name="portfolio"),
     path('', Portfolio2IndexView.as_view(), name="portfolio2"),
     # captcha

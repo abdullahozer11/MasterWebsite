@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+
+:root {
+    --card-width: 500px;
+    --card-margin: 50px;
+}
+
+.showcase {
+    height: 100vh;
+    height: 100dvh;
+    height: 100svh;
+    font-family: "Roboto Slab", serif;
+}
+
+.showcase {
+    background: aliceblue;
+    overflow: hidden;
+}
+
+.sc-container {
+    position: absolute;
+    top: 5vh;
+    height: 60vh;
+    height: 60dvh;
+    height: 60svh;
+    display: flex;
+    flex-direction: row;
+    width: calc(var(--card-count) * var(--card-width));
+    margin: 20vh 0 20vh calc((100vw - var(--card-width)) / 2);
+}
+
+.card {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    width: calc(var(--card-width) - 2 * var(--card-margin));
+    margin: 0 var(--card-margin);
+    background-size: cover;
+    border-radius: 20px;
+}
+
+.card-body {
+    position: absolute;
+    top: 51vh;
+    margin: 0 6px;
+    transition: all 0.5s ease;
+    transform: none;
+}
+
+.card-header {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.card-body > h2 {
+    font-size: 2.4em;
+    font-weight: 600;
+    color: cornsilk;
+    text-shadow: -4px 0 5px darkslategray;
+}
+
+.card-body > p {
+    margin: 0;
+    font-size: 1.3em;
+    font-weight: 500;
+    color: aliceblue;
+    text-shadow: 1px 1.5px 2px black;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: all 0.5s ease;
+}
+
+.card-image:hover {
+    opacity: 1;
+}
+
+.card:hover > .card-body {
+    transform: translateY(-10vh);
+}

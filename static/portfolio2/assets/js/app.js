@@ -1,4 +1,30 @@
-// TextScramble
+gsap.registerPlugin(ScrollTrigger);
+
+const card_width = 500;
+const card_count = 5;
+
+site_container = document.querySelector(".site-container");
+
+showcase = document.querySelector(".showcase");
+sc_container = document.querySelector(".sc-container");
+card = document.querySelector(".card");
+let tl0 = gsap.timeline();
+
+for (let i = 1; i < card_count; i++) {
+    tl0.to(sc_container, {x: -card_width * i})
+}
+
+ScrollTrigger.create({
+    animation: tl0,
+    trigger: showcase,
+    pin: true,
+    start: "top top",
+    end: "+=1500",
+    scrub: true,
+    snap: 1 / (card_count - 1)
+});
+
+// about section animation
 class TextScramble {
     constructor(el) {
         this.el = el
@@ -56,7 +82,6 @@ class TextScramble {
     }
 }
 
-// Example
 const phrases = [
     "",
     "His never ending curiosity",
@@ -73,17 +98,9 @@ const phrases = [
 const el = document.querySelector('.scrambling-text')
 const fx = new TextScramble(el)
 
-tl = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".about-section",
-        pin: true,
-        start: "top top",
-        end: "+=6000",
-        scrub: true,
-    }
-})
-
+// look later
 fx.setText(phrases[1]);
+
 let ahead = [false, false, false, false, false, false, false, false, false, false];
 function toggle_text(index) {
     if (ahead[index] === true) {
@@ -94,55 +111,72 @@ function toggle_text(index) {
     ahead[index] = !ahead[index];
 }
 
+about_section = document.querySelector(".about-section");
+img_wrapper = document.querySelector(".img-wrapper");
+
+tl = gsap.timeline();
+
 // Comic Book Start
 tl.add(function(){
     fx.setText(phrases[1]);
 })
     // move to second comic
-    .to(".img-wrapper", {x: '-15%', ease: "linear", delay: 0.25})
+    .to(".img-wrapper", {x: '-15%', ease: "linear"})
     .add(function(){
         toggle_text(2);
     })
     .to(".img-wrapper", {x: '-30%', ease: "linear"})
     // move to third comic
-    .to(".img-wrapper", {x: '-45%', ease: "linear", delay: 0.25})
+    .to(".img-wrapper", {x: '-45%', ease: "linear"})
     .add(function(){
         toggle_text(3);
     })
     .to(".img-wrapper", {x: '-60%', ease: "linear"})
     // move to forth comic
-    .to(".img-wrapper", {x: '-30%', y: '-15%', ease: "linear", delay: 0.25})
+    .to(".img-wrapper", {x: '-30%', y: '-15%', ease: "linear"})
     .add(function(){
         toggle_text(4);
     })
     .to(".img-wrapper", {x: '0', y: '-30%', ease: "linear"})
     // move to fifth comic
-    .to(".img-wrapper", {x: '-15%', ease: "linear", delay: 0.25})
+    .to(".img-wrapper", {x: '-15%', ease: "linear"})
     .add(function(){
         toggle_text(5);
     })
     .to(".img-wrapper", {x: '-30%', ease: "linear"})
     // move to sixth comic
-    .to(".img-wrapper", {x: '-45%', ease: "linear", delay: 0.25})
+    .to(".img-wrapper", {x: '-45%', ease: "linear"})
     .add(function(){
         toggle_text(6);
     })
     .to(".img-wrapper", {x: '-60%', ease: "linear"})
     // move to seventh comic
-    .to(".img-wrapper", {x: '-30%', y: '-45%', ease: "linear", delay: 0.25})
+    .to(".img-wrapper", {x: '-30%', y: '-45%', ease: "linear"})
     .add(function(){
         toggle_text(7);
     })
     .to(".img-wrapper", {x: '0', y: '-60%', ease: "linear"})
     // move to eighth comic
-    .to(".img-wrapper", {x: '-15%', ease: "linear", delay: 0.25})
+    .to(".img-wrapper", {x: '-15%', ease: "linear"})
     .add(function(){
         toggle_text(8);
     })
     .to(".img-wrapper", {x: '-30%', ease: "linear"})
     // move to ninth comic
-    .to(".img-wrapper", {x: '-45%', ease: "linear", delay: 0.25})
+    .to(".img-wrapper", {x: '-45%', ease: "linear"})
     .add(function(){
         toggle_text(9);
     })
     .to(".img-wrapper", {x: '-60%', ease: "linear"})
+
+ScrollTrigger.create({
+    animation: tl,
+    trigger: about_section,
+    pin: true,
+    start: "top top",
+    end: '+=5000',
+    scrub: true,
+    snap: {
+        snapTo: 1 / 9,
+    }
+});

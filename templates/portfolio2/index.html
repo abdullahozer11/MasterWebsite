@@ -6,6 +6,7 @@
     <meta name="description" content="For My Comic Book animation">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'portfolio2/assets/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'portfolio2/assets/css/showcase.css' %}">
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
     <style>
         .hero-image {
@@ -17,6 +18,11 @@
                 background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static 'portfolio2/assets/images/hero/portrait.png' %}");
             }
         }
+
+        :root {
+            --card-count: {{ apps_length }};
+        }
+
     </style>
 </head>
 <body>
@@ -46,39 +52,26 @@
     </div>
 </div>
 <!--hero section end-->
-<div class="work-section" id="work">
+<!--showcase starts-->
+<div class="showcase" id="work">
     <h1 class="title work-title">WORK</h1>
     <div class="line-separator work-separator"></div>
-    <div id="app" class="card-container">
-        <div class="card-with-button">
-            <card data-image="{% static 'portfolio2/assets/images/work/todo_react.png' %}">
-                <h1 slot="header">Todo App</h1>
-                <p slot="content">React powered dynamic task recorder</p>
-            </card>
-            <div class="demo-button">
-                <a class='button-text' href="{% url 'todo_react' %}">DEMO</a>
+    <div class="sc-container">
+        {% for app in apps %}
+        <div class="card">
+            <a href="{{ app.url }}">
+                <img class="card-image" src="{{ app.img.url }}" alt="{{ app.title }}">
+            </a>
+            <div class="card-body">
+                <h2>{{ app.title }}</h2>
+                <p>{{ app.desc }}</p>
             </div>
         </div>
-        <div class="card-with-button">
-            <card data-image="{% static 'portfolio2/assets/images/work/commerce.png' %}">
-                <h1 slot="header">eCommerce</h1>
-                <p slot="content">Dynamic eCommerce website with user authentication and REST API</p>
-            </card>
-            <div class="demo-button">
-                <a class='button-text' href="{% url 'commerce:index' %}">DEMO</a>
-            </div>
-        </div>
-        <div class="card-with-button">
-            <card data-image="{% static 'portfolio2/assets/images/work/countdown.png' %}">
-                <h1 slot="header">Countdown</h1>
-                <p slot="content">AI powered customized count down design</p>
-            </card>
-            <div class="demo-button">
-                <a class='button-text' href="{% url 'countdown:index' %}">DEMO</a>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
+<!--showcase ends-->
+<!--    about section start-->
 <div class="about-section" id="about">
     <h1 class="title about-title">ABOUT</h1>
     <div class="line-separator about-separator"></div>
@@ -101,15 +94,15 @@
         <div><a id='insta-link' href='https://www.instagram.com/aiwebtech'>INSTAGRAM</a></div>
         <div>© 2023 by Abdullah OZER.</div>
     </div>
-    <!--footer section end-->
+    <!--    footer section end-->
 </div>
+<!--    about section ends-->
 <!--  scripts-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
 <script src="{% static 'portfolio2/assets/js/app.js' %}"></script>
-<script src="{% static 'portfolio2/assets/js/work.js' %}"></script>
 <script src="{% static 'portfolio2/assets/js/contact.js' %}"></script>
 <script src="{% static 'portfolio2/assets/js/index.js' %}"></script>
 <script src="{% static 'portfolio2/assets/js/sidebar.js' %}"></script>
