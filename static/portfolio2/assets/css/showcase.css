@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
 
-:root {
-    --card-width: 500px;
-    --card-margin: 50px;
-}
-
 .showcase {
     height: 100vh;
     height: 100dvh;
@@ -41,7 +36,7 @@
 
 .card-body {
     position: absolute;
-    top: 51vh;
+    top: 80%;
     margin: 0 6px;
     transition: all 0.5s ease;
     transform: none;
@@ -78,7 +73,35 @@
 .card-image:hover {
     opacity: 1;
 }
+@media screen and (min-width: 1000px) {
+    .card:hover > .card-body {
+        transform: translateY(-10vh);
+    }
+}
 
-.card:hover > .card-body {
-    transform: translateY(-10vh);
+:root {
+    --card-width: 500px;
+    --card-margin: 50px;
+}
+
+@media screen and (max-width: 1000px) {
+    .card-body {
+        top: 70%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .card-body {
+        top: 60%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    :root {
+        --card-width: 300px;
+        --card-margin: 10px;
+    }
+    .card-body {
+        top: 50%;
+    }
 }
