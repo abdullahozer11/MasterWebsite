@@ -12,7 +12,7 @@ class CustomerFormModel(models.Model):
     message = models.TextField(max_length=500)
 
 
-class App(models.Model):
+class DemoApp(models.Model):
     """
     App.
     This model represents the app we are showcasing in the portfolio.

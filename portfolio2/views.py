@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from portfolio2.forms import CustomerForm
-from portfolio2.models import App
+from portfolio2.models import DemoApp
 
 
 class ContactView(SuccessMessageMixin, CreateView):
@@ -45,8 +45,7 @@ class Portfolio2IndexView(ContactView):
     success_url = reverse_lazy("portfolio2")
     failure_url = reverse_lazy("portfolio2")
     extra_context = {
-        "apps": App.objects.all(),
-        "apps_length": len(App.objects.all())
+        "apps": DemoApp.objects.all(),
     }
 
     def post(self, request, *args, **kwargs):

@@ -2,7 +2,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from portfolio2.models import CustomerFormModel, App
+from portfolio2.models import CustomerFormModel, DemoApp
 
 admin.site.register(CustomerFormModel)
-admin.site.register(App)
+admin.site.register(DemoApp)
