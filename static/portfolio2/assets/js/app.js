@@ -1,6 +1,6 @@
 gsap.registerPlugin(ScrollTrigger);
 
-const card_width = document.querySelector(".card").offsetWidth;
+const card_width = document.querySelector(".card").offsetWidth + 2 * document.querySelector(".card").offsetLeft;
 
 site_container = document.querySelector(".site-container");
 
@@ -18,7 +18,7 @@ ScrollTrigger.create({
     trigger: showcase,
     pin: true,
     start: "top top",
-    end: "+=1500",
+    end: "+=" + (5 * card_width),
     scrub: true,
     snap: 1 / (card_count - 1)
 });
