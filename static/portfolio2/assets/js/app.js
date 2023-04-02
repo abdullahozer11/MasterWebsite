@@ -1,6 +1,17 @@
 gsap.registerPlugin(ScrollTrigger);
 
-const card_width = document.querySelector(".card").offsetWidth + 2 * document.querySelector(".card").offsetLeft;
+let card_width;
+
+// Define a function to update the card width
+function updateCardWidth() {
+  card_width = document.querySelector(".card").offsetWidth + 2 * document.querySelector(".card").offsetLeft;
+}
+
+// Call the updateCardWidth function initially
+updateCardWidth();
+
+// Call the updateScrollTrigger function every time the window is resized
+window.addEventListener("resize", updateCardWidth);
 
 site_container = document.querySelector(".site-container");
 
