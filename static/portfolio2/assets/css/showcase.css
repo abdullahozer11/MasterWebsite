@@ -2,8 +2,6 @@
 
 .showcase {
     height: 100vh;
-    height: 100dvh;
-    height: 100svh;
     font-family: "Roboto Slab", serif;
 }
 
@@ -16,8 +14,6 @@
     position: absolute;
     top: 5vh;
     height: 60vh;
-    height: 60dvh;
-    height: 60svh;
     display: flex;
     flex-direction: row;
     width: calc(var(--card-count) * var(--card-width));

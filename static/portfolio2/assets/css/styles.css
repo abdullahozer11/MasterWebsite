@@ -164,11 +164,6 @@ p, h1 {
 
 /*SCRAMBLING TEXT END*/
 /*WORK SECTION*/
-.work-section {
-  background-color: #dee4dc;
-  min-height: 100vh;
-}
-
 .title {
   font-family: "Raleway";
   font-size: 7vh;
