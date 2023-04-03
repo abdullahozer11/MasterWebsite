@@ -31,48 +31,35 @@
 </div>
 
 <script>
+    const endTime = new Date({{year}}, {{month}} - 1, {{day}}, {{hour}}, {{minute}}, 0);
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+
     function makeTimer() {
         const currentDate = new Date();
-        endTime = new Date(Date.UTC(2023, 2, 25, 11, 10, 0));
-
-        const diffInMilliseconds = endTime.getTime() - currentDate.getTime();
-
-        // Calculate the number of days, hours, minutes, and seconds until the target date
-        const days = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diffInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diffInMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diffInMilliseconds % (1000 * 60)) / 1000);
-
+        const diffinmiliseconds = endTime.getTime() - currentDate.getTime();
+        const days = Math.floor(diffinmiliseconds / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diffinmiliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diffinmiliseconds % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diffinmiliseconds % (1000 * 60)) / 1000);
         document.getElementById('days').innerHTML = days;
         document.getElementById('hours').innerHTML = hours;
         document.getElementById('minutes').innerHTML = minutes;
         document.getElementById('seconds').innerHTML = seconds;
+        daysEl.innerHTML = days;
+        hoursEl.innerHTML = hours;
+        minutesEl.innerHTML = minutes;
+        secondsEl.innerHTML = seconds;
 
-        if (days < 10) {
-            document.getElementById('days').style.right = '59%';
-        } else {
-            document.getElementById('days').style.right = '55%';
-        }
-
-        if (hours < 10) {
-            document.getElementById('hours').style.left = '59%';
-        } else {
-            document.getElementById('hours').style.left = '55%';
-        }
-
-        if (minutes < 10) {
-            document.getElementById('minutes').style.right = '59%';
-        } else {
-            document.getElementById('minutes').style.right = '54%';
-        }
-
-        if (seconds < 10) {
-            document.getElementById('seconds').style.left = '59%';
-        } else {
-            document.getElementById('seconds').style.left = '54%';
-        }
+        daysEl.style.right = days < 10 ? '59%' : '55%';
+        hoursEl.style.left = hours < 10 ? '59%' : '55%';
+        minutesEl.style.right = minutes < 10 ? '59%' : '54%';
+        secondsEl.style.left = seconds < 10 ? '59%' : '54%';
     }
 
+    makeTimer();
     setInterval(function () {
         makeTimer();
     }, 1000);
