@@ -8,16 +8,13 @@
 }
 
 body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
     overflow: hidden;
-}
-
-img {
-    height: 100%;
-    width: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .days {

@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <title>See you in Athens !</title>
     <link rel="stylesheet" href="{% static 'countdown/css/athens.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'countdown/images/athens.webp' %}");
+        }
+    </style>
 </head>
 <body>
-    <img src="{% static 'countdown/images/athens.webp' %}" alt="Athens">
     <div class="days">
         <span id="days"></span></br>
         <label class="label">Days</label>
