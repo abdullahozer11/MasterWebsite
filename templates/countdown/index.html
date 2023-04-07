@@ -44,10 +44,6 @@
         const hours = Math.floor((diffinmiliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diffinmiliseconds % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diffinmiliseconds % (1000 * 60)) / 1000);
-        document.getElementById('days').innerHTML = days;
-        document.getElementById('hours').innerHTML = hours;
-        document.getElementById('minutes').innerHTML = minutes;
-        document.getElementById('seconds').innerHTML = seconds;
         daysEl.innerHTML = days;
         hoursEl.innerHTML = hours;
         minutesEl.innerHTML = minutes;

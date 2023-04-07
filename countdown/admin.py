@@ -1,5 +1,5 @@
 from django.contrib import admin
-from countdown.models import ParisTargetDate
+from countdown.models import TargetDate
 
 
-admin.site.register(ParisTargetDate)
+admin.site.register(TargetDate)

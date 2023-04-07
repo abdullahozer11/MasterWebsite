@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Lato&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+}
+
+img {
+    height: 100%;
+    width: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.days {
+    position: absolute;
+    top: 62vh;
+    left: 50%;
+    transform: translate(-50%);
+    color: #ed8425;
+    font-size: 12vh;
+    font-weight: 900;
+    text-shadow: 0 0 10px #000;
+    text-align: center;
+}
+
+#days {
+    font-family: 'Lato', sans-serif;
+}
+
+.label {
+    font-size: 3vh;
+    font-family: 'Dancing Script', cursive;
+}
