@@ -18,6 +18,7 @@ urlpatterns = [
     path('words/', TemplateView.as_view(template_name='word_game.html'), name="word_game"),
     path('pacman/', TemplateView.as_view(template_name='pacman/index.html'), name="pacman"),
     path('easter/', TemplateView.as_view(template_name='easter/index.html'), name="easter"),
+    path('lemonado/', TemplateView.as_view(template_name='lemonado/index.html'), name="lemonado"),
     path('paris/', CountdownView.as_view(template_name='countdown/index.html', name='Paris'), name="paris"),
     path('athens/', CountdownView.as_view(template_name='countdown/athens.html', name='Athens'), name="athens"),
     path('toronto/', CountdownView.as_view(template_name='countdown/toronto.html', name='Toronto'), name="toronto"),
