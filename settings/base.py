@@ -31,7 +31,6 @@ INSTALLED_APPS = [
     'corsheaders',
     # Main apps
     'commerce_app',
-    'portfolio',
     'portfolio2',
     'todo_app',
     'countdown',
