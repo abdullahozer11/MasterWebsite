@@ -4,7 +4,12 @@ let card_width;
 
 // Define a function to update the card width
 function updateCardWidth() {
-  card_width = document.querySelector(".card").offsetWidth + 2 * document.querySelector(".card").offsetLeft;
+    const card = document.querySelector(".card");
+    if (card) {
+        card_width = card.offsetWidth + 2 * card.offsetLeft;
+    } else {
+        card_width = 0;
+    }
 }
 
 // Call the updateCardWidth function initially
