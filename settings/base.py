@@ -24,7 +24,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'django.contrib.messages',
-    'whitenoise.runserver_nostatic',
     # Django built-in
     'django.contrib.sites',
     'django.forms',

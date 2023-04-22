@@ -45,12 +45,3 @@ MIDDLEWARE = [
 ]
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-
-DEBUG_PROPAGATE_EXCEPTIONS = True
-
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-]
-
-WHITENOISE_MANIFEST_STRICT = False
