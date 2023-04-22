@@ -1,6 +1,8 @@
 """models.py of portfolio2"""
 from django.db import models
 
+from django_resized import ResizedImageField
+
 
 class CustomerFormModel(models.Model):
     """
@@ -21,14 +23,8 @@ class DemoApp(models.Model):
     title = models.CharField(max_length=30)
     desc = models.TextField(max_length=500)
     url = models.CharField(max_length=200)
-    img_url = models.CharField(max_length=200, default='')
-
-    def save(self, *args, **kwargs):
-        # Set the default img_url based on the url attribute
-        if not self.img_url:
-            self.img_url = f"media/portfolio2/app_images/{self.url}"
-
-        super().save(*args, **kwargs)
+    image = ResizedImageField(upload_to='portfolio2/app_images/', size=[500, 700], crop=['middle', 'center'],
+                              force_format="WEBP", quality=100, scale=1)
 
     def __str__(self):
         return self.title

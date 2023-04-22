@@ -1,4 +1,4 @@
-FROM python:3.8
+FROM python:3.8-slim
 
 WORKDIR /app
 
@@ -8,9 +8,3 @@ RUN pip install -r requirements/prod.txt
 COPY . .
 
 RUN python manage.py migrate
-
-RUN python manage.py collectstatic --noinput
-
-EXPOSE 8000
-
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

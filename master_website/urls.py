@@ -1,6 +1,5 @@
 import os
 
-from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
@@ -35,9 +34,6 @@ urlpatterns = [
 if os.getenv("LOCAL_DEV"):
     urlpatterns += static(local.MEDIA_URL, document_root=local.MEDIA_ROOT)
     urlpatterns += static(local.STATIC_URL, document_root=local.STATIC_ROOT)
-
-if not settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # pylint: disable=invalid-name
 handler404 = "master_website.views.page_not_found_view"

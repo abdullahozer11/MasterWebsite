@@ -60,7 +60,7 @@
         {% for app in apps %}
         <div class="card">
             <a href="{{ app.url }}">
-                <img class="card-image" src="{{ app.img_url }}" alt="{{ app.title }}" onerror="this.onerror=null;this.src='media/portfolio2/app_images/default.webp';">
+                <img class="card-image" src="{{ app.image.url }}" alt="{{ app.title }}" onerror="this.onerror=null;this.src='media/portfolio2/app_images/default.png';">
             </a>
             <div class="card-body">
                 <h2>{{ app.title }}</h2>

@@ -15,6 +15,7 @@ def resize_and_convert_to_webp(image):
     return InMemoryUploadedFile(buffer, None, f"{os.path.splitext(image.name)[0]}.webp",
                                 'image/webp', buffer.getbuffer().nbytes, None)
 
+
 class ResizedImageField(models.ImageField):
     def __init__(self, *args, **kwargs):
         self.width = kwargs.pop('width', 500)
