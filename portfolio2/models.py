@@ -1,7 +1,5 @@
-from django.conf.global_settings import MEDIA_URL
+"""models.py of portfolio2"""
 from django.db import models
-
-from portfolio2.helpers import ResizedImageField
 
 
 class CustomerFormModel(models.Model):
@@ -22,13 +20,15 @@ class DemoApp(models.Model):
     """
     title = models.CharField(max_length=30)
     desc = models.TextField(max_length=500)
-    img = ResizedImageField(upload_to='portfolio2/app_images', default='portfolio2/app_images/default.webp',
-                            width=500, height=900)
     url = models.CharField(max_length=200)
+    img_url = models.CharField(max_length=200, default='')
 
-    def img_url(self):
-        file_ext = str(self.img).split('/')[-1]
-        return f"media/portfolio2/app_images/{file_ext}"
+    def save(self, *args, **kwargs):
+        # Set the default img_url based on the url attribute
+        if not self.img_url:
+            self.img_url = f"media/portfolio2/app_images/{self.url}"
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
