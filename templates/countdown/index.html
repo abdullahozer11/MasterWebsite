@@ -1,6 +1,6 @@
 {% load static %}
 
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Welcome to Countdown</title>
@@ -31,14 +31,20 @@
 </div>
 
 <script>
-    const endTime = new Date({{year}}, {{month}} - 1, {{day}}, {{hour}}, {{minute}}, 0);
+    const endTime = new Date('{{year}}', '{{month}}', '{{day}}', '{{hour}}', '{{minute}}', 0);
     const daysEl = document.getElementById('days');
     const hoursEl = document.getElementById('hours');
     const minutesEl = document.getElementById('minutes');
     const secondsEl = document.getElementById('seconds');
 
+    function getUserDate() {
+        const now = new Date();
+        const userOffset = now.getTimezoneOffset() * 60 * 1000;
+        return new Date(now.getTime() + userOffset);
+    }
+
     function makeTimer() {
-        const currentDate = new Date();
+        const currentDate = getUserDate();
         const diffinmiliseconds = endTime.getTime() - currentDate.getTime();
         const days = Math.floor(diffinmiliseconds / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diffinmiliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));

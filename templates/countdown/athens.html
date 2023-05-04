@@ -16,9 +16,14 @@
         <label class="label">Days</label>
     </div>
 <script>
-    const endTime = new Date({{year}}, {{month}} - 1, {{day}}, 0, 0, 0);
+    function getUserDate() {
+        const now = new Date();
+        const userOffset = now.getTimezoneOffset() * 60 * 1000;
+        return new Date(now.getTime() + userOffset);
+    }
+    const endTime = new Date('{{year}}', '{{month}}', '{{day}}', 0, 0, 0);
     const daysEl = document.getElementById('days');
-    const currentDate = new Date();
+    const currentDate = new getUserDate();
     const diffinmiliseconds = endTime.getTime() - currentDate.getTime();
     daysEl.innerHTML = Math.floor(diffinmiliseconds / (1000 * 60 * 60 * 24));
 </script>

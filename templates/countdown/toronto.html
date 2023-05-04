@@ -1,6 +1,6 @@
 {% load static %}
 
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>See you in Toronto !</title>
@@ -32,25 +32,36 @@
     <div class="padding2"></div>
 </div>
 <script>
-    const currentDate = new Date();
-    const endTime = new Date({{year}}, {{month}} - 1, {{day}}, {{hour}}, {{minute}}, 0);
+    const endTime = new Date('{{year}}', '{{month}}', '{{day}}', '{{hour}}', '{{minute}}', 0);
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+
+    function getUserDate() {
+        const now = new Date();
+        const userOffset = now.getTimezoneOffset() * 60 * 1000;
+        return new Date(now.getTime() + userOffset);
+    }
 
     function makeTimer() {
+        const currentDate = getUserDate();
         const diffInMilliseconds = endTime.getTime() - currentDate.getTime();
         const days = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diffInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diffInMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
-        document.getElementById('days').innerHTML = days;
-        document.getElementById('hours').innerHTML = hours;
-        document.getElementById('minutes').innerHTML = minutes;
+        daysEl.innerHTML = days;
+        hoursEl.innerHTML = hours;
+        minutesEl.innerHTML = minutes;
+
         if (days < 10) {
-            document.getElementById('days').style.marginLeft = '10%';
+            daysEl.style.marginLeft = '10%';
         }
         if (hours < 10) {
-            document.getElementById('hours').style.left = '59%';
+            hoursEl.style.left = '59%';
         }
         if (minutes < 10) {
-            document.getElementById('minutes').style.right = '59%';
+            minutesEl.style.right = '59%';
         }
     }
     makeTimer();

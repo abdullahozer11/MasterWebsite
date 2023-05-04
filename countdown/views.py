@@ -1,5 +1,6 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
+import pytz
 from django.views.generic import TemplateView
 from countdown.models import TargetDate
 
@@ -14,18 +15,31 @@ class CountdownView(TemplateView):
         self.template_name = template_name
         self.name = name
 
+    def gmt_to_timedelta(self, gmt_str):
+        sign, hours_str = gmt_str[:4], gmt_str[4:]
+        hours = int(hours_str)
+        if sign == 'GMT+':
+            return timedelta(hours=hours)
+        elif sign == 'GMT-':
+            return timedelta(hours=-hours)
+        else:
+            return timedelta(0)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         try:
-            target_date = TargetDate.objects.get(name=self.name)
+            target_date_obj = TargetDate.objects.get(name=self.name)
+            user_timezone_str = target_date_obj.timezone  # Assuming the timezone field is in the TargetDate model
         except TargetDate.DoesNotExist:
-            target_date = TargetDate(date=datetime(2023, 9, 7))
-        except Exception:
-            target_date = None
-        if target_date:
-            context['year'] = target_date.date.year
-            context['month'] = target_date.date.month
-            context['day'] = target_date.date.day
-            context['hour'] = target_date.date.hour
-            context['minute'] = target_date.date.minute
+            target_date_obj = TargetDate(date=datetime(2023, 9, 7, tzinfo=pytz.UTC))
+            user_timezone_str = 'GMT'
+        if target_date_obj:
+            # Get the timezone-aware datetime object
+            user_timedelta = self.gmt_to_timedelta(user_timezone_str)
+            target_date = target_date_obj.date + user_timedelta
+            context['year'] = target_date.year
+            context['month'] = target_date.month - 1
+            context['day'] = target_date.day
+            context['hour'] = target_date.hour
+            context['minute'] = target_date.minute
         return context
