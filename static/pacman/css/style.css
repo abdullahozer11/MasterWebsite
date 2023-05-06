@@ -36,8 +36,8 @@ body {
         margin: auto;
         width: 100vw;
         height: 16vh;
-        height: 16 dvh;
-        height: 16 svh;
+        height: 16dvh;
+        height: 16svh;
         display: flex;
         justify-content: center;
         align-items: center;
