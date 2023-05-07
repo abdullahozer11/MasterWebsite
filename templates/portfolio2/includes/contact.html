@@ -1,4 +1,23 @@
 <div class="form-container">
+    <script>
+        function validateEmail(email) {
+            var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function validateForm(event) {
+            var emailInput = document.querySelector('#email');
+            if (!validateEmail(emailInput.value)) {
+                event.preventDefault();
+                alert("Please enter a valid email address.");
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            var form = document.querySelector('#contact');
+            form.addEventListener('submit', validateForm);
+        });
+    </script>
     <a class="exit-contact" onclick="document.querySelector('.contact-section').classList.remove('show')">X</a>
     <div class="section-heading">
         <h2>Contact Me</h2>
