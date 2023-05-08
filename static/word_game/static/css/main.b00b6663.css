@@ -177,7 +177,7 @@ html {
     display: grid;
     grid-template-rows:.5fr 2fr 1fr;
     height: 100vh;
-    height: 100 dvh;
+    height: 100dvh;
     overflow: hidden;
     text-align: center;
     width: 100vw
@@ -440,7 +440,7 @@ html {
     position: absolute;
     text-align: center;
     top: 50vh;
-    top: 50 dvh;
+    top: 50dvh;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: 100%
@@ -521,14 +521,14 @@ html {
         border: 2px solid #826850;
         border-radius: 10px;
         font-size: 1.5vh;
-        font-size: 1.5 dvh;
+        font-size: 1.5dvh;
         height: 3.7vh;
-        height: 3.7 dvh;
+        height: 3.7dvh;
         left: 30vw;
         line-height: 3.8vh;
-        line-height: 3.8 dvh;
+        line-height: 3.8dvh;
         top: 40.5vh;
-        top: 40.5 dvh;
+        top: 40.5dvh;
         width: 15vw
     }
 
