@@ -74,13 +74,16 @@ body {
     #myCanvas {
         margin-top: 10vh;
     }
-    .arrow-button {
-        display: block;
-    }
 }
 
 @media screen and (max-width: 900px) and (min-width: 600px) {
     #myCanvas {
         width: 80vw;
+    }
+}
+
+@media (orientation: portrait) {
+    .arrow-button {
+        display: block;
     }
 }
