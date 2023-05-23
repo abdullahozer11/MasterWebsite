@@ -8,9 +8,19 @@ body {
     height: 100dvh;
     height: 100svh;
     width: 100vw;
+    display: grid;
     text-align: center;
+    align-items: center;
+    align-self: center;
     justify-content: center;
-    display: flex;
+    place-content: center;
+}
+
+.canvas-container {
+    display: grid;
+    place-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (orientation: landscape) {
@@ -18,26 +28,28 @@ body {
         height: 90vh;
         height: 90dvh;
         height: 90svh;
-        margin: 5vh;
     }
 }
 
 @media (orientation: portrait) {
     #myCanvas {
+        max-width: 95vw;
+    }
+
+    .arrow-button-container {
         width: 100vw;
-        margin: auto;
+        display: inline-block;
+        min-height: 16vh;
     }
 
     .arrow-buttons {
         position: absolute;
         bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-        width: 100vw;
+        width: 100%;
         height: 16vh;
         height: 16dvh;
         height: 16svh;
+        margin: auto;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -72,7 +84,7 @@ body {
 
 @media screen and (max-width: 900px) {
     #myCanvas {
-        margin-top: 10vh;
+        max-height: 70vh;
     }
 }
 

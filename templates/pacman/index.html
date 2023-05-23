@@ -9,14 +9,18 @@
     <link rel="stylesheet" href="{% static 'pacman/css/style.css' %}">
 </head>
 <body>
-<canvas id="myCanvas" width="420" height="500"></canvas>
-<div class="arrow-buttons">
-    <button id="left" class="arrow-button">Left</button>
-    <div class="verticals">
-        <button id="up" class="arrow-button">Up</button>
-        <button id="down" class="arrow-button">Down</button>
+<div class="canvas-container">
+    <canvas id="myCanvas" width="420" height="500"></canvas>
+</div>
+<div class="arrow-button-container">
+    <div class="arrow-buttons">
+        <button id="left" class="arrow-button">Left</button>
+        <div class="verticals">
+            <button id="up" class="arrow-button">Up</button>
+            <button id="down" class="arrow-button">Down</button>
+        </div>
+        <button id="right" class="arrow-button">Right</button>
     </div>
-    <button id="right" class="arrow-button">Right</button>
 </div>
 <img src="{% static 'pacman/images/animations.gif' %}" id="pacman-frames" style="display: none">
 <!--<img src="{% static 'pacman/images/ghost.png' %}" id="ghost-frames" style="display: none">-->
