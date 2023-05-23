@@ -177,7 +177,7 @@ html {
     display: grid;
     grid-template-rows:.5fr 2fr 1fr;
     height: 100vh;
-    height: 100dvh;
+    height: 100svh;
     overflow: hidden;
     text-align: center;
     width: 100vw
