@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>See you in Istanbul !</title>
+    <link rel="stylesheet" href="{% static 'countdown/css/istanbul.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="image">
+            <img src="{% static 'countdown/images/istanbul.webp' %}" alt="Toronto">
+        </div>
+        <div class="days">
+            <span id="days"></span></br>
+            <label class="label">Days</label>
+        </div>
+    </div>
+<script>
+    function getUserDate() {
+        const now = new Date();
+        const userOffset = now.getTimezoneOffset() * 60 * 1000;
+        return new Date(now.getTime() + userOffset);
+    }
+    const endTime = new Date('{{year}}', '{{month}}', '{{day}}', '{{hour}}', '{{minute}}', 0);
+    const daysEl = document.getElementById('days');
+    const currentDate = new getUserDate();
+    const diffinmiliseconds = endTime.getTime() - currentDate.getTime();
+    daysEl.innerHTML = Math.floor(diffinmiliseconds / (1000 * 60 * 60 * 24));
+</script>
+</body>
+</html>
