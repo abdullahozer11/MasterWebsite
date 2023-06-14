@@ -16,8 +16,11 @@ class CountdownView(TemplateView):
         self.name = name
 
     def gmt_to_timedelta(self, gmt_str):
-        sign, hours_str = gmt_str[:4], gmt_str[4:]
-        hours = int(hours_str)
+        if gmt_str == 'GMT':
+            sign = 0
+        else:
+            sign, hours_str = gmt_str[:4], gmt_str[4:]
+            hours = int(hours_str)
         if sign == 'GMT+':
             return timedelta(hours=hours)
         elif sign == 'GMT-':
