@@ -1,15 +1,12 @@
 <html lang="en">
 <head>
     {% load static %}
-    <meta charset="UTF-8">
     <title>See you in Istanbul !</title>
     <link rel="stylesheet" href="{% static 'countdown/css/istanbul.css' %}">
 </head>
 <body>
     <div class="container">
-        <div class="image">
-            <img src="{% static 'countdown/images/istanbul.webp' %}" alt="Toronto">
-        </div>
+        <img id='image' src="{% static 'countdown/images/istanbul.webp' %}" alt="Toronto">
         <div class="days">
             <span id="days"></span></br>
             <label class="label">Days</label>

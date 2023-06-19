@@ -20,31 +20,26 @@ body {
     height: 100svh;
     overflow: hidden;
     background-color: #29484b;
+    display: grid;
+    place-content: center;
 }
 
 .container {
     display: grid;
-    height: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    place-content: center;
+    position: relative;
 }
 
 .days {
     position: absolute;
-    top: 66.5vh;
+    top: 65.5%;
+    font-size: 800%;
     left: 50%;
     transform: translate(-50%);
     color: #f5dcc4;
-    font-size: 7vh;
     font-weight: 900;
     text-shadow: 0 0 10px #000;
     text-align: center;
-}
-
-.image > img {
-    height: 100vh;
 }
 
 #days {
@@ -52,7 +47,18 @@ body {
     pointer-events: none;
 }
 
+
 .label {
     font-size: 3vh;
     font-family: 'Dancing Script', cursive;
+}
+
+@media screen and (orientation: landscape) {
+    #image {
+        height: 100vh;
+    }
+
+    .days {
+        font-size: 8vh;
+    }
 }
