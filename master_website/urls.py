@@ -2,7 +2,7 @@ import os
 
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.views.generic import RedirectView, TemplateView
 
 from countdown.views import CountdownView
@@ -30,6 +30,8 @@ urlpatterns = [
     # allauth urls
     path('accounts/', include('allauth.urls')),
     path('favicon.ico', RedirectView.as_view(url='/static/favicon.ico')),
+    # "not found" URL
+    re_path(r'^.*$', TemplateView.as_view(template_name='404.html'), name="404"),
 ]
 
 if os.getenv("LOCAL_DEV"):
