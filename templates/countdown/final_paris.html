@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    {% load static %}
+    <title>See you soon my love !</title>
+    <link rel="stylesheet" href="{% static 'countdown/css/paris_final.css' %}">
+</head>
+<body>
+    <img class="bg-image" src="{% static 'countdown/images/paris_final_bg.png' %}" alt="body-bg">
+    <div class="container">
+        <img id='image' src="{% static 'countdown/images/paris_final_bg.png' %}" alt="Paris">
+        <div class="days">
+            <span id="days"></span></br>
+        </div>
+        <img id='dudu' src="{% static 'countdown/images/dudu.png' %}" alt="dudu">
+        <img id='bubu' src="{% static 'countdown/images/bubu.png' %}" alt="bubu">
+    </div>
+<script>
+    const endTime = new Date('{{year}}', '{{month}}', '{{day}}', '{{hour}}', '{{minute}}', 0);
+    const daysEl = document.getElementById('days');
+    const bubu = document.getElementById('bubu');
+
+    function getUserDate() {
+        const now = new Date();
+        const userOffset = now.getTimezoneOffset() * 60 * 1000;
+        return new Date(now.getTime() + userOffset);
+    }
+
+    function makeTimer() {
+        const currentDate = getUserDate();
+        const diffInMilliseconds = endTime.getTime() - currentDate.getTime();
+        const days = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
+        daysEl.innerHTML = days;
+        bubu.style.left = 2.66 * (30 - days) + '%';
+    }
+    makeTimer();
+</script>
+</body>
+</html>
