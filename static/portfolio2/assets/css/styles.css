@@ -28,7 +28,7 @@ p, h1 {
 /*HERO SECTION*/
 .hero-text {
   position: absolute;
-  top: 45vh;
+  top: 50vh;
   left: 39vw;
   transform: translate(-50%, -50%);
   text-align: left;
@@ -42,7 +42,7 @@ p, h1 {
 }
 
 .hero-text p {
-  font-size: 3.5vmax;
+  font-size: 4vmax;
   color: #bc8c84;
 }
 
