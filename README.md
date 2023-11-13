@@ -27,7 +27,7 @@ This is my personal website to display my portfolio as well as the demos of the 
 
 Insert gif or link to demo
 
-www.apojean.com
+www.apojean.space
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
