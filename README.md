@@ -84,6 +84,27 @@ word_game_api
    4. Apply migrations: python manage.py migrate
    5. Run the server: python manage.py runserver
 
+## How to install
+
+- Create a new virtual environment and activate it
+
+```
+python -m venv .venv
+. .venv/bin/activate
+```
+
+- Install in dependencies
+
+```
+pip install -r requirements/local.txt
+```
+
+- Run django
+
+```
+python manage.py runserver
+```
+
 ## Color Reference
 
 | Color             | Hex                                                                |
