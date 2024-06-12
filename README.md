@@ -10,38 +10,38 @@ This is my personal website to display my portfolio as well as the demos of the 
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-around;">
 <div style="margin: 10px;">
-<img src="https://i.ibb.co/MVN4Vrx/athens.webp" alt="athens" width="300">
-  <p>Athens and love themed meeting counter</p>
+<img src="https://i.ibb.co/MVN4Vrx/athens.webp" alt="athens" width="100">
+  <p>Athens Counter</p>
 </div>
 
 <div style="margin: 10px;">
-<img src="https://i.ibb.co/92Dm5MK/commerce.webp" alt="commerce" width="300">
-  <p>Featured eCommerce website with dummy products and cart</p>
+<img src="https://i.ibb.co/92Dm5MK/commerce.webp" alt="commerce" width="100">
+  <p>eCommerce</p>
 </div>
 
 <div style="margin: 10px;">
-<img src="https://i.ibb.co/tBDF2rk/lemonado.webp" alt="lemonado" width="300">
-  <p>Lemonado shop concert web page</p>
+<img src="https://i.ibb.co/tBDF2rk/lemonado.webp" alt="lemonado" width="100">
+  <p>Lemonado Shop</p>
 </div>
 
 <div style="margin: 10px;">
-<img src="https://i.ibb.co/K5QS1P4/paris.webp" alt="paris" width="300">
-  <p>Paris</p>
+<img src="https://i.ibb.co/K5QS1P4/paris.webp" alt="paris" width="100">
+  <p>Paris Counter</p>
 </div>
 
 <div style="margin: 10px;">
-<img src="https://i.ibb.co/f02KRht/todo.webp" alt="todo" width="300">
-  <p>Todo</p>
+<img src="https://i.ibb.co/f02KRht/todo.webp" alt="todo" width="100">
+  <p>Todo App</p>
 </div>
 
 <div style="margin: 10px;">
-<img src="https://i.ibb.co/nbQz2Q1/toronto.webp" alt="toronto" width="300">
-  <p>Toronto</p>
+<img src="https://i.ibb.co/nbQz2Q1/toronto.webp" alt="toronto" width="100">
+  <p>Toronto Counter</p>
 </div>
 
 <div style="margin: 10px;">
-<img src="https://i.ibb.co/g3C2sSQ/words.webp" alt="words" width="300">
-  <p>Words</p>
+<img src="https://i.ibb.co/g3C2sSQ/words.webp" alt="words" width="100">
+  <p>Words Game</p>
 </div>
 
 </div>
@@ -121,7 +121,7 @@ python manage.py runserver
 
 Insert gif or link to demo
 
-www.apojean.space // currently down due to domain expiration
+www.apojean.com // currently down due to domain expiration
 
 ## License
 This project is licensed under the MIT License.
