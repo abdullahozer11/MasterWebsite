@@ -6,46 +6,6 @@ This is my personal website to display my portfolio as well as the demos of the 
 
  [@apojean](https://www.github.com/abdullahozer11)
 
-## Screenshots
-
-<div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-around;">
-<div style="margin: 10px;">
-<img src="https://i.ibb.co/MVN4Vrx/athens.webp" alt="athens" width="100">
-  <p>Athens Counter</p>
-</div>
-
-<div style="margin: 10px;">
-<img src="https://i.ibb.co/92Dm5MK/commerce.webp" alt="commerce" width="100">
-  <p>eCommerce</p>
-</div>
-
-<div style="margin: 10px;">
-<img src="https://i.ibb.co/tBDF2rk/lemonado.webp" alt="lemonado" width="100">
-  <p>Lemonado Shop</p>
-</div>
-
-<div style="margin: 10px;">
-<img src="https://i.ibb.co/K5QS1P4/paris.webp" alt="paris" width="100">
-  <p>Paris Counter</p>
-</div>
-
-<div style="margin: 10px;">
-<img src="https://i.ibb.co/f02KRht/todo.webp" alt="todo" width="100">
-  <p>Todo App</p>
-</div>
-
-<div style="margin: 10px;">
-<img src="https://i.ibb.co/nbQz2Q1/toronto.webp" alt="toronto" width="100">
-  <p>Toronto Counter</p>
-</div>
-
-<div style="margin: 10px;">
-<img src="https://i.ibb.co/g3C2sSQ/words.webp" alt="words" width="100">
-  <p>Words Game</p>
-</div>
-
-</div>
-
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
@@ -130,3 +90,35 @@ For inquiries, contact me at abdullahozer11@example.com or connect on LinkedIn.
 
 ## 🚀 About Me
 I'm a Web developer...
+
+## Screenshots
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-around;">
+<div style="margin: 10px;">
+<img src="https://i.ibb.co/MVN4Vrx/athens.webp" alt="athens" width="100">
+  <p>Athens Counter</p>
+</div>
+<div style="margin: 10px;">
+<img src="https://i.ibb.co/92Dm5MK/commerce.webp" alt="commerce" width="100">
+  <p>eCommerce</p>
+</div>
+<div style="margin: 10px;">
+<img src="https://i.ibb.co/tBDF2rk/lemonado.webp" alt="lemonado" width="100">
+  <p>Lemonado Shop</p>
+</div>
+<div style="margin: 10px;">
+<img src="https://i.ibb.co/K5QS1P4/paris.webp" alt="paris" width="100">
+  <p>Paris Counter</p>
+</div>
+<div style="margin: 10px;">
+<img src="https://i.ibb.co/f02KRht/todo.webp" alt="todo" width="100">
+  <p>Todo App</p>
+</div>
+<div style="margin: 10px;">
+<img src="https://i.ibb.co/nbQz2Q1/toronto.webp" alt="toronto" width="100">
+  <p>Toronto Counter</p>
+</div>
+<div style="margin: 10px;">
+<img src="https://i.ibb.co/g3C2sSQ/words.webp" alt="words" width="100">
+  <p>Words Game</p>
+</div>
+</div>
